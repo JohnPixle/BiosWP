@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide — Containers & chrome</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-adjustments" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 10a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-6v4m0 4v8m4-4a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-12v10m0 4v2m4-13a2 2 0 1 0 4 0a2 2 0 0 0-4 0m2-3v1m0 4v11"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></g></symbol>
+<symbol id="i-wp-admin-comments" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M5 2h9c1.1 0 2 .9 2 2v7c0 1.1-.9 2-2 2h-2l-5 5v-5H5c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z"/></symbol>
+<symbol id="i-wp-admin-generic" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M18 12h-2.18c-.17.7-.44 1.35-.81 1.93l1.54 1.54-2.1 2.1-1.54-1.54c-.58.36-1.23.63-1.91.79V19H8v-2.18c-.68-.16-1.33-.43-1.91-.79l-1.54 1.54-2.12-2.12 1.54-1.54c-.36-.58-.63-1.23-.79-1.91H1V9.03h2.17c.16-.7.44-1.35.8-1.94L2.43 5.55l2.1-2.1 1.54 1.54c.58-.37 1.24-.64 1.93-.81V2h3v2.18c.68.16 1.33.43 1.91.79l1.54-1.54 2.12 2.12-1.54 1.54c.36.59.64 1.24.8 1.94H18V12zm-8.5 1.5c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/></symbol>
+<symbol id="i-wp-admin-home" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M16 8.5l1.53 1.53-1.06 1.06L10 4.62l-6.47 6.47-1.06-1.06L10 2.5l4 4v-2h2v4zm-6-2.46l6 5.99V18H4v-5.97zM12 17v-5H8v5h4z"/></symbol>
+<symbol id="i-wp-admin-plugins" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M13.11 4.36L9.87 7.6 8 5.73l3.24-3.24c.35-.34 1.05-.2 1.56.32.52.51.66 1.21.31 1.55zm-8 1.77l.91-1.12 9.01 9.01-1.19.84c-.71.71-2.63 1.16-3.82 1.16H6.14L4.9 17.26c-.59.59-1.54.59-2.12 0a1.49 1.49 0 010-2.12l1.24-1.24v-3.88c0-1.13.4-3.19 1.09-3.89zm7.26 3.97l3.24-3.24c.34-.35 1.04-.21 1.55.31.52.51.66 1.21.31 1.55l-3.24 3.25z"/></symbol>
+<symbol id="i-wp-admin-post" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M10.44 3.02l1.82-1.82 6.36 6.35-1.83 1.82a2.731 2.731 0 00-3.41.36l-.75.75c-.92.93-1.04 2.35-.35 3.41l-1.83 1.82-2.41-2.41-2.8 2.79c-.42.42-3.38 2.71-3.8 2.29s1.86-3.39 2.28-3.81l2.79-2.79L4.1 9.36l1.83-1.82c1.05.69 2.48.57 3.4-.36l.75-.75c.93-.92 1.05-2.35.36-3.41z"/></symbol>
+<symbol id="i-wp-admin-settings" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M18 16V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h13c.55 0 1-.45 1-1zM8 11h1c.55 0 1 .45 1 1s-.45 1-1 1H8v1.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V13H6c-.55 0-1-.45-1-1s.45-1 1-1h1V5.5c0-.28.22-.5.5-.5s.5.22.5.5V11zm5-2h-1c-.55 0-1-.45-1-1s.45-1 1-1h1V5.5c0-.28.22-.5.5-.5s.5.22.5.5V7h1c.55 0 1 .45 1 1s-.45 1-1 1h-1v5.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V9z"/></symbol>
+<symbol id="i-wp-dashboard" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M3.76 16h12.48A7.998 7.998 0 0010 3a7.998 7.998 0 00-6.24 13zM10 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 6c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm8 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-5.37 5.55L12 7v6c0 1.1-.9 2-2 2s-2-.9-2-2c0-.57.24-1.08.63-1.45zM4 10c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm12 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-5 3c0-.55-.45-1-1-1s-1 .45-1 1 .45 1 1 1 1-.45 1-1z"/></symbol>
+<symbol id="i-wp-plus" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M17 7v3h-5v5H9v-5H4V7h5V2h3v5h5z"/></symbol>
+<symbol id="i-wp-update" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M10.2 3.28c3.53 0 6.43 2.61 6.92 6h2.08l-3.5 4-3.5-4h2.32a4.439 4.439 0 00-4.32-3.45c-1.45 0-2.73.71-3.54 1.78L4.95 5.66a6.965 6.965 0 015.25-2.38zm-.4 13.44c-3.52 0-6.43-2.61-6.92-6H.8l3.5-4c1.17 1.33 2.33 2.67 3.5 4H5.48a4.439 4.439 0 004.32 3.45c1.45 0 2.73-.71 3.54-1.78l1.71 1.95a6.95 6.95 0 01-5.25 2.38z"/></symbol>
+<symbol id="i-wp-wordpress" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M20 10c0-5.52-4.48-10-10-10S0 4.48 0 10s4.48 10 10 10 10-4.48 10-10zM10 1.01c4.97 0 8.99 4.02 8.99 8.99s-4.02 8.99-8.99 8.99S1.01 14.97 1.01 10 5.03 1.01 10 1.01zM8.01 14.82L4.96 6.61c.49-.03 1.05-.08 1.05-.08.43-.05.38-1.01-.06-.99 0 0-1.29.1-2.13.1-.15 0-.33 0-.52-.01 1.44-2.17 3.9-3.6 6.7-3.6 2.09 0 3.99.79 5.41 2.09-.6-.08-1.45.35-1.45 1.42 0 .66.38 1.22.79 1.88.31.54.5 1.22.5 2.21 0 1.34-1.27 4.48-1.27 4.48l-2.71-7.5c.48-.03.75-.16.75-.16.43-.05.38-1.1-.05-1.08 0 0-1.3.11-2.14.11-.78 0-2.11-.11-2.11-.11-.43-.02-.48 1.06-.05 1.08l.84.08 1.12 3.04zm6.02 2.15L16.64 10s.67-1.69.39-3.81c.63 1.14.94 2.42.94 3.81 0 2.96-1.56 5.58-3.94 6.97zM2.68 6.77L6.5 17.25c-2.67-1.3-4.47-4.08-4.47-7.25 0-1.16.2-2.23.65-3.23zm7.45 4.53l2.29 6.25c-.75.27-1.57.42-2.42.42-.72 0-1.41-.11-2.06-.3z"/></symbol>
+</svg>
+
+<div class="guide">
+
+  <h1 class="guide__title">Containers & chrome</h1>
+  <p class="guide__intro">The card family, layout utilities, and the wp-admin chrome pair. Tokens, knobs, and the component index live in the <a href="styleguide.html">style guide</a>.</p>
+
+  <section class="guide__section">
+    <h2 class="guide__section-title">Component specs</h2>
+
+    <!-- card -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Card</h3><div class="spec__badges"><code class="spec__name">.card</code></div></div><p class="spec__purpose">The primary content container. Everything on a screen lives in cards.</p></div>
+      <div class="spec__demo">
+        <section class="card">
+          <div class="card__header">
+            <div class="card__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-settings"/></svg></div>
+            <div class="card__heading">
+              <h3 class="card__title">Card title</h3>
+              <p class="card__description">Card description text goes here.</p>
+            </div>
+          </div>
+          <div class="card__well">Well content goes here.</div>
+          <div class="card__footer">
+            <button class="button button--primary">Primary action</button>
+            <span class="card__footer-meta">Footer meta text</span>
+          </div>
+        </section>
+
+        <p class="card__description" style="margin-top: var(--space-lg);">Single-container variant: one <code>--flush</code> card owns the screen — title in the header, <code>.tabs--card</code> flushed below, then a <code>__body</code> whose groups are divided by <code>__section-title</code> instead of separate cards.</p>
+        <section class="card card--flush">
+          <div class="card__header">
+            <div class="card__heading">
+              <h3 class="card__title">Page title</h3>
+            </div>
+          </div>
+          <nav class="tabs tabs--card" aria-label="Demo sections">
+            <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">Tab label</a>
+            <a class="tabs__tab" href="#">Tab label</a>
+          </nav>
+          <div class="card__body">
+            <section>
+              <h3 class="card__section-title">Section label</h3>
+              <div class="settings">
+                <div class="setting">
+                  <div class="setting__label">Setting label</div>
+                  <div class="setting__control"><input class="field__input field__input--narrow" value="Value"></div>
+                </div>
+              </div>
+            </section>
+            <section>
+              <h3 class="card__section-title">Section label</h3>
+              <div class="settings">
+                <div class="setting">
+                  <div class="setting__label">Setting label</div>
+                  <div class="setting__control"><label class="toggle"><input class="toggle__input" type="checkbox" checked><span class="toggle__track"></span></label></div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </section>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__header</code> · <code>__icon</code> · <code>__heading</code> · <code>__title</code> · <code>__description</code> · <code>__section-title</code> (group divider in a single-container card body) · <code>__header-actions</code> · <code>__well</code> · <code>__divider</code> · <code>__footer</code> · <code>__footer-meta</code> · <code>__body</code> (padded tab-panel slot in a <code>--flush</code> card hosting <code>.tabs--card</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Settings default to a single <code>--flush</code> card holding all groups, divided by <code>__section-title</code>; use one card per group only for genuinely independent groups.</li>
+            <li>Title placement follows the container: single-container may host the <code>.page-header</code> in its <code>__header</code>; multiple cards keep the title on the canvas above them.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- collapsible containers -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Collapsible containers</h3><div class="spec__badges"><code class="spec__name">.card--collapsible</code><code class="spec__name">.panel</code></div></div><p class="spec__purpose">Toggle containers. Card variant: the whole card collapses to its header. Panel: leaner nested toggle inside a normal card. Bodies are free content slots.</p></div>
+      <div class="spec__demo">
+        <div class="stack">
+          <details class="card card--collapsible" open>
+            <summary class="card__header">
+              <div class="card__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-adjustments"/></svg></div>
+              <div class="card__heading">
+                <h3 class="card__title">Card title</h3>
+                <p class="card__description">Card description text goes here.</p>
+              </div>
+              <svg class="card__chevron icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </summary>
+            <div class="card__well">Slot content goes here. Any components can live inside.</div>
+          </details>
+          <details class="card card--collapsible">
+            <summary class="card__header">
+              <div class="card__heading">
+                <h3 class="card__title">Card title (collapsed)</h3>
+              </div>
+              <svg class="card__chevron icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>
+            </summary>
+            <div class="card__well">Slot content goes here.</div>
+          </details>
+          <section class="card">
+            <div class="card__heading">
+              <h3 class="card__title">Card title</h3>
+              <p class="card__description">A normal card hosting nested toggle panels.</p>
+            </div>
+            <div class="stack stack--tight">
+              <details class="panel" open>
+                <summary class="panel__header">Panel label<svg class="panel__chevron icon--sm icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+                <div class="panel__body">Slot content goes here. One or two sentences, a field, or a table.</div>
+              </details>
+              <details class="panel">
+                <summary class="panel__header">Panel label<svg class="panel__chevron icon--sm icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></summary>
+                <div class="panel__body">Slot content goes here.</div>
+              </details>
+            </div>
+          </section>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy (card)</dt><dd><code>details.card.card--collapsible &gt; summary.card__header (…&nbsp;+ __chevron) + slot children</code></dd>
+        <dt>Anatomy (panel)</dt><dd><code>details.panel &gt; summary.panel__header (label + __chevron) + __body (slot)</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Native <code>details/summary</code> — keyboard and screen-reader support for free; add <code>open</code> for expanded-by-default.</li>
+            <li>Chevron is Tabler <code>chevron-down</code>, rotating 180° when open.</li>
+            <li>In a design tool: two components with a content slot; chevron rotation = open/closed variant.</li>
+            <li>Group stacked panels with <code>.stack--tight</code>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- stack -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Stack</h3><div class="spec__badges"><code class="spec__name">.stack</code></div></div><p class="spec__purpose">Vertical auto-layout utility: stack children with gap, never margins. Maps 1:1 to a a vertical auto-layout frame.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack stack--tight demo-w-sm">
+          <span class="badge">Stacked item</span>
+          <span class="badge">Stacked item</span>
+          <span class="badge">Stacked item</span>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Modifiers</dt><dd>default <code>--gap-content</code> (16) · <code>--tight</code> <code>--gap-tight</code> (8) · <code>--loose</code> <code>--gap-section</code> (24)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>The generic stacking frame — control groups, field groups, widget columns all use it.</li>
+            <li>Never manage vertical space with margins; if a new rhythm is needed, add a gap role first.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- shells / layouts -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Layout variations</h3><div class="spec__badges"><code class="spec__name">.columns</code><code class="spec__name">.onboarding</code><code class="spec__name">.plugin__body--full</code></div></div><p class="spec__purpose">Shell layout variations. Full-page references: shell-fullwidth.html, shell-sidebar.html, shell-onboarding.html.</p></div>
+      <dl class="spec__api">
+        <dt>.plugin__body--full</dt><dd>Removes the 1100px max-width — for list-table screens. See <a href="shell-fullwidth.html">shell-fullwidth.html</a>.</dd>
+        <dt>.columns</dt><dd><code>.columns &gt; __main + __aside</code> — main content + 300px aside of widget cards (license, newsletter, links, <code>.upsell--stacked</code>). Stacks below 960px. See <a href="shell-sidebar.html">shell-sidebar.html</a>.</dd>
+        <dt>.onboarding</dt><dd><code>.onboarding &gt; __panel</code> — replaces topbar/tabs/body with one centered 560px panel (stepper + card). See <a href="shell-onboarding.html">shell-onboarding.html</a>.</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Aside widgets are plain <code>.card</code>s — no special widget component.</li>
+            <li>All shells share the same <code>.admin-menu</code> markup in the first grid slot.</li>
+            <li>Onboarding keeps the wp-admin shell; only the plugin chrome is removed.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- plugin topbar / theme toggle -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Plugin header</h3><div class="spec__badges"><code class="spec__name">.plugin__topbar</code><code class="spec__name">__theme-toggle</code></div></div><p class="spec__purpose">Plugin header. Variant: a dark/light toggle as an icon-only button in the topbar actions.</p></div>
+      <div class="spec__demo">
+        <header class="plugin__topbar demo-framed">
+          <h1 class="plugin__brand">Plugin Name</h1>
+          <div class="plugin__topbar-actions">
+            <a href="#">Topbar link</a>
+            <span class="badge badge--accent">Badge label</span>
+            <button class="plugin__theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark mode"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-moon"/></svg></button>
+          </div>
+        </header>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.plugin__topbar &gt; __brand + __topbar-actions (links + badge + [__theme-toggle])</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Icon-only button: 28px square, Tabler <code>moon</code>, <code>aria-label="Toggle dark mode"</code>.</li>
+            <li>Toggles <code>data-theme="dark"</code> on the root element; the demo button here is live.</li>
+            <li>Optional element — include only if the plugin ships its own dark mode.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- admin-bar -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Admin bar</h3><div class="spec__badges"><code class="spec__name">.admin-bar</code></div></div><p class="spec__purpose">The wp-admin top bar as a component, for full-screen mockups and previews. Chrome like .admin-menu: fixed wp palette, real dashicons, metrics measured on WP 7.0, excluded from dist. Dropdowns open on hover/focus (CSS-only).</p></div>
+      <div class="spec__demo spec__demo--h-sm">
+        <div class="admin-bar">
+          <a class="admin-bar__item" href="#" aria-label="About WordPress"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-wordpress"/></svg></a>
+          <div class="admin-bar__menu">
+            <a class="admin-bar__item" href="#"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-admin-home"/></svg>example.com</a>
+            <div class="admin-bar__submenu">
+              <a class="admin-bar__submenu-item" href="#">Visit Site</a>
+            </div>
+          </div>
+          <a class="admin-bar__item" href="#" aria-label="1 update available"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-update"/></svg><span class="admin-bar__badge">1</span></a>
+          <a class="admin-bar__item" href="#" aria-label="2 comments awaiting moderation"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-admin-comments"/></svg><span class="admin-bar__bubble">2</span></a>
+          <a class="admin-bar__item" href="#"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-plus"/></svg>New</a>
+          <span class="admin-bar__spacer"></span>
+          <div class="admin-bar__menu">
+            <a class="admin-bar__item" href="#">Howdy, Username<span class="admin-bar__avatar" aria-hidden="true"></span></a>
+            <div class="admin-bar__submenu admin-bar__submenu--right">
+              <div class="admin-bar__user">
+                <span class="admin-bar__user-avatar" aria-hidden="true"></span>
+                <div><span class="admin-bar__user-name">Username</span><span class="admin-bar__user-login">username</span></div>
+              </div>
+              <a class="admin-bar__submenu-item" href="#">Edit Profile</a>
+              <a class="admin-bar__submenu-item" href="#">Log Out</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__item</code> · <code>__icon</code> (20px dashicon, dimmed base) · <code>__badge</code> (updates count) · <code>__bubble</code> (moderation count, wp red) · <code>__spacer</code> · <code>__avatar</code> (16px square) · <code>__menu</code> &gt; <code>__submenu</code> (+ <code>--right</code>) &gt; <code>__submenu-item</code> · <code>__user</code> (64px avatar + <code>__user-name</code>/<code>__user-login</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Hover, focus, and submenu-open share one state (bar hover blue on the darker fill) — measured wp behavior, no transitions.</li>
+            <li>Dropdowns are CSS-only (<code>:hover</code>/<code>:focus-within</code>), like wp's no-JS fallback; the right cluster uses <code>__submenu--right</code>.</li>
+            <li>Same chrome rules as <code>.admin-menu</code>: dashicons allowed here only; never render inside real wp-admin (dist drops this section); not replicated: &lt;782px mobile mode, nested flyouts.</li>
+            <li>Icon-only items carry <code>aria-label</code>s; counts are literal placeholders.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- admin-menu -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Admin menu</h3><div class="spec__badges"><code class="spec__name">.admin-menu</code></div></div><p class="spec__purpose">The wp-admin sidebar as a component, for full-screen mockups and previews. Chrome, not plugin UI: fixed wp palette in both modes, real dashicons, metrics measured on WP 7.0. Excluded from the dist build — WordPress renders the real menu.</p></div>
+      <div class="spec__demo">
+        <nav class="admin-menu demo-w-sidebar" aria-label="Admin menu">
+          <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-dashboard"/></svg>Dashboard</a>
+          <div class="admin-menu__separator" aria-hidden="true"></div>
+          <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-post"/></svg>Posts</a>
+          <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-plugins"/></svg>Plugins <span class="admin-menu__bubble">2</span></a>
+          <a class="admin-menu__item admin-menu__item--current" href="#" aria-current="page"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-generic"/></svg>Plugin Name</a>
+          <a class="admin-menu__submenu-item admin-menu__submenu-item--current" href="#" aria-current="page">Submenu item</a>
+          <a class="admin-menu__submenu-item" href="#">Submenu item</a>
+          <a class="admin-menu__submenu-item" href="#">Submenu item</a>
+          <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-settings"/></svg>Settings</a>
+        </nav>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__item</code> (+ <code>--current</code>: accent fill + canvas arrow) · <code>__icon</code> (20px dashicon, dimmed base) · <code>__bubble</code> (update count) · <code>__separator</code> · <code>__submenu-item</code> (+ <code>--current</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Icons are real WP dashicons (<code>reference/icons/wp-*.svg</code>, GPL) — the one exception to Tabler-only; never use them in kit components.</li>
+            <li>Fixed wp palette in both modes; the current-item fill rides <code>--accent</code>, so admin-scheme presets flow through.</li>
+            <li>In the demo shell it is the first grid child, so <code>.shell</code>'s first column places it — no slot class needed. Never render it inside real wp-admin — core owns the menu there (dist drops this section).</li>
+            <li>A custom plugin item without its own icon uses <code>wp-admin-generic</code> — wp's default.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="guide.js"></script>
+</body>
+</html>

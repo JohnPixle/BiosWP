@@ -1,0 +1,4070 @@
+/* ============================================================
+   BIOS — tokens.css · version 0.9.0
+   Single source of truth: design tokens + standardized components.
+   Direction: native WordPress admin. BEM throughout.
+
+   TOKEN ARCHITECTURE (two tiers, design-tool friendly):
+     Tier 1 — primitives:  raw values (--gray-900, --blue-600, --space-md).
+               Never referenced by components directly.
+     Tier 2 — semantic:    role-based aliases (--color-text-primary).
+               The ONLY tokens components may use.
+   Dark mode overrides the semantic tier only, via [data-theme="dark"].
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. PRIMITIVES  (design tool: one collection, no modes)
+   ------------------------------------------------------------ */
+
+:root {
+  /* Gray ramp (WP admin grays) */
+  --gray-900: #1d2327;
+  --gray-800: #2c3338;
+  --gray-750: #32373c;
+  --gray-720: #3c434a;  /* wp body text (wp core's gray-700) */
+  --gray-700: #646970;
+  --gray-500: #8c8f94;
+  --gray-400: #a7aaad;
+  --gray-300: #c3c4c7;
+  --gray-200: #dcdcde;
+  --gray-100: #f0f0f1;
+  --gray-50:  #f6f7f7;
+  --white:    #ffffff;
+
+  /* Blue (accent) */
+  --blue-700: #135e96;
+  --blue-600: #2271b1;
+  --blue-400: #4f94d4;
+  --blue-300: #72aee6;
+  --blue-50:  #f0f6fc;
+
+  /* Green (success) */
+  --green-700: #007017;
+  --green-600: #00a32a;
+  --green-400: #35c455;  /* dark-mode text grade (AA on dark surfaces) */
+  --green-50:  #edfaef;
+
+  /* Yellow (warning) */
+  --yellow-600: #dba617;
+  --yellow-50:  #fcf9e8;
+
+  /* Red (danger) */
+  --red-700: #b32d2e;
+  --red-600: #d63638;
+  --red-300: #f29a9c;    /* dark-mode text grade (AA on dark surfaces) */
+  --red-50:  #fcf0f1;
+
+  /* Type primitives */
+  --font-family: -apple-system, "system-ui", "Segoe UI", Roboto,
+                 Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+                 /* verbatim wp-admin stack (measured, WP 7.0) */
+  --font-mono:   Consolas, Monaco, monospace;
+
+  --font-size-11: 11px;
+  --font-size-12: 12px;
+  --font-size-13: 13px;
+  --font-size-14: 14px;
+  --font-size-15: 15px;
+  --font-size-16: 16px;
+  --font-size-20: 20px;
+  --font-size-23: 23px;
+
+  --line-height-tight: 1.25;
+  --line-height-base:  1.5;
+
+  /* Spacing engine: every spacing step derives from one base unit.
+     Density = tweak --space-unit, or use a [data-density] preset. */
+  --space-unit: 4px;
+
+  --space-4:  calc(var(--space-unit) * 1);
+  --space-8:  calc(var(--space-unit) * 2);
+  --space-12: calc(var(--space-unit) * 3);
+  --space-16: calc(var(--space-unit) * 4);
+  --space-24: calc(var(--space-unit) * 6);
+  --space-40: calc(var(--space-unit) * 10);
+
+  /* Radius primitives */
+  --radius-4:   4px;
+  --radius-999: 999px;
+
+  /* Size primitives */
+  --size-16: 16px;   /* checkbox / radio */
+  --size-24: 24px;   /* step marker */
+  --size-36: 36px;   /* card icon tile */
+  --size-44: 44px;   /* addon icon tile */
+  --size-80: 80px;   /* narrow input */
+  --size-160: 160px; /* shell sidebar */
+  --size-180: 180px; /* setting label column */
+}
+
+/* ------------------------------------------------------------
+   1b. ACCENT — the branding knob (three values per mode)
+       Everything accent-colored in the kit routes through these.
+       Resolution order:
+         1. Brand color, if the plugin sets --accent explicitly
+         2. The user's wp-admin color scheme, via WP core's own
+            --wp-admin-theme-color (present in real wp-admin)
+         3. Native WP admin blue (fallback, used in these static pages)
+       Demo scheme presets: [data-admin-scheme="…"] blocks below.
+   ------------------------------------------------------------ */
+
+:root {
+  --accent:       var(--wp-admin-theme-color, var(--blue-600));
+  --accent-hover: var(--wp-admin-theme-color-darker-10, var(--blue-700));
+  --accent-soft:  var(--blue-50);
+}
+
+/* ------------------------------------------------------------
+   2. SEMANTIC TOKENS — light (default)
+      (design tool: one collection, mode = Light)
+   ------------------------------------------------------------ */
+
+:root {
+  /* Text */
+  --color-text-heading:       var(--gray-900);  /* titles + labels (wp .wrap h1, form-table th) */
+  --color-text-primary:       var(--gray-720);  /* running text (wp body #3c434a) */
+  --color-text-secondary:     var(--gray-700);
+  --color-text-inverse:       var(--gray-100);
+  --color-text-inverse-muted: var(--gray-400);
+  --color-text-on-accent:     var(--white);
+  --color-text-link:          var(--accent);
+  --color-text-link-hover:    var(--accent-hover);
+
+  /* Surfaces */
+  --color-bg-canvas:  var(--gray-100);
+  --color-bg-surface: var(--white);
+  --color-bg-subtle:  var(--gray-50);
+  --color-bg-muted:   var(--gray-200); /* filled resting controls (wp core nav-tab fill #dcdcde); pairs with --color-border-muted */
+  --color-bg-inverse: var(--gray-900);
+
+  /* Borders */
+  --color-border-default: var(--gray-200);
+  --color-border-muted:   var(--gray-300); /* border on muted fills (wp core nav-tab border #c3c4c7) */
+  --color-border-strong:  var(--gray-500);
+
+  /* Action (accent) */
+  --color-action-primary:       var(--accent);
+  --color-action-primary-hover: var(--accent-hover);
+  --color-action-soft:          var(--accent-soft);
+
+  /* States */
+  --color-success:      var(--green-600);
+  --color-success-text: var(--green-700);
+  --color-success-soft: var(--green-50);
+  --color-warning:      var(--yellow-600);
+  --color-warning-soft: var(--yellow-50);
+  --color-danger:       var(--red-600);
+  --color-danger-hover: var(--red-700);
+  --color-danger-soft:  var(--red-50);
+
+  --color-focus: var(--accent);
+
+  /* Type roles */
+  --text-xs: var(--font-size-11);   /* table column labels */
+  --text-sm: var(--font-size-12);   /* hints, meta, badges */
+  --text-md: var(--font-size-13);   /* base body, buttons, dialogs, menus */
+  --text-lg: var(--font-size-14);   /* content: labels, controls, cells, help, leads, tabs */
+
+  --heading-sm: var(--font-size-15);
+  --heading-md: var(--font-size-16);
+  --heading-lg: var(--font-size-20);
+  --heading-xl: var(--font-size-23);  /* wp .wrap h1 (measured 23px) */
+
+  --leading-heading: var(--line-height-tight);
+  --leading-body:    var(--line-height-base);
+
+  /* Spacing roles */
+  --space-xs: var(--space-4);
+  --space-sm: var(--space-8);
+  --space-md: var(--space-16);
+  --space-lg: var(--space-24);
+  --space-xl: var(--space-40);
+
+  /* Vertical rhythm roles — gap-only, the density knobs.
+     Blocks stack with flex + gap (auto layout), never margins. */
+  --gap-tight:   var(--space-sm);   /* stacked controls, action clusters */
+  --gap-content: var(--space-md);   /* blocks inside a card / drawer / popup */
+  --gap-section: var(--space-lg);   /* page level: header, notices, cards */
+  --gap-label:   var(--space-12);   /* field label → its control(s) */
+
+  /* Radius mission control: one master knob drives all roundness.
+     Two tiers — containers a touch rounder than controls, in the
+     classic wp-admin register (not WP 7.0's heavier 8px): containers
+     4px, controls 2px. --radius is the container knob; controls derive
+     at half of it, so one dial still governs everything and
+     --radius: 0 squares the whole UI. Pills (--radius-full) are
+     shape-based and stay round. */
+  --radius:         var(--radius-4);
+  --radius-control: calc(var(--radius) * 0.5); /* buttons, inputs, tight parts */
+  --radius-button:  var(--radius-control);
+  --radius-input:   var(--radius-control);
+  --radius-card:    var(--radius);
+
+  --radius-sm:   var(--radius-control);  /* fine details (checkbox) */
+  --radius-md:   var(--radius);          /* container tier (cards, panels, notices…) */
+  --radius-full: var(--radius-999);      /* badges, pills, toggle */
+
+  /* Layout / component sizes */
+  --size-control:        var(--size-16);
+  --size-step:           var(--size-24);
+  --size-icon-tile:      var(--size-36);
+  --size-icon-tile-lg:   var(--size-44);
+  --width-input-narrow:  var(--size-80);
+  --width-sidebar:       var(--size-160);  /* wp-admin shell menu (demo) */
+  --width-setting-label: var(--size-180);
+
+  /* Layout width knobs — the quick parameterization surface.
+     Raw px by design: these are one-off dimensions, not a scale. */
+  --width-content-max: 1100px;  /* plugin body (unless --full) */
+  --width-aside:       300px;   /* .columns sidebar-widgets column */
+  --width-onboarding:  560px;   /* centered onboarding panel */
+  --width-drawer:      420px;   /* side drawer panel */
+  --width-modal:       440px;   /* modal dialog */
+  --width-popup:       320px;   /* popup notification/confirmation */
+  --width-toast:       360px;   /* toast */
+  --width-filter-menu: 240px;   /* filter dropdown panel (min) */
+}
+
+/* ------------------------------------------------------------
+   2b. SEMANTIC TOKENS — dark
+       Same keys, dark values. Color only; type/space/radius
+       are mode-independent.
+   ------------------------------------------------------------ */
+
+[data-theme="dark"] {
+  --color-text-heading:       var(--gray-100);
+  --color-text-primary:       var(--gray-100);
+  --color-text-secondary:     var(--gray-400);
+  --color-text-inverse:       var(--gray-900);
+  --color-text-inverse-muted: var(--gray-700);
+  /* Filled accent controls invert in dark: light fill, dark text —
+     white on the brightened accent fails AA (audited). */
+  --color-text-on-accent:     var(--gray-900);
+  /* accent-hover is a fill color; as hover TEXT it fails AA in dark,
+     so links brighten to blue-50 instead. */
+  --color-text-link-hover:    var(--blue-50);
+
+  --color-bg-canvas:  var(--gray-900);
+  --color-bg-surface: var(--gray-800);
+  --color-bg-subtle:  var(--gray-750);
+  --color-bg-muted:   var(--gray-720);
+  --color-bg-inverse: var(--gray-100);
+
+  --color-border-default: var(--gray-700);
+  --color-border-muted:   var(--gray-700);
+  --color-border-strong:  var(--gray-500);
+
+  /* Accent brightens a step in dark (blue-300) so link text and
+     accent-colored labels clear AA on the raised surfaces; hover
+     fills step back down (blue-400). */
+  --accent:       var(--wp-admin-theme-color, var(--blue-300));
+  --accent-hover: var(--wp-admin-theme-color-darker-10, var(--blue-400));
+  --accent-soft:  rgba(114, 174, 230, 0.10);
+
+  /* State colors step up to their text-grade primitives in dark */
+  --color-success-text: var(--green-400);
+  --color-success-soft: rgba(0, 163, 42, 0.12);
+  --color-warning-soft: rgba(219, 166, 23, 0.12);
+  --color-danger:       var(--red-300);
+  --color-danger-hover: var(--red-300); /* hover keeps the text; the soft bg is the hover cue */
+  --color-danger-soft:  rgba(242, 154, 156, 0.10);
+
+}
+
+/* ------------------------------------------------------------
+   2c. DENSITY PRESETS
+       One attribute rescales the whole spacing rhythm.
+       <html data-density="compact">. Type and control sizes are
+       intentionally unaffected.
+   ------------------------------------------------------------ */
+
+[data-density="compact"] { --space-unit: 3px; }
+[data-density="relaxed"] { --space-unit: 5px; }
+
+/* ------------------------------------------------------------
+   2d. WP ADMIN COLOR SCHEME PRESETS (optional)
+       In real wp-admin the accent follows the user's scheme
+       automatically via --wp-admin-theme-color. These presets
+       replicate that for static previews / explicit opt-in:
+       <html data-admin-scheme="ectoplasm">. Values are WP core's
+       per-scheme theme colors; hover = darker-10; soft = 10% tint.
+   ------------------------------------------------------------ */
+
+[data-admin-scheme="modern"]    { --accent: #3858e9; --accent-hover: #183ad6; --accent-soft: rgba(56, 88, 233, 0.10); }
+[data-admin-scheme="light"]     { --accent: #04a4cc; --accent-hover: #037c9a; --accent-soft: rgba(4, 164, 204, 0.10); }
+[data-admin-scheme="blue"]      { --accent: #096484; --accent-hover: #064054; --accent-soft: rgba(9, 100, 132, 0.10); }
+[data-admin-scheme="coffee"]    { --accent: #46403c; --accent-hover: #2b2724; --accent-soft: rgba(70, 64, 60, 0.10); }
+[data-admin-scheme="ectoplasm"] { --accent: #523f6d; --accent-hover: #3a2c4d; --accent-soft: rgba(82, 63, 109, 0.10); }
+[data-admin-scheme="midnight"]  { --accent: #e14d43; --accent-hover: #d02c21; --accent-soft: rgba(225, 77, 67, 0.10); }
+[data-admin-scheme="ocean"]     { --accent: #627c83; --accent-hover: #4c6066; --accent-soft: rgba(98, 124, 131, 0.10); }
+[data-admin-scheme="sunrise"]   { --accent: #dd823b; --accent-hover: #c36922; --accent-soft: rgba(221, 130, 59, 0.10); }
+
+/* ------------------------------------------------------------
+   3. BASE
+   ------------------------------------------------------------ */
+
+* { box-sizing: border-box; }
+
+/* The hidden attribute wins over a component's own display. Lets
+   panels/drawers toggle visibility via [hidden] (see bios.js) without
+   inline display:none, which the UA default alone can't guarantee once
+   a rule sets display on the element. */
+[hidden] { display: none !important; }
+
+/* Set by bios.js while a drawer/modal is open — locks the page behind
+   the overlay without an inline style write. */
+[data-scroll-locked] { overflow: hidden; }
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+  color: var(--color-text-primary);
+  background: var(--color-bg-canvas);
+}
+
+a { color: var(--color-text-link); }
+a:hover { color: var(--color-text-link-hover); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  padding: 1px 5px;
+}
+
+/* ------------------------------------------------------------
+   4. SHELL — wp-admin context chrome (demo only)
+      .shell wraps the demo page; the plugin owns only .plugin.
+      Shell surfaces are intentionally fixed-dark in both modes
+      (wp-admin sidebar is dark regardless of scheme).
+      Metrics measured against real wp-admin (WP 7.0): 160px
+      sidebar / 32px adminbar / 14px items (8px padding, lh 1.3)
+      / 13px submenu on #2c3338 with 6px group padding / current
+      item = scheme highlight (--accent) + 8px arrow pointing
+      into the canvas. Default-scheme colors; the hover blue
+      #72aee6 is wp core's fixed menu-link hover.
+   ------------------------------------------------------------ */
+
+.shell {
+  display: grid;
+  grid-template-columns: var(--width-sidebar) 1fr;
+  grid-template-rows: 32px 1fr;
+  min-height: 100vh;
+}
+
+/* Grid slot only — the bar itself is the .admin-bar component (4c) */
+.shell__adminbar { grid-column: 1 / -1; }
+
+/* Flex column so .plugin__body can grow: a bottom .save-bar rests
+   at the viewport bottom even on short pages. */
+.shell__content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.shell__content > .plugin__body { flex: 1; }
+
+/* ------------------------------------------------------------
+   4b. ADMIN MENU — the wp-admin sidebar as a component, for
+      full-screen mockups and previews. Chrome, not plugin UI:
+      fixed wp palette in both modes (gray primitives + wp's
+      #72aee6 menu-hover blue) and real dashicons (GPL, WP
+      core's glyphs — the one exception to Tabler-only, never
+      in kit components). Metrics measured on WP 7.0.
+      Lives above the PLUGIN FRAME cut on purpose: excluded
+      from the dist build (WordPress renders the real menu in
+      wp-admin) and exempt from the semantic-only guard, like
+      the shell it belongs to. Current-item highlight rides
+      --accent so admin-scheme presets flow through.
+   ------------------------------------------------------------ */
+
+.admin-menu {
+  background: var(--gray-900);
+  color: var(--gray-100);
+  padding: var(--space-sm) 0;
+  font-size: var(--text-lg);
+}
+
+.admin-menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 8px var(--space-sm);
+  line-height: 1.3;
+  color: var(--gray-100);
+  text-decoration: none;
+}
+
+/* Default-scheme hover: text turns wp's menu-hover blue, no fill
+   (accent-filled hover is a Modern-scheme behavior). Also stops
+   the global accent a:hover from winning on the dark surface. */
+.admin-menu__item:hover { color: #72aee6; }
+
+/* 20px dashicon in the 36px icon column (8px pad + 20 + 8px gap
+   = label starts at 36, as measured). Base glyph is dimmer than
+   the label; hover/current follow the item color. */
+.admin-menu__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: currentColor;
+  color: var(--gray-400);
+}
+
+.admin-menu__item:hover .admin-menu__icon,
+.admin-menu__item--current .admin-menu__icon { color: inherit; }
+
+.admin-menu__item--current {
+  position: relative;
+  background: var(--accent);
+  color: var(--color-text-on-accent); /* flips dark with the brightened accent */
+}
+
+.admin-menu__item--current:hover { color: var(--color-text-on-accent); }
+
+/* Current-item arrow: 8px triangle pointing into the content
+   canvas; tracks the canvas color so dark mode is free */
+.admin-menu__item--current::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -8px;
+  border: 8px solid transparent;
+  border-right-color: var(--color-bg-canvas);
+}
+
+/* Update/pending count pill (wp .update-plugins) */
+.admin-menu__bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--accent);
+  color: var(--color-text-on-accent);
+  font-size: 11px;
+  line-height: 1;
+  vertical-align: top;
+}
+
+/* Separator between menu groups: a 5px gap, menu bg showing */
+.admin-menu__separator { height: 5px; }
+
+.admin-menu__submenu-item {
+  display: block;
+  padding: 5px var(--space-md) 5px 36px; /* aligns with the label column */
+  background: var(--gray-800);
+  color: var(--gray-300);
+  text-decoration: none;
+  font-size: var(--text-md);
+  line-height: 1.4;
+}
+
+/* Submenu group breathing room (wp .wp-submenu 6px block padding) */
+.admin-menu__item + .admin-menu__submenu-item,
+.admin-menu__separator + .admin-menu__submenu-item { padding-top: 11px; }
+
+.admin-menu__submenu-item:has(+ .admin-menu__item),
+.admin-menu__submenu-item:has(+ .admin-menu__separator),
+.admin-menu__submenu-item:last-child { padding-bottom: 11px; }
+
+.admin-menu__submenu-item:hover { color: #72aee6; }
+
+.admin-menu__submenu-item--current {
+  color: var(--white);
+  font-weight: 600;
+}
+
+/* ------------------------------------------------------------
+   4c. ADMIN BAR — the wp-admin top bar as a component, for
+      full-screen mockups and previews. Chrome like the admin
+      menu: fixed wp palette, real dashicons, excluded from dist
+      (WP renders the real bar). Metrics measured on WP 7.0
+      (Modern scheme; colors mapped to Default: bar #1d2327,
+      hover/submenu #2c3338, accent #72aee6, submenu text
+      #c3c4c7, icons #a7aaad). Dropdowns are CSS-only, on
+      :hover / :focus-within — same as wp's no-JS fallback.
+      Not replicated: <782px mobile mode, nested flyouts,
+      recovery-mode item.
+   ------------------------------------------------------------ */
+
+.admin-bar {
+  display: flex;
+  align-items: stretch;
+  height: 32px;
+  background: var(--gray-900);
+  color: var(--white);
+  font-size: var(--text-md);
+}
+
+.admin-bar__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* measured icon-to-label gap */
+  padding: 0 8px 0 7px;
+  color: var(--white);
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* Hover, focus, and submenu-open share one state (as measured);
+   the background change is the visible focus indicator, like wp */
+.admin-bar__item:hover,
+.admin-bar__item:focus-visible,
+.admin-bar__menu:hover > .admin-bar__item,
+.admin-bar__menu:focus-within > .admin-bar__item {
+  background: var(--gray-800);
+  color: #72aee6;
+}
+
+.admin-bar__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  fill: currentColor;
+  color: var(--gray-400);
+}
+
+.admin-bar__item:hover .admin-bar__icon,
+.admin-bar__item:focus-visible .admin-bar__icon,
+.admin-bar__menu:hover .admin-bar__icon,
+.admin-bar__menu:focus-within .admin-bar__icon { color: inherit; }
+
+.admin-bar__spacer { flex: 1; }
+
+/* Updates count (wp #ab-updates) */
+.admin-bar__badge {
+  padding: 2px 5px;
+  border-radius: 10px;
+  background: var(--gray-100);
+  color: var(--gray-800);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Comment moderation count (wp .awaiting-mod) — wp's fixed red */
+.admin-bar__bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--red-600);
+  color: var(--white);
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* Bar avatar: 16px square (wp renders gravatars unrounded here) */
+.admin-bar__avatar {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  background: var(--gray-700);
+}
+
+/* Dropdown: wrapper + panel, shown on hover/focus-within */
+.admin-bar__menu {
+  position: relative;
+  display: flex;
+}
+
+.admin-bar__submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  padding: 6px 0;
+  background: var(--gray-800);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  z-index: 80;
+}
+
+.admin-bar__menu:hover .admin-bar__submenu,
+.admin-bar__menu:focus-within .admin-bar__submenu { display: block; }
+
+.admin-bar__submenu--right {
+  left: auto;
+  right: 0;
+  min-width: 264px;
+}
+
+.admin-bar__submenu-item {
+  display: block;
+  line-height: 26px;
+  padding: 0 10px;
+  font-size: var(--text-md);
+  color: var(--gray-300);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.admin-bar__submenu-item:hover,
+.admin-bar__submenu-item:focus-visible { color: #72aee6; }
+
+/* my-account user-info panel: 64px square avatar + name/login */
+.admin-bar__user {
+  display: flex;
+  gap: 10px;
+  padding: 6px 10px 10px;
+}
+
+.admin-bar__user-avatar {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  background: var(--gray-700);
+}
+
+.admin-bar__user-name { display: block; color: var(--white); }
+
+.admin-bar__user-login {
+  display: block;
+  color: var(--gray-300);
+}
+
+/* ------------------------------------------------------------
+   5. PLUGIN FRAME
+   ------------------------------------------------------------ */
+
+.plugin__topbar {
+  background: var(--color-bg-surface);
+  border-bottom: 1px solid var(--color-border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) var(--space-lg);
+}
+
+.plugin__brand {
+  color: var(--color-text-heading);
+  font-size: var(--heading-md);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+.plugin__topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: var(--text-md);
+}
+
+/* Topbar variant: dark/light toggle — icon-only button in __topbar-actions */
+.plugin__theme-toggle {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-control);
+  background: transparent;
+  color: var(--color-text-secondary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.plugin__theme-toggle:hover {
+  color: var(--color-text-primary);
+  background: var(--color-bg-subtle);
+}
+
+.plugin__theme-toggle:focus-visible {
+  outline: 2px solid var(--color-focus);
+}
+
+.plugin__body {
+  padding: var(--space-lg);
+  max-width: var(--width-content-max);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-section);
+  align-items: flex-start;
+}
+
+.plugin__body > * { align-self: stretch; }
+
+.plugin__body--full { max-width: none; }
+
+/* Tabs */
+
+.tabs {
+  /* Transparent by default: a strip on the canvas (secondary nav under
+     a page-header) shows the body bg, like native wp-admin settings
+     tabs. Only the chrome strip fused to the topbar gets the surface. */
+  background: transparent;
+  border-bottom: 1px solid var(--color-border-default);
+  display: flex;
+  gap: var(--space-xs);
+  padding: 0 var(--space-lg);
+  overflow-x: auto;
+}
+
+.plugin__topbar + .tabs {
+  background: var(--color-bg-surface);
+}
+
+.tabs__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 14px;
+  font-size: var(--text-lg);
+  font-weight: 600; /* same weight in all states — no width shift on tab switch */
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.tabs__tab:hover { color: var(--color-text-primary); }
+
+.tabs__tab--current {
+  color: var(--color-action-primary);
+  border-bottom-color: var(--color-action-primary);
+}
+
+.tabs__tab:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+/* Card placement variant: sub-navigation inside a .card--flush,
+   below the card header. Never used in parallel with the chrome
+   .tabs — a plugin has one primary nav (chrome tabs OR the admin
+   sidebar submenu); tabs--card is page-level sub-navigation.
+   Steps type down from chrome scale and hugs the underline to the
+   label; first/last labels align with the card's content edge. */
+.tabs--card {
+  background: transparent; /* card owns the surface */
+  gap: var(--space-lg);
+}
+
+.tabs--card .tabs__tab {
+  padding: 10px 2px;
+  font-size: var(--text-md);
+  border-bottom-width: 2px;
+}
+
+/* Segmented variant: button-group control for a small, fixed set of
+   views (2-4) where the underline reads as too quiet — e.g. a toggle
+   between two equally-weighted layouts. Container is the "track";
+   the current tab is a raised "thumb". Follows the global button
+   radius (square, not pill-shaped) so it reads as a button-set, not
+   a distinct shape language. Inline-sized, not full-bleed. */
+.tabs--segmented {
+  display: inline-flex;
+  align-self: flex-start;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
+  border-radius: var(--radius);
+  padding: var(--space-xs);
+  gap: 2px;
+}
+
+.tabs--segmented .tabs__tab {
+  padding: 6px var(--space-md);
+  border-bottom: 0;
+  border-radius: var(--radius);
+  font-size: var(--text-md);
+}
+
+.tabs--segmented .tabs__tab--current {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.tabs--segmented .tabs__tab:focus-visible { outline-offset: 1px; }
+
+/* Boxed variant: enclosed "folder" tabs sitting directly on a card's
+   top edge — the current tab's bottom border matches the card
+   surface so it visually fuses with the panel below. Use in place
+   of tabs--card when the sub-navigation reads too flat against a
+   dense screen (e.g. many fields) and needs a stronger current-page
+   anchor. Same rule as tabs--card: sub-navigation only, one per
+   screen, never paired with chrome tabs. */
+.tabs--boxed {
+  gap: var(--space-xs);
+  padding-left: var(--space-lg);
+  border-bottom: 1px solid var(--color-border-muted);
+  /* The current tab notches the strip border via -1px overlap (the WP
+     nav-tab-active technique) — requires visible overflow; the base
+     overflow-x:auto would clip the overlap and draw the border through. */
+  overflow: visible;
+}
+
+/* Anatomy measured against wp core .nav-tab (common.css §25): bordered
+   inactive tabs on a muted fill, dark text, white on hover, current
+   takes the panel bg. Kit keeps its own radius and type scale. */
+.tabs--boxed .tabs__tab {
+  padding: 10px var(--space-md);
+  margin-bottom: -1px;
+  border: 1px solid var(--color-border-muted);
+  border-bottom: 0;
+  border-radius: var(--radius-control) var(--radius-control) 0 0;
+  background: var(--color-bg-muted);
+  color: var(--color-text-primary);
+}
+
+.tabs--boxed .tabs__tab:not(.tabs__tab--current):hover {
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+}
+
+.tabs--boxed .tabs__tab--current {
+  /* Fuses into whatever panel sits below: canvas bg when bare on the
+     body (the native WP settings look), surface bg inside a card. */
+  background: var(--color-bg-canvas);
+  border-color: var(--color-border-muted);
+  color: var(--color-text-primary);
+}
+
+.card .tabs--boxed .tabs__tab--current {
+  background: var(--color-bg-surface);
+}
+
+/* Vertical variant: same sub-navigation level as tabs--card, laid
+   out as a rail instead of a strip — for a settings screen with a
+   left-hand section list (a .columns layout) rather than tabs across
+   the top. Current state borrows the admin-menu accent-fill idiom
+   instead of an underline, since there's no baseline to underline
+   against in a vertical stack. */
+.tabs--vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  padding: 0;
+  border-bottom: 0;
+  overflow: visible;
+}
+
+.tabs--vertical .tabs__tab {
+  justify-content: flex-start;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 0;
+  border-radius: var(--radius-control);
+}
+
+.tabs--vertical .tabs__tab--current {
+  background: var(--color-action-soft);
+  color: var(--color-action-primary);
+}
+
+/* Page title block */
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.page-header__title {
+  color: var(--color-text-heading);
+  font-size: var(--heading-xl);
+  font-weight: 400;
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+.page-header__lead {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 72ch;
+}
+
+/* Drill-in variant: back button + breadcrumb row above the title,
+   for subpages reached from a parent screen. */
+.page-header__breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm); /* extra air to the title (adds to the header's gap) */
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+}
+
+.page-header__breadcrumb a {
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+
+.page-header__breadcrumb a:hover {
+  color: var(--color-text-link-hover);
+  text-decoration: underline;
+}
+
+.page-header__crumb-sep { color: var(--color-text-secondary); }
+
+.page-header__back {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--color-action-soft);
+  color: var(--color-action-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.page-header__back:hover { color: var(--color-action-primary-hover); }
+
+.page-header__back:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* Section index: in-page table of contents for long settings pages
+   (~2+ viewport heights) — anchor links to the page's sections.
+   Static by default. --sticky pins it inside a .columns side rail;
+   sticky REQUIRES scroll-padding-top on the root (set below) so
+   anchor jumps don't hide section titles, and the links keep the
+   kit's visible keyboard focus. Current item follows the global
+   grammar: colored = clickable, dark = you are here. */
+.section-index {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+}
+
+.section-index__title {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.section-index__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.section-index__link {
+  font-size: var(--text-md);
+  color: var(--color-action-primary);
+  text-decoration: none;
+}
+
+.section-index__link:hover {
+  color: var(--color-action-primary-hover);
+  text-decoration: underline;
+}
+
+.section-index__link--current,
+.section-index__link--current:hover {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.section-index__link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.section-index--sticky {
+  position: sticky;
+  top: var(--space-lg);
+}
+
+/* Anchor offset for in-page section links (admin-bar + breathing
+   room) — required companion of .section-index; harmless without. */
+html {
+  scroll-padding-top: calc(32px + var(--space-lg));
+}
+
+/* ------------------------------------------------------------
+   6. NOTICE
+   ------------------------------------------------------------ */
+
+.notice {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-left: 4px solid var(--color-action-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  font-size: var(--text-lg);
+  max-width: 100%;
+}
+
+.notice--warning { border-left-color: var(--color-warning); }
+.notice--danger  { border-left-color: var(--color-danger); }
+.notice--success { border-left-color: var(--color-success); }
+
+/* ------------------------------------------------------------
+   7. CARD
+   ------------------------------------------------------------ */
+
+.card {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-content);
+}
+
+/* Collapsible card: <details class="card card--collapsible"> with
+   <summary class="card__header">. Chevron rotates when open. */
+.card--collapsible > .card__header {
+  cursor: pointer;
+  list-style: none;
+}
+
+/* Closed state: the hidden content still generates a box in modern
+   engines, so the card's flex gap would add phantom space under the
+   header (measured 41px below vs 25px above). Kill the gap when shut. */
+.card--collapsible:not([open]) { gap: 0; }
+
+.card--collapsible > .card__header::-webkit-details-marker { display: none; }
+
+.card--collapsible > .card__header:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
+}
+
+.card__chevron {
+  margin-left: auto;
+  align-self: center;
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+  transition: transform .15s ease;
+}
+
+.card--collapsible[open] > .card__header .card__chevron { transform: rotate(180deg); }
+
+/* Flush card: hosts a full-bleed child (e.g. .list-table--flush).
+   Padding moves to the header; body child runs edge to edge. */
+.card--flush {
+  padding: 0;
+  gap: 0;
+}
+
+.card--flush > .card__header {
+  padding: var(--space-lg);
+}
+
+/* Padded content slot for a .card--flush that hosts .tabs--card:
+   the tab panel area below the tabs row. */
+.card--flush > .card__body {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-content);
+}
+
+.card__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.card__icon {
+  flex: 0 0 var(--size-icon-tile);
+  height: var(--size-icon-tile);
+  border-radius: var(--radius-md);
+  background: var(--color-action-soft);
+  color: var(--color-action-primary);
+  display: grid;
+  place-items: center;
+  font-size: var(--heading-md);
+}
+
+.card__heading {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.card__title {
+  color: var(--color-text-heading);
+  font-size: var(--heading-md);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+.card__description {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 90ch;
+}
+
+/* Section heading inside a card body: divides field groups when a
+   single card owns several settings sections (single-container
+   layout) instead of one card per group. Plain heading, no ornament. */
+.card__section-title {
+  font-size: var(--heading-md);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  color: var(--color-text-heading);
+  margin: 0 0 var(--space-md);
+}
+
+.card__header-actions {
+  margin-left: auto;
+  display: flex;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+.card__well {
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+}
+
+.card__divider {
+  border: 0;
+  border-top: 1px solid var(--color-border-default);
+  margin: 0;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.card__footer-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------------
+   8. BUTTONS
+   ------------------------------------------------------------ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  font-family: var(--font-family);
+  font-size: var(--text-md);
+  font-weight: 500; /* wp-core button weight (measured) */
+  line-height: 1;
+  height: 32px; /* control metric: buttons align with inputs/selects */
+  padding: 0 14px;
+  border-radius: var(--radius-button);
+  border: 1px solid var(--color-action-primary);
+  background: var(--color-bg-surface);
+  color: var(--color-action-primary);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color .1s ease, color .1s ease, border-color .1s ease;
+}
+
+.button:hover {
+  background: var(--color-action-soft);
+  border-color: var(--color-action-primary-hover);
+  color: var(--color-action-primary-hover);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.button--primary {
+  background: var(--color-action-primary);
+  color: var(--color-text-on-accent);
+}
+
+.button--primary:hover {
+  background: var(--color-action-primary-hover);
+  border-color: var(--color-action-primary-hover);
+  color: var(--color-text-on-accent);
+}
+
+.button--danger {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.button--danger:hover {
+  background: var(--color-danger-soft);
+  border-color: var(--color-danger-hover);
+  color: var(--color-danger-hover);
+}
+
+.button--link {
+  border-color: transparent;
+  background: transparent;
+  color: var(--color-text-link);
+  text-decoration: underline;
+  padding-inline: var(--space-xs);
+}
+
+.button--link:hover {
+  background: transparent;
+  color: var(--color-text-link-hover);
+}
+
+.button--small {
+  height: 26px;
+  padding: 0 10px;
+  font-size: var(--text-sm);
+}
+
+.button:disabled,
+.button--disabled {
+  background: var(--color-bg-subtle);
+  border-color: var(--color-border-default);
+  color: var(--color-text-secondary);
+  cursor: default;
+}
+
+/* ------------------------------------------------------------
+   9. FORMS
+   ------------------------------------------------------------ */
+
+/* Vertical field: label above control */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-label);
+}
+
+.field__label {
+  color: var(--color-text-heading);
+  display: block;
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.field__hint {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.field__input,
+.field__select,
+.field__textarea {
+  font-family: var(--font-family);
+  font-size: var(--text-lg);
+  line-height: var(--leading-body);
+  color: var(--color-text-primary);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-input);
+  padding: 5px 10px;
+  height: 32px;
+}
+
+/* Select: native chrome replaced; Tabler chevron-down as background.
+   The Iconify API ?color= param pins the stroke color per mode
+   (background-image can't inherit currentColor). */
+.field__select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 32px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23646970" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
+}
+
+[data-theme="dark"] .field__select {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23a7aaad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');
+}
+
+.field__input:focus,
+.field__select:focus,
+.field__textarea:focus {
+  border-color: var(--color-focus);
+  outline: 1px solid var(--color-focus);
+}
+
+.field__input--narrow { width: var(--width-input-narrow); }
+
+/* Textarea: shares input chrome; grows vertically only */
+.field__textarea {
+  height: auto;
+  min-height: 88px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+/* Search input: Tabler search as background (same mechanism as the
+   select chevron: ?color pinned per mode, currentColor can't reach
+   background-image) */
+.field__input--search {
+  padding-left: 32px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23646970" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M21 21l-6 -6"/></svg>');
+  background-repeat: no-repeat;
+  background-position: left 8px center;
+  background-size: 16px;
+}
+
+[data-theme="dark"] .field__input--search {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23a7aaad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M21 21l-6 -6"/></svg>');
+}
+
+/* Validation states — modifier on .field colors the control border and
+   the __message line under it. Markup: icon (alert-circle /
+   circle-check) + text inside .field__message. */
+.field__message {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-lg);
+  margin: 0;
+}
+
+.field__message .icon { flex-shrink: 0; }
+
+.field--error .field__input,
+.field--error .field__select,
+.field--error .field__textarea {
+  border-color: var(--color-danger);
+}
+
+.field--error .field__input:focus,
+.field--error .field__select:focus,
+.field--error .field__textarea:focus {
+  border-color: var(--color-danger);
+  outline: 1px solid var(--color-danger);
+}
+
+.field--error .field__message { color: var(--color-danger); }
+
+.field--success .field__input,
+.field--success .field__select,
+.field--success .field__textarea {
+  border-color: var(--color-success);
+}
+
+.field--success .field__input:focus,
+.field--success .field__select:focus,
+.field--success .field__textarea:focus {
+  border-color: var(--color-success);
+  outline: 1px solid var(--color-success);
+}
+
+.field--success .field__message { color: var(--color-success-text); }
+
+/* Settings row: label column left, control right (wp form-table pattern) */
+.setting {
+  display: grid;
+  grid-template-columns: var(--width-setting-label) 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+}
+
+.setting + .setting { border-top: 1px solid var(--color-border-default); }
+
+/* Settings group: rows own their rhythm via padding + border, so the
+   card gap must not stack between them */
+.settings {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings > .setting:first-child { padding-top: 0; }
+.settings > .setting:last-child { padding-bottom: 0; }
+
+/* The 6px label offset optically centers against 32px controls; rows whose
+   control column starts with a text-height control align flush instead */
+.setting:has(.checkbox, .radio, .toggle) .setting__label { padding-top: 0; }
+
+.setting__label {
+  color: var(--color-text-heading);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  padding-top: 6px; /* optically centers against the 32px control row */
+}
+
+.setting__control { min-width: 0; }
+
+.setting__inline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.setting__inline > :is(.field__input, .field__select) {
+  max-inline-size: 100%;
+}
+
+.setting__note {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 700px) {
+  .setting { grid-template-columns: 1fr; gap: var(--space-xs); }
+}
+
+/* Checkbox */
+.checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--text-lg);
+}
+
+.checkbox__input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--size-control);
+  height: var(--size-control);
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-surface);
+  cursor: pointer;
+  transition: background-color .1s ease, border-color .1s ease;
+}
+
+.checkbox__input:checked {
+  border-color: var(--color-action-primary);
+  background-color: var(--color-action-primary);
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
+
+.checkbox__input:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.checkbox__input:disabled {
+  border-color: var(--color-border-default);
+  background-color: var(--color-bg-subtle);
+  cursor: default;
+}
+
+.checkbox__input:disabled:checked {
+  background-color: var(--color-border-strong);
+  border-color: var(--color-border-strong);
+}
+
+.checkbox__hint { color: var(--color-text-secondary); }
+
+.checkbox--hint-below .checkbox__hint { display: block; }
+
+/* Radio — same anatomy as checkbox */
+.radio {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--text-lg);
+}
+
+.radio__input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: var(--size-control);
+  height: var(--size-control);
+  margin: 2px 0 0;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  background: var(--color-bg-surface);
+  cursor: pointer;
+  transition: background-color .1s ease, border-color .1s ease;
+}
+
+.radio__input:checked {
+  border-color: var(--color-action-primary);
+  background-color: var(--color-action-primary);
+  box-shadow: inset 0 0 0 3px var(--color-bg-surface);
+}
+
+.radio__input:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.radio__input:disabled {
+  border-color: var(--color-border-default);
+  background-color: var(--color-bg-subtle);
+  cursor: default;
+}
+
+.radio__hint { color: var(--color-text-secondary); }
+
+.radio--hint-below .radio__hint { display: block; }
+
+/* Toggle (switch) — checkbox input, switch presentation */
+.toggle {
+  display: inline-flex;
+  align-items: flex-start; /* track aligns to the first label line; hint wraps below */
+  gap: var(--space-sm);
+  font-size: var(--text-lg);
+  cursor: pointer;
+}
+
+.toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle__track {
+  flex-shrink: 0;
+  width: 28px;
+  height: 16px;
+  margin-top: 2px; /* optical: aligns track with the first label line */
+  border-radius: var(--radius-full);
+  background: var(--color-border-strong);
+  position: relative;
+  transition: background-color .15s ease;
+}
+
+.toggle__track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-bg-surface);
+  transition: transform .15s ease;
+}
+
+.toggle__input:checked + .toggle__track {
+  background: var(--color-action-primary);
+}
+
+.toggle__input:checked + .toggle__track::after {
+  transform: translateX(12px);
+}
+
+.toggle__input:focus-visible + .toggle__track {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.toggle__input:disabled + .toggle__track {
+  background: var(--color-border-default);
+  cursor: default;
+}
+
+.toggle__hint { color: var(--color-text-secondary); }
+
+.toggle--hint-below .toggle__hint { display: block; }
+
+/* ------------------------------------------------------------
+   10. BADGE
+   ------------------------------------------------------------ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.badge--pro {
+  background: var(--color-action-primary);
+  border-color: var(--color-action-primary);
+  color: var(--color-text-on-accent);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.badge--pro::before { display: none; }
+
+.badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-border-strong);
+}
+
+.badge--success { color: var(--color-success-text); }
+.badge--success::before { background: var(--color-success); }
+
+.badge--danger { color: var(--color-danger-hover); }
+.badge--danger::before { background: var(--color-danger); }
+
+.badge--accent { color: var(--color-action-primary); }
+.badge--accent::before { background: var(--color-action-primary); }
+
+/* AI marker: soft accent fill + sparkles icon in markup, no dot.
+   Marks AI-generated or AI-powered content — informational, never
+   clickable (like every badge). */
+.badge--ai {
+  background: var(--color-action-soft);
+  border-color: transparent;
+  color: var(--color-action-primary);
+}
+
+.badge--ai::before { display: none; }
+
+/* ------------------------------------------------------------
+   11. TABLE
+   ------------------------------------------------------------ */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-lg);
+}
+
+.table__head-cell {
+  text-align: left;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.table__cell {
+  padding: 12px var(--space-md);
+  border-bottom: 1px solid var(--color-border-default);
+  vertical-align: middle;
+}
+
+.table__row:last-child .table__cell { border-bottom: 0; }
+.table__row:hover .table__cell { background: var(--color-bg-subtle); }
+.table__cell--muted { color: var(--color-text-secondary); }
+
+.table__empty {
+  padding: var(--space-lg) var(--space-md);
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* ------------------------------------------------------------
+   12. CHECKLIST (numbered getting-started list)
+   ------------------------------------------------------------ */
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+
+.checklist__item {
+  counter-increment: step;
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  font-size: var(--text-lg);
+}
+
+.checklist__item::before {
+  content: counter(step);
+  flex: 0 0 var(--size-step);
+  height: var(--size-step);
+  border-radius: 50%;
+  background: var(--color-action-primary);
+  color: var(--color-text-on-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+}
+
+.checklist__title { font-weight: 600; color: var(--color-text-heading); }
+
+/* ------------------------------------------------------------
+   13. DISCLOSURE
+   ------------------------------------------------------------ */
+
+.disclosure { font-size: var(--text-md); }
+
+.disclosure__summary {
+  cursor: pointer;
+  color: var(--color-text-link);
+  font-weight: 600;
+  padding: var(--space-xs) 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  list-style: none;
+}
+
+.disclosure__summary::-webkit-details-marker { display: none; }
+
+.disclosure__summary:hover { color: var(--color-text-link-hover); }
+
+.disclosure__chevron {
+  flex-shrink: 0;
+  transition: transform .15s ease;
+}
+
+.disclosure[open] > .disclosure__summary .disclosure__chevron { transform: rotate(180deg); }
+
+.disclosure__body {
+  padding: var(--space-sm) 0 var(--space-xs) var(--space-md);
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------------
+   14. ICON — Tabler icons via the Tabler/Iconify SVG API
+   One class, any icon, zero downloads. The SVG is used as a
+   CSS mask and filled with currentColor, so icons inherit the
+   text color of their context with one cached request per name.
+
+   Usage (use a symbol from the page's SVG sprite):
+     <svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>
+
+   Rule: Tabler set only. Icon name in code = tabler icon name.
+   ------------------------------------------------------------ */
+
+.icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  vertical-align: text-bottom;
+}
+
+.icon--sm { width: 14px; height: 14px; }
+.icon--lg { width: 22px; height: 22px; }
+
+/* ------------------------------------------------------------
+   15. PRODUCTS — catalog grid
+   ------------------------------------------------------------ */
+
+.addons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-lg);
+}
+
+.addon {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-content);
+}
+
+.addon__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.addon__icon {
+  width: var(--size-icon-tile-lg);
+  height: var(--size-icon-tile-lg);
+  border-radius: var(--radius-md);
+  background: var(--color-action-soft);
+  color: var(--color-action-primary);
+  display: grid;
+  place-items: center;
+}
+
+.addon__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.addon__title {
+  color: var(--color-text-heading);
+  font-size: var(--heading-md);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+.addon__description {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Locked extension: requires Pro. Icon mutes; pair with .badge--pro. */
+.addon--pro .addon__icon {
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+}
+
+/* Media add-on: a preview thumbnail bleeding to the card edges, in place
+   of the __icon tile. Holds an <img> (object-fit cover); empty it is a
+   plain gray placeholder. Overlay only a filled badge (--pro) — it carries
+   its own background; dot badges have none and would fail over an image. */
+.addon__thumb {
+  position: relative;
+  margin: calc(-1 * var(--space-lg)) calc(-1 * var(--space-lg)) 0;
+  aspect-ratio: 16 / 9;
+  background: var(--color-bg-subtle);
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+  overflow: hidden;
+}
+
+.addon__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.addon__thumb .badge {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+}
+
+.addon__note {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.addon__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-sm);
+  border-top: 1px solid var(--color-border-default);
+  padding-top: var(--space-md);
+}
+
+/* ------------------------------------------------------------
+   15b. PRICING — plan comparison cards
+      Annual-billing tiers, one emphasized. Grid of __plan cards;
+      --featured raises the recommended tier with an accent ring
+      and a centered "Most Popular" __badge. One featured per grid.
+   ------------------------------------------------------------ */
+
+.pricing {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+.pricing__plan {
+  position: relative;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-card);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-content);
+}
+
+/* Emphasized tier: accent ring + "Most Popular" ribbon. */
+.pricing__plan--featured {
+  border-color: var(--color-action-primary);
+  box-shadow: inset 0 0 0 1px var(--color-action-primary);
+}
+
+.pricing__badge {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-action-primary);
+  color: var(--color-text-on-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.pricing__name {
+  color: var(--color-text-heading);
+  font-size: var(--heading-md);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+.pricing__price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+}
+
+.pricing__amount {
+  color: var(--color-text-heading);
+  font-size: var(--heading-xl);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.pricing__period {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.pricing__meta {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.pricing__features {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+}
+
+.pricing__features li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+}
+
+.pricing__features .icon {
+  flex: 0 0 auto;
+  color: var(--color-action-primary);
+  margin-top: 2px;
+}
+
+.pricing__note {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0;
+}
+
+/* ------------------------------------------------------------
+   16. EMPTY STATE
+   ------------------------------------------------------------ */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.empty-state__icon {
+  width: var(--size-icon-tile-lg);
+  height: var(--size-icon-tile-lg);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+  display: grid;
+  place-items: center;
+}
+
+.empty-state__title {
+  color: var(--color-text-heading);
+  font-size: var(--heading-sm);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  margin: 0;
+}
+
+.empty-state__description {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 46ch;
+}
+
+.empty-state__actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* ------------------------------------------------------------
+   17. MODAL — confirmation / destructive-action dialog
+      Static structure; show/hide is the host page's concern.
+   ------------------------------------------------------------ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: grid;
+  place-items: center;
+  padding: var(--space-lg);
+  z-index: 100;
+}
+
+.modal {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  width: 100%;
+  max-width: var(--width-modal);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.modal__title {
+  color: var(--color-text-heading);
+  font-size: var(--heading-sm);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  margin: 0;
+  flex: 1;
+}
+
+.modal__close {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-control);
+  display: grid;
+  place-items: center;
+}
+
+.modal__close:hover { color: var(--color-text-primary); }
+
+.modal__close:focus-visible {
+  outline: 2px solid var(--color-focus);
+}
+
+.modal__body {
+  padding: var(--space-md) var(--space-lg);
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+}
+
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* ------------------------------------------------------------
+   18. TOAST — transient result feedback
+      Position with .toast-stack; a lone .toast can sit inline.
+   ------------------------------------------------------------ */
+
+.toast-stack {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  z-index: 110;
+}
+
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-left: 4px solid var(--color-action-primary);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--text-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  max-width: var(--width-toast);
+}
+
+.toast--success { border-left-color: var(--color-success); }
+.toast--warning { border-left-color: var(--color-warning); }
+.toast--danger  { border-left-color: var(--color-danger); }
+
+.toast__message { flex: 1; }
+
+.toast__dismiss {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0;
+  display: grid;
+  place-items: center;
+}
+
+.toast__dismiss:hover { color: var(--color-text-primary); }
+
+/* ------------------------------------------------------------
+   19. DRAWER — side panel overlay for secondary detail/editing
+      Slides in from the right. Static structure; show/hide is
+      the host page's concern.
+   ------------------------------------------------------------ */
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 100;
+}
+
+.drawer {
+  background: var(--color-bg-surface);
+  border-left: 1px solid var(--color-border-default);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: var(--width-drawer);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--color-border-default);
+  flex: none;
+}
+
+.drawer__title {
+  color: var(--color-text-heading);
+  font-size: var(--heading-sm);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  margin: 0;
+  flex: 1;
+}
+
+.drawer__close {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--radius-control);
+  display: grid;
+  place-items: center;
+}
+
+.drawer__close:hover { color: var(--color-text-primary); }
+
+.drawer__close:focus-visible {
+  outline: 2px solid var(--color-focus);
+}
+
+.drawer__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-lg);
+  font-size: var(--text-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-content);
+}
+
+.drawer__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.drawer__section-title {
+  color: var(--color-text-heading);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.drawer__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-top: 1px solid var(--color-border-default);
+  flex: none;
+}
+
+/* ------------------------------------------------------------
+   20. POPUP — small anchored dialog for notifications and
+      inline confirmations. Lighter than .modal: no overlay,
+      positioned by the host page next to its trigger.
+   ------------------------------------------------------------ */
+
+.popup {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  padding: var(--space-md);
+  width: 100%;
+  max-width: var(--width-popup);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.popup__icon {
+  color: var(--color-action-primary);
+  flex: none;
+  margin-top: 1px;
+}
+
+.popup--success .popup__icon { color: var(--color-success); }
+.popup--warning .popup__icon { color: var(--color-warning); }
+.popup--danger  .popup__icon { color: var(--color-danger); }
+
+.popup__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.popup__title {
+  color: var(--color-text-heading);
+  font-size: var(--text-md);
+  font-weight: 600;
+  margin: 0;
+}
+
+.popup__message {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.popup__actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.popup__dismiss {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0;
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+
+.popup__dismiss:hover { color: var(--color-text-primary); }
+
+.popup__dismiss:focus-visible {
+  outline: 2px solid var(--color-focus);
+}
+
+.drawer__text {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------------
+   21. LIST TABLE — wp-list-table pattern: toolbar (bulk actions
+      + filters + count) above and below, column headers repeated
+      in the footer, selectable rows with hover quick-actions.
+      Each row is a component: default / --selected / --disabled /
+      --warning / --danger.
+   ------------------------------------------------------------ */
+
+.list-table {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+/* Inside a .card--flush the card owns the surface and border */
+.list-table--flush {
+  border: 0;
+  border-radius: 0;
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* Toolbar (wp "tablenav"): top and bottom of the table */
+.list-table__toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.list-table__toolbar--bottom {
+  border-bottom: 0;
+  border-top: 1px solid var(--color-border-default);
+}
+
+.list-table__group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.list-table__count {
+  margin-left: auto;
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+/* Pagination lives in the toolbar next to the count */
+.list-table__pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+/* The same count class also labels the pager ("1 of 3"). There it is a
+   sibling of the page buttons, not the toolbar's right-hand item, so the
+   push-right margin must not apply — the gap owns the spacing. Resolves
+   to 0 while the pager has no free space, but not at every container
+   width (see smoke/README.md), which is why it is a rule and not left
+   to chance. */
+.list-table__pagination .list-table__count { margin-left: 0; }
+
+/* Table */
+.list-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-lg);
+}
+
+.list-table__head-cell {
+  text-align: left;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-default);
+  white-space: nowrap;
+}
+
+/* Footer header row (wp repeats column labels below the rows) */
+.list-table__table tfoot .list-table__head-cell {
+  border-bottom: 0;
+  border-top: 1px solid var(--color-border-default);
+}
+
+.list-table__check-cell {
+  width: var(--size-control);
+  padding: var(--space-sm) 0 var(--space-sm) var(--space-md);
+  vertical-align: top;
+}
+
+/* Row check cells carry the row border so it runs edge to edge;
+   thead/tfoot check cells follow their own head-cell borders */
+tbody .list-table__check-cell {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.list-table__row:last-child .list-table__check-cell { border-bottom: 0; }
+
+thead .list-table__check-cell {
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+tfoot .list-table__check-cell {
+  border-top: 1px solid var(--color-border-default);
+}
+
+.list-table__check-cell .checkbox__input { margin-top: 1px; }
+
+.list-table__cell {
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-default);
+  vertical-align: top;
+}
+
+.list-table__row:last-child .list-table__cell { border-bottom: 0; }
+
+.list-table__cell--muted { color: var(--color-text-secondary); }
+
+/* Primary cell: title link + quick actions revealed on row hover */
+.list-table__primary {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+
+.list-table__primary:hover { color: var(--color-text-link-hover); }
+
+.list-table__actions {
+  display: flex;
+  gap: var(--space-xs);
+  align-items: center;
+  font-size: var(--text-sm);
+  padding-top: 2px;
+  visibility: hidden;
+}
+
+.list-table__row:hover .list-table__actions,
+.list-table__row:focus-within .list-table__actions {
+  visibility: visible;
+}
+
+.list-table__action {
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+
+.list-table__action:hover { text-decoration: underline; }
+
+.list-table__action--danger { color: var(--color-danger); }
+
+.list-table__actions-sep { color: var(--color-border-strong); }
+
+/* Row variants */
+.list-table__row:hover .list-table__cell,
+.list-table__row:hover .list-table__check-cell {
+  background: var(--color-bg-subtle);
+}
+
+.list-table__row--selected .list-table__cell,
+.list-table__row--selected .list-table__check-cell {
+  background: var(--color-action-soft);
+}
+
+.list-table__row--warning .list-table__cell,
+.list-table__row--warning .list-table__check-cell {
+  background: var(--color-warning-soft);
+}
+
+.list-table__row--danger .list-table__cell,
+.list-table__row--danger .list-table__check-cell {
+  background: var(--color-danger-soft);
+}
+
+.list-table__row--disabled .list-table__cell {
+  color: var(--color-text-secondary);
+}
+
+.list-table__row--disabled .list-table__primary {
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.list-table__row--disabled:hover .list-table__actions { visibility: hidden; }
+
+/* ------------------------------------------------------------
+   22. STACK — vertical auto-layout utility
+      Pages compose screens by stacking blocks with gap, never
+      margins. Maps 1:1 to a vertical auto-layout frame.
+   ------------------------------------------------------------ */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-content);
+}
+
+.stack--tight { gap: var(--gap-tight); }
+.stack--loose { gap: var(--gap-section); }
+
+/* ------------------------------------------------------------
+   23. STEPPER — onboarding / wizard progress
+      Default: numbered steps with connectors.
+      --bar: compact progress bar with step count.
+      Step states: default (upcoming) / --current / --complete.
+   ------------------------------------------------------------ */
+
+.stepper {
+  display: flex;
+  align-items: flex-start;
+}
+
+.stepper__step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+  position: relative;
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+}
+
+.stepper__marker {
+  width: var(--size-step);
+  height: var(--size-step);
+  border-radius: var(--radius-full);
+  display: grid;
+  place-items: center;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-strong);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  z-index: 1;
+}
+
+/* Connector: previous step center to this step center, behind markers */
+.stepper__step:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--size-step) / 2 - 1px);
+  left: calc(-50% + var(--size-step) / 2 + var(--space-xs));
+  right: calc(50% + var(--size-step) / 2 + var(--space-xs));
+  height: 2px;
+  background: var(--color-border-default);
+}
+
+.stepper__step--current {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.stepper__step--current .stepper__marker {
+  border-color: var(--color-action-primary);
+  color: var(--color-action-primary);
+}
+
+.stepper__step--complete .stepper__marker {
+  background: var(--color-action-primary);
+  border-color: var(--color-action-primary);
+  color: var(--color-text-on-accent);
+}
+
+.stepper__step--current::before,
+.stepper__step--complete::before {
+  background: var(--color-action-primary);
+}
+
+/* Bar variant */
+.stepper--bar {
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-sm);
+}
+
+.stepper__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.stepper__meta-label {
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.stepper__bar {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-border-default);
+  overflow: hidden;
+}
+
+/* Same contract as .progress__bar: fill width arrives as --fill. */
+.stepper__bar-fill {
+  width: var(--fill, 0%);
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-action-primary);
+}
+
+/* ------------------------------------------------------------
+   24. SAVE BAR — sticky bottom action bar for settings screens
+      Full-width bar, sibling of .plugin__body (last child of the
+      plugin container); sticks to the viewport bottom while unsaved
+      changes exist. Show/hide is the host page's concern.
+   ------------------------------------------------------------ */
+
+.save-bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 40;
+  background: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border-default);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  padding: var(--space-sm) var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.save-bar__message {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.save-bar__actions {
+  margin-left: auto;
+  justify-content: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+/* ------------------------------------------------------------
+   25. FILTER — advanced filter dropdown (panel shown statically;
+      open/close is the host page's concern)
+      Default: single-select option list.
+      --multi: checkbox options + search field + footer actions.
+   ------------------------------------------------------------ */
+
+.filter {
+  position: relative;
+  display: inline-flex;
+}
+
+.filter__panel {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  min-width: var(--width-filter-menu);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.filter__search {
+  padding: var(--space-sm);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.filter__options {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xs);
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.filter__option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px var(--space-sm);
+  border-radius: var(--radius-control);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.filter__option:hover { background: var(--color-bg-subtle); }
+
+.filter__option:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+/* Single-select: current option is bold with a check icon */
+.filter__option--selected { font-weight: 600; }
+
+.filter__option-check {
+  margin-left: auto;
+  color: var(--color-action-primary);
+}
+
+.filter__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* ------------------------------------------------------------
+   26. UPSELL — premium feature marketing
+      .badge--pro lives with the badge component. The banner is
+      the inline CTA surface for locked features.
+   ------------------------------------------------------------ */
+
+.upsell {
+  background: var(--color-action-soft);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.upsell__icon {
+  flex: 0 0 var(--size-icon-tile);
+  height: var(--size-icon-tile);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  color: var(--color-action-primary);
+  display: grid;
+  place-items: center;
+}
+
+.upsell__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.upsell__title {
+  color: var(--color-text-heading);
+  font-size: var(--heading-sm);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.upsell__description {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 80ch;
+}
+
+.upsell__actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* Narrow contexts (aside widgets): stack vertically */
+.upsell--stacked {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* ------------------------------------------------------------
+   27. TAG INPUT — multi-value input with removable chips
+   ------------------------------------------------------------ */
+
+.tag-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 32px;
+  padding: 3px var(--space-sm);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-input);
+  cursor: text;
+}
+
+.tag-input:focus-within {
+  border-color: var(--color-focus);
+  outline: 1px solid var(--color-focus);
+}
+
+.tag-input__field {
+  flex: 1;
+  min-width: 80px;
+  height: 22px;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  background: transparent;
+  font-family: var(--font-family);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  padding: 2px var(--space-sm);
+  font-size: var(--text-sm);
+  line-height: 1.4;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.tag__remove {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+}
+
+.tag__remove:hover { color: var(--color-danger); }
+
+.tag__remove:focus-visible {
+  outline: 2px solid var(--color-focus);
+}
+
+/* Static / linked tags outside the input: a .tags row of .tag
+   chips (tags on an item, browse-by-tag). Links keep chip colors —
+   hover strengthens the border, not the text ("colored = clickable"
+   doesn't apply to chips; the shape is the affordance). No remove
+   button outside the input. */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+a.tag { text-decoration: none; }
+
+/* pin the chip color — the global a:hover would win otherwise */
+a.tag:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text-primary);
+}
+
+a.tag:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+/* ------------------------------------------------------------
+   28. COLUMNS — main content + aside of sidebar widgets
+      Aside widgets are plain .cards. Stacks below 960px.
+   ------------------------------------------------------------ */
+
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--width-aside);
+  gap: var(--gap-section);
+  align-items: start;
+}
+
+.columns__main,
+.columns__aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-section);
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .columns { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------------
+   29. ONBOARDING — headerless centered shell
+      Replaces .plugin__topbar/.tabs/.plugin__body entirely:
+      one centered panel in the content area.
+   ------------------------------------------------------------ */
+
+.onboarding {
+  min-height: calc(100vh - 32px); /* shell content row (adminbar is 32px) */
+  display: grid;
+  place-items: center;
+  padding: var(--space-xl) var(--space-lg);
+}
+
+.onboarding__panel {
+  width: 100%;
+  max-width: var(--width-onboarding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-section);
+}
+
+/* ------------------------------------------------------------
+   30. LICENSE — key validation (Freemius / EDD style)
+      Lives in a card body or an aside widget. Status via badge:
+      default = inactive · --success = active · --danger = invalid.
+   ------------------------------------------------------------ */
+
+.license {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.license__status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-md);
+}
+
+.license__meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.license__form {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.license__form .field__input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+}
+
+/* Account-connect path: primary "Connect account" above the manual-key
+   fallback, split by an "or" divider. Mirrors Elementor/Yoast/Rank Math. */
+.license__connect {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.license__or {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* Troubleshooting hints under a failed or expired state. */
+.license__help {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.license__help a {
+  color: var(--color-text-link);
+}
+
+/* ------------------------------------------------------------
+   31. LINK LIST — aside widget list of useful links
+   ------------------------------------------------------------ */
+
+.link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.link-list__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--text-md);
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+
+.link-list__link:hover {
+  color: var(--color-text-link-hover);
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+   32. PANEL — nested toggle container inside a card
+      <details class="panel"> + <summary class="panel__header">.
+      The lean sibling of .card--collapsible; body is a free slot.
+   ------------------------------------------------------------ */
+
+.panel {
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+}
+
+.panel__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-block: var(--space-md);
+  padding-inline: var(--space-md);
+  font-size: var(--text-md);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.panel__header::-webkit-details-marker { display: none; }
+
+.panel__header:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+  border-radius: var(--radius-md);
+}
+
+.panel__chevron {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+  transition: transform .15s ease;
+}
+
+.panel[open] > .panel__header .panel__chevron { transform: rotate(180deg); }
+
+.panel__body {
+  padding: 0 var(--space-md) var(--space-md);
+  font-size: var(--text-md);
+}
+
+/* ------------------------------------------------------------
+   33. VIEWS — text-link filter row over a collection
+      (wp-admin "subsubsub": All | Active | …, with counts).
+      Filtering, NOT navigation — switches subsets of the same
+      list, never sections or pages; never a tabs replacement.
+      Lives directly above a list-table.
+   ------------------------------------------------------------ */
+
+.views {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-md);
+}
+
+.views__item {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* pipe separator between views, wp-admin style. Margin here (not a
+   flex gap) so it gets the same single space-sm gap as everything
+   else — a gap on both this item and .views__count would double it. */
+.views__item:not(:last-child)::after {
+  content: "|";
+  color: var(--color-border-strong);
+  margin-left: var(--space-sm);
+}
+
+.views__view {
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+
+.views__view:hover {
+  color: var(--color-text-link-hover);
+  text-decoration: underline;
+}
+
+.views__view--current {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.views__view--current:hover {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.views__count {
+  color: var(--color-text-secondary);
+  font-weight: 400;
+  margin-left: var(--space-sm);
+}
+
+.views__view:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Placement inside a .card--flush: between the card header and
+   the list-table; the header already carries the top padding. */
+.card--flush > .views { padding: 0 var(--space-lg) var(--space-md); }
+
+/* ------------------------------------------------------------
+   34. SUBNAV — secondary chrome navigation strip directly under
+      the primary .tabs (navigation level 2: pages of a section).
+      Text links, no pipes, no counts — those are the .views
+      signature. Current item is bold text-primary ("colored =
+      clickable, dark = you are here", the wp-admin grammar).
+   ------------------------------------------------------------ */
+
+/* Secondary nav under the primary nav. Pick a variant: --links (the
+   lightweight spaced text links) or --tabs (connected block tabs whose
+   current item blends into the content below). */
+.subnav {
+  /* Transparent by default, same rule as .tabs: no bg color on the
+     canvas. --tabs keeps its surface below (it exists only to fuse
+     with a surface strip above it). */
+  display: flex;
+  flex-wrap: wrap;
+  background: transparent;
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: var(--text-md);
+}
+
+/* --links: spaced text links, no blocks; current is dark and bold
+   (colored = clickable, dark = you are here). The lightest way to add
+   a level. */
+.subnav--links {
+  align-items: center;
+  gap: var(--space-lg);
+  padding: 12px var(--space-lg);
+}
+
+.subnav--links .subnav__link {
+  color: var(--color-text-link);
+  text-decoration: none;
+}
+
+.subnav--links .subnav__link:hover {
+  color: var(--color-text-link-hover);
+  text-decoration: underline;
+}
+
+.subnav--links .subnav__link--current,
+.subnav--links .subnav__link--current:hover {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* --tabs: block tabs filling the row height, text centered. The bar
+   shares the surface bg of the nav above so the two rows read as one
+   zone; the current item takes the body (canvas) background and drops
+   the bar's bottom border, so it blends into the content below — a
+   connected tab. */
+.subnav--tabs {
+  align-items: stretch;
+  gap: var(--space-xs);
+  padding: 0 var(--space-lg);
+  background: var(--color-bg-surface);
+}
+
+.subnav--tabs .subnav__link {
+  display: inline-flex;
+  align-items: center;
+  padding: calc(var(--space-sm) + 2px) var(--space-md);
+  color: var(--color-text-secondary); /* mirrors inactive .tabs__tab */
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-top: 0;
+  border-bottom: 0;
+  margin-bottom: -1px;
+}
+
+.subnav--tabs .subnav__link:hover {
+  color: var(--color-text-primary);
+}
+
+.subnav--tabs .subnav__link--current,
+.subnav--tabs .subnav__link--current:hover {
+  color: var(--color-text-primary);
+  font-weight: 600;
+  background: var(--color-bg-canvas);
+  border-left-color: var(--color-border-default);
+  border-right-color: var(--color-border-default);
+}
+
+.subnav__link:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* A11y floor: visible focus on the remaining interactive elements
+   (details/summary toggles, toast dismiss) */
+.disclosure__summary:focus-visible,
+.card--collapsible > .card__header:focus-visible,
+.panel__header:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+.toast__dismiss:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+/* ------------------------------------------------------------
+   35. TOOLTIP — CSS-only label on hover/focus. Text lives in the
+      data-tip attribute; the bubble is a ::after. Inverse surface
+      flips automatically in dark mode. For short labels only —
+      anything longer belongs in a __hint or a .popup.
+   ------------------------------------------------------------ */
+
+.tooltip { position: relative; }
+
+.tooltip::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 240px;
+  padding: 4px 8px;
+  border-radius: var(--radius-control);
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  text-align: center;
+  z-index: 70;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .1s ease;
+}
+
+.tooltip:hover::after,
+.tooltip:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip--bottom::after {
+  bottom: auto;
+  top: calc(100% + 6px);
+}
+
+.tooltip--right::after {
+  bottom: auto;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip--left::after {
+  bottom: auto;
+  left: auto;
+  right: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ------------------------------------------------------------
+   36. SPINNER — indeterminate loading indicator. Sizes mirror
+      .icon (14 / 18 / 22). Arc color = currentColor context via
+      the accent default; track = border color. Reduced motion is
+      handled by the global media query in BASE.
+   ------------------------------------------------------------ */
+
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 2px solid var(--color-border-default);
+  border-top-color: currentColor;
+  border-radius: var(--radius-full);
+  color: var(--color-action-primary);
+  animation: bios-spin .6s linear infinite;
+}
+
+.spinner--sm { width: 14px; height: 14px; }
+.spinner--lg { width: 22px; height: 22px; border-width: 3px; }
+
+/* Inside a button the arc follows the button's text color */
+.button .spinner { color: currentColor; }
+
+@keyframes bios-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ------------------------------------------------------------
+   37. SKELETON — loading placeholder for content-shaped areas
+      (table rows, card bodies). Pulse animation is mode-proof
+      (opacity only, no light-flash gradient).
+   ------------------------------------------------------------ */
+
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-tight);
+}
+
+.skeleton__line,
+.skeleton__block {
+  background: var(--color-border-default);
+  border-radius: var(--radius-md);
+  animation: bios-pulse 1.6s ease-in-out infinite;
+}
+
+.skeleton__line { height: 12px; }
+.skeleton__line--half { width: 50%; }
+.skeleton__line--third { width: 33%; }
+
+.skeleton__block { height: 80px; }
+
+@keyframes bios-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .55; }
+}
+
+/* ------------------------------------------------------------
+   38. PROGRESS — determinate progress bar for imports, scans,
+      bulk operations. Fill of __bar is state, not design: the host
+      page passes it as --fill (style="--fill: 70%"), the one thing
+      an inline style may carry. Distinct from .stepper --bar
+      (wizard position), which takes the same --fill.
+   ------------------------------------------------------------ */
+
+.progress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.progress__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-size: var(--text-sm);
+}
+
+.progress__label { color: var(--color-text-secondary); }
+
+.progress__value {
+  color: var(--color-text-heading);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.progress__track {
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  overflow: hidden;
+}
+
+/* Fill width is state, not design, so it comes from the host page — but it
+   arrives as the --fill custom property, not a raw inline width:
+       <div class="progress__bar" style="--fill: 70%"></div>
+   Markup then contains only tokens/vars, which validate.py can enforce with
+   a single rule (inline styles may set custom properties and nothing else).
+   A literal inline width still wins if one is present, so pre-existing
+   markup keeps working. */
+.progress__bar {
+  width: var(--fill, 0%);
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--color-action-primary);
+  transition: width .2s ease;
+}
+
+.progress--success .progress__bar { background: var(--color-success); }
+.progress--danger .progress__bar { background: var(--color-danger); }
+
+/* ------------------------------------------------------------
+   39. MENU — anchored action menu (kebab dropdown). Panel
+      shown statically like .filter; open/close is the host
+      page's concern. Items are buttons or links.
+   ------------------------------------------------------------ */
+
+.menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.menu__panel {
+  position: absolute;
+  top: calc(100% + var(--space-xs));
+  left: 0;
+  min-width: 180px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-xs);
+}
+
+.menu__panel--right {
+  left: auto;
+  right: 0;
+}
+
+.menu__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px var(--space-sm);
+  border: 0;
+  background: none;
+  border-radius: var(--radius-control);
+  font-family: var(--font-family);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu__item:hover { background: var(--color-bg-subtle); }
+
+.menu__item:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: -2px;
+}
+
+.menu__item .icon { color: var(--color-text-secondary); }
+
+.menu__item--danger { color: var(--color-danger); }
+.menu__item--danger .icon { color: var(--color-danger); }
+
+.menu__divider {
+  height: 1px;
+  background: var(--color-border-default);
+  margin: var(--space-xs) 0;
+}
+
+/* ------------------------------------------------------------
+   40. STAT — dashboard metric: label, big value, optional delta
+      badge + meta line. .stats is the responsive grid wrapper;
+      lives inside a card body.
+   ------------------------------------------------------------ */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--space-md);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.stat__label {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.stat__value {
+  color: var(--color-text-heading);
+  font-size: var(--heading-lg);
+  font-weight: 600;
+  line-height: var(--leading-heading);
+  font-variant-numeric: tabular-nums;
+}
+
+.stat__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------------
+   41. COPY FIELD — read-only value + copy button (API keys,
+      shortcodes, webhook URLs). Input reuses .field__input;
+      the pair fuses into one control.
+   ------------------------------------------------------------ */
+
+.copy-field { display: flex; }
+
+.copy-field__input {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.copy-field__button {
+  flex-shrink: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: -1px; /* fuse the two borders */
+}
+
+/* ------------------------------------------------------------
+   42. PAGINATION — standalone pager (card grids, log views).
+      Buttons are .button --small icon-only; the label carries
+      position. Inside .list-table, pagination stays embedded in
+      the toolbar (__pagination) — same anatomy.
+   ------------------------------------------------------------ */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.pagination__label {
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+  padding-inline: var(--space-xs);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------
+   43. REPEATER — sortable row group (ACF-style): drag handle,
+      content slot, remove button, add-row footer. Markup-only;
+      drag behavior is the host page's concern.
+   ------------------------------------------------------------ */
+
+.repeater {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-tight);
+}
+
+.repeater__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+}
+
+.repeater__handle,
+.repeater__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--space-xs);
+  border: 0;
+  background: none;
+  border-radius: var(--radius-control);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.repeater__handle { cursor: grab; }
+.repeater__handle:hover { color: var(--color-text-primary); }
+
+.repeater__remove:hover {
+  color: var(--color-danger-hover); /* text grade on the soft bg (audited) */
+  background: var(--color-danger-soft);
+}
+
+.repeater__handle:focus-visible,
+.repeater__remove:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.repeater__content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.repeater__footer { display: flex; }
+
+/* ------------------------------------------------------------
+   44. CHAT — AI assistant conversation panel. Lives in a
+      .card--flush body or a .drawer. Static markup: sending,
+      streaming, and scroll behavior are the host page's concern
+      (or the optional JS helper, when it lands).
+   ------------------------------------------------------------ */
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-surface);
+}
+
+.chat__log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-content);
+  padding: var(--space-md);
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.chat__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.chat__message--user { flex-direction: row-reverse; }
+
+.chat__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+  max-width: 85%;
+}
+
+.chat__message--user .chat__body { align-items: flex-end; }
+
+.chat__meta {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+}
+
+.chat__bubble {
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+}
+
+.chat__bubble p { margin: 0; }
+.chat__bubble p + p { margin-top: var(--space-sm); }
+
+.chat__message--user .chat__bubble { background: var(--color-action-soft); }
+
+/* Typing indicator: an assistant bubble with three staggered dots */
+.chat__typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-control);
+  background: var(--color-bg-subtle);
+}
+
+.chat__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-text-secondary);
+  animation: bios-dot 1.2s ease-in-out infinite;
+}
+
+.chat__dot:nth-child(2) { animation-delay: 0.2s; }
+.chat__dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes bios-dot {
+  0%, 60%, 100% { opacity: 0.3; }
+  30% { opacity: 1; }
+}
+
+/* Per-message actions (assistant): copy / rate / regenerate */
+.chat__actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.chat__action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border: 0;
+  background: none;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.chat__action:hover { color: var(--color-text-primary); }
+
+.chat__action:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+/* Suggested prompts: pill buttons, shown while the log is fresh */
+.chat__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.chat__suggestion {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-surface);
+  font-family: var(--font-family);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+
+.chat__suggestion:hover {
+  border-color: var(--color-action-primary);
+  color: var(--color-action-primary);
+}
+
+.chat__suggestion:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+.chat__composer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-border-default);
+}
+
+.chat__input {
+  flex: 1;
+  min-width: 0;
+}
+
+.chat__footnote {
+  padding: 0 var(--space-md) var(--space-sm);
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* ------------------------------------------------------------
+   45. AI SUGGESTION — inline proposal card: the AI offers a
+      value for a nearby field; the user accepts, regenerates,
+      or discards. The primary AI pattern in admin screens —
+      forms first, chat only when conversation is the feature.
+   ------------------------------------------------------------ */
+
+.ai-suggestion {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  overflow: hidden;
+}
+
+.ai-suggestion__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border-default);
+  background: var(--color-bg-subtle);
+}
+
+.ai-suggestion__header .icon { color: var(--color-action-primary); }
+
+.ai-suggestion__title {
+  color: var(--color-text-heading);
+  font-size: var(--text-md);
+  font-weight: 600;
+  margin: 0;
+}
+
+.ai-suggestion__body { padding: var(--space-md); }
+
+.ai-suggestion__text {
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+}
+
+.ai-suggestion__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid var(--color-border-default);
+}
+
+/* ------------------------------------------------------------
+   46. CODE BLOCK — read-only multi-line code display (shortcode
+      examples, config samples, log excerpts). Display only: no
+      syntax highlighting, and editing stays a .field + monospace
+      textarea (real plugins mount CodeMirror — same rule as not
+      restyling wp-native controls). Optional __copy button;
+      clipboard behavior is the host page's concern.
+   ------------------------------------------------------------ */
+
+.code-block {
+  position: relative;
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+}
+
+.code-block__pre {
+  margin: 0;
+  padding: var(--space-md);
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-text-primary);
+}
+
+/* inside a block, the inline-code chip styling steps aside */
+.code-block__pre code {
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  font-size: inherit;
+}
+
+.code-block__copy {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+}
+
+/* keep the first line clear of the copy button */
+.code-block:has(.code-block__copy) .code-block__pre {
+  padding-right: 76px;
+}
+
+/* ------------------------------------------------------------
+   47. CONDITIONS — rule-builder rows for conditional logic
+      ("show/run when …"). Each row is subject · operator ·
+      value; rows AND within a group, groups OR between them.
+      Controls reuse field selects/inputs; add/remove/changing
+      the value control per subject is host-page JS.
+   ------------------------------------------------------------ */
+
+.conditions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.conditions__group {
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.conditions__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* "When" on the first row, "and" on the rest — a fixed column so
+   the controls align down the group */
+.conditions__connector {
+  flex: 0 0 40px;
+  text-align: right;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.conditions__row .field__select,
+.conditions__row .field__input {
+  flex: 1;
+  min-width: 0;
+}
+
+.conditions__remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--space-xs);
+  border: 0;
+  background: none;
+  border-radius: var(--radius-control);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.conditions__remove:hover {
+  color: var(--color-danger-hover); /* text grade on the soft bg (audited) */
+  background: var(--color-danger-soft);
+}
+
+.conditions__remove:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+}
+
+/* "or" between groups, centered on its own line */
+.conditions__or {
+  align-self: center;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.conditions__footer {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+/* ------------------------------------------------------------
+   48. UPLOAD — file input. Default: native input in the WP
+       upload-row register (styled file-selector button), composed
+       with a .button for the submit action. --dropzone: label-as-
+       target for drag-and-drop; input stays native and hidden.
+       Selection display is native; drag-over is host-page JS
+       toggling --dragover.
+   ------------------------------------------------------------ */
+
+.upload {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.upload__input {
+  font-family: var(--font-family);
+  font-size: var(--text-md);
+  color: var(--color-text-secondary);
+}
+
+.upload__input::file-selector-button {
+  font-family: var(--font-family);
+  font-size: var(--text-md);
+  font-weight: 500;
+  line-height: 1;
+  height: 32px; /* control metric: aligns with inputs/buttons */
+  padding: 0 14px;
+  margin-right: var(--space-sm); /* horizontal separation from filename */
+  border-radius: var(--radius-button);
+  border: 1px solid var(--color-action-primary);
+  background: var(--color-bg-surface);
+  color: var(--color-action-primary);
+  cursor: pointer;
+}
+
+.upload__input:hover::file-selector-button {
+  background: var(--color-action-soft);
+}
+
+.upload__input:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-control);
+}
+
+.upload__input:disabled { cursor: default; }
+
+.upload__input:disabled::file-selector-button {
+  border-color: var(--color-border-default);
+  color: var(--color-text-secondary);
+  background: var(--color-bg-subtle);
+  cursor: default;
+}
+
+/* Dropzone variant */
+.upload--dropzone {
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-card);
+  background: var(--color-bg-subtle);
+  text-align: center;
+  cursor: pointer;
+}
+
+.upload--dropzone:hover,
+.upload--dragover {
+  border-color: var(--color-action-primary);
+  background: var(--color-action-soft);
+}
+
+.upload--dropzone:focus-within {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.upload--dropzone .upload__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.upload__icon { color: var(--color-text-secondary); }
+
+.upload__text {
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+}
+
+.upload__hint {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}

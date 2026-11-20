@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide — Add-ons & AI</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19a9 9 0 0 1 9 0a9 9 0 0 1 9 0M3 6a9 9 0 0 1 9 0a9 9 0 0 1 9 0M3 6v13m9-13v13m9-13v13"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l5 5L20 7"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" /> <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></g></symbol>
+<symbol id="i-external-link" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6m-7 1l9-9m-5 0h5v5"/></symbol>
+<symbol id="i-help-circle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9 4v.01"/><path d="M12 13a2 2 0 0 0 .914-3.782a1.98 1.98 0 0 0-2.414.483"/></g></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0-2 0m-3-5V7a4 4 0 1 1 8 0v4"/></g></symbol>
+<symbol id="i-puzzle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h3a1 1 0 0 0 1-1V5a2 2 0 0 1 4 0v1a1 1 0 0 0 1 1h3a1 1 0 0 1 1 1v3a1 1 0 0 0 1 1h1a2 2 0 0 1 0 4h-1a1 1 0 0 0-1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1v-1a2 2 0 0 0-4 0v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a2 2 0 0 0 0-4H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /> <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></g></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M10 14l11 -11" /> <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" /></g></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2-2a2 2 0 0 1-2-2a2 2 0 0 1-2 2m0-12a2 2 0 0 1 2 2a2 2 0 0 1 2-2a2 2 0 0 1-2-2a2 2 0 0 1-2 2M9 18a6 6 0 0 1 6-6a6 6 0 0 1-6-6a6 6 0 0 1-6 6a6 6 0 0 1 6 6"/></symbol>
+<symbol id="i-thumb-down" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M7 13v-8a1 1 0 0 0 -1 -1h-2a1 1 0 0 0 -1 1v7a1 1 0 0 0 1 1h3a4 4 0 0 1 4 4v1a2 2 0 0 0 4 0v-5h3a2 2 0 0 0 2 -2l-1 -5a2 3 0 0 0 -2 -2h-7a3 3 0 0 0 -3 3" /></g></symbol>
+<symbol id="i-thumb-up" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M7 11v8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" /></g></symbol>
+</svg>
+
+<div class="guide">
+
+  <h1 class="guide__title">Add-ons & AI</h1>
+  <p class="guide__intro">Commercial surfaces (add-ons, upsell, license) and the AI component set. Tokens, knobs, and the component index live in the <a href="styleguide.html">style guide</a>.</p>
+
+  <section class="guide__section">
+    <h2 class="guide__section-title">Component specs</h2>
+
+    <!-- addons -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Add-ons</h3><div class="spec__badges"><code class="spec__name">.addons</code><code class="spec__name">.addon</code><code class="spec__name">.addon--pro</code></div></div><p class="spec__purpose">Catalog grid of installable/purchasable extensions. Cards carry an icon tile or a full-bleed thumbnail; the <code>--pro</code> modifier is the locked upgrade state.</p></div>
+      <div class="spec__demo">
+        <div class="addons">
+          <article class="addon">
+            <div class="addon__top">
+              <div class="addon__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-puzzle"/></svg></div>
+              <span class="badge badge--success">Status label</span>
+            </div>
+            <div class="addon__body">
+              <h3 class="addon__title">Add-on title</h3>
+              <p class="addon__description">Add-on description text goes here. Two or three sentences explaining what this add-on does.</p>
+            </div>
+            <div class="addon__footer"><button class="button">Secondary action</button></div>
+          </article>
+          <article class="addon addon--pro">
+            <div class="addon__top">
+              <div class="addon__icon"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-lock"/></svg></div>
+              <span class="badge badge--pro">Pro</span>
+            </div>
+            <div class="addon__body">
+              <h3 class="addon__title">Add-on title</h3>
+              <p class="addon__description">Add-on description text goes here. Two or three sentences explaining what this add-on does.</p>
+            </div>
+            <div class="addon__footer">
+              <button class="button button--primary">Upgrade action</button>
+              <span class="addon__note">Requires Pro</span>
+            </div>
+          </article>
+          <article class="addon addon--pro">
+            <div class="addon__thumb">
+              <span class="badge badge--pro">Pro</span>
+            </div>
+            <div class="addon__body">
+              <h3 class="addon__title">Add-on title</h3>
+              <p class="addon__description">Add-on description text goes here. Two or three sentences explaining what this add-on does.</p>
+            </div>
+            <div class="addon__footer">
+              <button class="button button--primary">Upgrade action</button>
+              <span class="addon__note">Requires Pro</span>
+            </div>
+          </article>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__top</code> · <code>__icon</code> · <code>__thumb</code> (image variant, replaces <code>__icon</code>) · <code>__body</code> · <code>__title</code> · <code>__description</code> · <code>__footer</code> · <code>__note</code></dd>
+        <dt>Anatomy</dt><dd><code>.addon.addon--pro &gt; __top (__icon [lock] + .badge--pro) + __body + __footer (upgrade .button--primary + __note)</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Locked extensions keep full descriptions — sell the value, mute only the icon tile.</li>
+            <li>Icon becomes Tabler <code>lock</code>; badge is <code>--pro</code>; footer pairs the upgrade button with a "Requires Pro" <code>__note</code>.</li>
+            <li><code>__thumb</code> holds an <code>&lt;img&gt;</code> (bleeds to the card edges, 16:9, <code>object-fit: cover</code>); shown here as an empty gray placeholder.</li>
+            <li>Only a filled badge (<code>--pro</code>) may overlay the thumb — it carries its own background; dot badges have none and would fail contrast over an image.</li>
+            <li>Grids may mix unlocked and locked add-ons; optionally end the screen with one <code>.upsell</code> banner.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- pricing -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Pricing</h3><div class="spec__badges"><code class="spec__name">.pricing</code></div></div><p class="spec__purpose">Plan comparison cards for a pricing page or in-plugin compare screen. Annual-billing tiers with one emphasized "Most Popular" plan.</p></div>
+      <div class="spec__demo">
+        <div class="pricing">
+          <article class="pricing__plan">
+            <h3 class="pricing__name">Plan name</h3>
+            <div class="pricing__price"><span class="pricing__amount">$49</span><span class="pricing__period">/ year</span></div>
+            <p class="pricing__meta">Use on 1 site</p>
+            <ul class="pricing__features">
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+            </ul>
+            <button class="button">Get started</button>
+            <p class="pricing__note">14-day money-back guarantee</p>
+          </article>
+          <article class="pricing__plan pricing__plan--featured">
+            <span class="pricing__badge">Most Popular</span>
+            <h3 class="pricing__name">Plan name</h3>
+            <div class="pricing__price"><span class="pricing__amount">$99</span><span class="pricing__period">/ year</span></div>
+            <p class="pricing__meta">Use on 5 sites</p>
+            <ul class="pricing__features">
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Priority support</li>
+            </ul>
+            <button class="button button--primary">Get started</button>
+            <p class="pricing__note">14-day money-back guarantee</p>
+          </article>
+          <article class="pricing__plan">
+            <h3 class="pricing__name">Plan name</h3>
+            <div class="pricing__price"><span class="pricing__amount">$199</span><span class="pricing__period">/ year</span></div>
+            <p class="pricing__meta">Use on 25 sites</p>
+            <ul class="pricing__features">
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Feature included</li>
+              <li><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg>Priority support</li>
+            </ul>
+            <button class="button">Get started</button>
+            <p class="pricing__note">14-day money-back guarantee</p>
+          </article>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.pricing (grid) &gt; article.pricing__plan &gt; __name + __price (__amount + __period) + __meta + ul.pricing__features + .button + __note</code>; emphasize one tier with <code>.pricing__plan--featured</code> + a <code>__badge</code>.</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>One <code>--featured</code> tier per grid — the accent ring and centered "Most Popular" <code>__badge</code> mark the recommended plan; its CTA is <code>--primary</code>.</li>
+            <li>Default to annual billing; <code>__price</code> pairs the amount with a <code>__period</code>. Keep to 3–4 tiers so cards stay scannable.</li>
+            <li>Feature <code>.icon</code> checks inherit accent; the <code>__note</code> under the CTA carries the guarantee or renewal line (risk reversal), not a card footer.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- upsell -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Upsell</h3><div class="spec__badges"><code class="spec__name">.upsell</code><code class="spec__name">.badge--pro</code></div></div><p class="spec__purpose">Premium feature marketing: PRO badge for locked options, CTA banner for upgrade prompts.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack">
+          <div class="row">
+            <span class="badge badge--pro">Pro</span>
+            <label class="toggle"><input class="toggle__input" type="checkbox" disabled><span class="toggle__track" aria-hidden="true"></span><span>Toggle label</span></label>
+          </div>
+          <div class="card__divider"></div>
+          <div class="upsell">
+            <div class="upsell__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-sparkles"/></svg></div>
+            <div class="upsell__content">
+              <h4 class="upsell__title">Upsell title <span class="badge badge--pro">Pro</span></h4>
+              <p class="upsell__description">Upsell description text goes here. One sentence on the value of upgrading.</p>
+            </div>
+            <div class="upsell__actions">
+              <button class="button button--primary">Upgrade action</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.upsell &gt; __icon + __content (__title + __description) + __actions</code>; <code>.badge--pro</code> is a badge modifier (no dot, accent fill, uppercase)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li><code>.badge--pro</code> marks locked controls inline; the control itself renders disabled.</li>
+            <li>One upsell banner per screen, maximum — never stack them.</li>
+            <li>Banner uses <code>--color-action-soft</code>, not a state color: upsell is promotion, not a warning.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- license -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">License</h3><div class="spec__badges"><code class="spec__name">.license</code></div></div><p class="spec__purpose">License key validation (Freemius / EDD style) and the account-connect path. Lives in a card body or an aside widget.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack demo-w-lg">
+          <div class="license">
+            <div class="license__status">
+              <span class="badge">Unlicensed</span>
+            </div>
+            <div class="license__connect">
+              <button class="button button--primary">Connect account</button>
+              <span class="license__or">or enter a license key</span>
+            </div>
+            <div class="license__form">
+              <input class="field__input" type="text" placeholder="Enter license key" aria-label="License key">
+              <button class="button">Verify</button>
+            </div>
+          </div>
+          <div class="card__divider"></div>
+          <div class="license">
+            <div class="license__status">
+              <span class="spinner spinner--sm" role="status" aria-label="Verifying"></span>
+              <span class="license__meta">Verifying license…</span>
+            </div>
+          </div>
+          <div class="card__divider"></div>
+          <div class="license">
+            <div class="license__status">
+              <span class="badge badge--success">Active</span>
+              <span class="license__meta">Valid until 2026-01-01</span>
+            </div>
+            <div class="license__form">
+              <input class="field__input" type="text" value="XXXX-XXXX-XXXX-XXXX" aria-label="License key">
+              <button class="button">Deactivate</button>
+            </div>
+          </div>
+          <div class="card__divider"></div>
+          <div class="license">
+            <div class="license__status">
+              <span class="badge">Expired</span>
+              <span class="license__meta">Updates and support paused — your site keeps working.</span>
+            </div>
+            <div class="license__form">
+              <input class="field__input" type="text" value="XXXX-XXXX-XXXX-XXXX" aria-label="License key">
+              <button class="button button--primary">Renew</button>
+            </div>
+          </div>
+          <div class="card__divider"></div>
+          <div class="license">
+            <div class="license__status">
+              <span class="badge badge--danger">Invalid</span>
+              <span class="license__meta">License error message goes here.</span>
+            </div>
+            <div class="license__form">
+              <input class="field__input" type="text" value="XXXX-XXXX-XXXX-XXXX" aria-label="License key">
+              <button class="button button--primary">Activate</button>
+            </div>
+            <ul class="license__help">
+              <li>This site may be on localhost or behind a firewall.</li>
+              <li>You may have reached your site limit for this key.</li>
+              <li><a href="#">Open troubleshooting guide</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.license &gt; __status (badge/spinner + __meta) + [__connect (.button--primary + __or)] + __form (.field__input + .button) + [__help]</code></dd>
+        <dt>States</dt><dd>badge default = unlicensed · spinner = connecting · <code>--success</code> = active (button says Deactivate) · default "Expired" = lapsed (Renew; updates/support pause but the plugin keeps working) · <code>--danger</code> = invalid (meta carries the error, <code>__help</code> surfaces troubleshooting)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Key input is monospace; mask stored keys as <code>XXXX-XXXX-XXXX-XXXX</code>.</li>
+            <li>Offer <code>__connect</code> (account link) above the key fallback where the product supports it; Activate/Renew is <code>--primary</code>, Deactivate is the outline default.</li>
+            <li>Expired degrades updates and support first — never brick installed functionality (WordPress.org forbids trialware lockouts).</li>
+            <li>Attach <code>__help</code> under a failed or expired state; keep it to a few plain-language causes plus one guide link.</li>
+            <li>See <code>shell-sidebar.html</code> for the aside-widget placement.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- link-list -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Link list</h3><div class="spec__badges"><code class="spec__name">.link-list</code></div></div><p class="spec__purpose">Aside-widget list of useful links, each with a Tabler icon.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <ul class="link-list">
+          <li><a class="link-list__link" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-book"/></svg>Link label</a></li>
+          <li><a class="link-list__link" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-help-circle"/></svg>Link label</a></li>
+          <li><a class="link-list__link" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-external-link"/></svg>Link label</a></li>
+        </ul>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>ul.link-list &gt; li &gt; a.link-list__link (icon + label text)</code></dd>
+      </dl>
+    </div>
+
+    <!-- chat -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Chat</h3><div class="spec__badges"><code class="spec__name">.chat</code></div></div><p class="spec__purpose">AI assistant conversation panel: log of messages, typing indicator, suggested prompts, composer. Lives in a flush card or a drawer. Static markup — sending/streaming is host-page JS.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="chat demo-w-xl demo-framed">
+          <div class="chat__log" role="log" aria-label="Conversation">
+            <div class="chat__suggestions">
+              <button class="chat__suggestion">Suggested prompt one</button>
+              <button class="chat__suggestion">Suggested prompt two</button>
+              <button class="chat__suggestion">Suggested prompt three</button>
+            </div>
+            <div class="chat__message chat__message--user">
+              <div class="chat__body">
+                <span class="chat__meta">Username · 2026-01-01 00:00:00</span>
+                <div class="chat__bubble"><p>User message text goes here.</p></div>
+              </div>
+            </div>
+            <div class="chat__message">
+              <div class="chat__body">
+                <span class="chat__meta">Assistant · 2026-01-01 00:00:00</span>
+                <div class="chat__bubble"><p>Assistant reply text goes here.</p><p>Second paragraph of the reply.</p></div>
+                <div class="chat__actions">
+                  <button class="chat__action" aria-label="Copy reply"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-copy"/></svg></button>
+                  <button class="chat__action" aria-label="Good reply"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-thumb-up"/></svg></button>
+                  <button class="chat__action" aria-label="Bad reply"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-thumb-down"/></svg></button>
+                  <button class="chat__action" aria-label="Regenerate reply"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-refresh"/></svg></button>
+                </div>
+              </div>
+            </div>
+            <div class="chat__message">
+              <div class="chat__body">
+                <div class="chat__typing" role="status" aria-label="Assistant is typing"><span class="chat__dot"></span><span class="chat__dot"></span><span class="chat__dot"></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="chat__composer">
+            <input class="field__input chat__input" type="text" placeholder="Ask a question…" aria-label="Message">
+            <button class="button button--primary" aria-label="Send message"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-send"/></svg>Send</button>
+          </div>
+          <p class="chat__footnote">AI responses may be inaccurate. Verify before applying.</p>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__log</code> · <code>__message</code> (+ <code>--user</code>) · <code>__body</code> · <code>__meta</code> · <code>__bubble</code> · <code>__typing</code> (3 × <code>__dot</code>) · <code>__actions</code> / <code>__action</code> · <code>__suggestions</code> / <code>__suggestion</code> · <code>__composer</code> · <code>__input</code> · <code>__footnote</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Assistant messages align left with the sparkles avatar; user messages mirror right with the soft accent bubble. Colors are semantic — dark mode is free.</li>
+            <li>The log is <code>role="log"</code>; the typing indicator is <code>role="status"</code>; action buttons are icon-only and carry <code>aria-label</code>s.</li>
+            <li>Every chat ships the <code>__footnote</code> disclaimer. Data-flow consent belongs in a <code>.notice</code> on the settings screen, not in the chat.</li>
+            <li>Prefer <code>.ai-suggestion</code> for field-level AI; chat is for when conversation itself is the feature.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- ai-suggestion -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">AI suggestion</h3><div class="spec__badges"><code class="spec__name">.ai-suggestion</code><code class="spec__name">.badge--ai</code></div></div><p class="spec__purpose">Inline AI proposal for a nearby field: generated value + Accept / Regenerate / Discard. The badge marks AI-generated or AI-powered content.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack demo-w-xl">
+          <div class="ai-suggestion">
+            <div class="ai-suggestion__header">
+              <svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkles"/></svg>
+              <h4 class="ai-suggestion__title">Suggestion title</h4>
+              <span class="badge badge--ai"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkles"/></svg>AI</span>
+            </div>
+            <div class="ai-suggestion__body">
+              <p class="ai-suggestion__text">Generated suggestion text goes here. One or two sentences proposed by the model for the field above.</p>
+            </div>
+            <div class="ai-suggestion__actions">
+              <button class="button button--primary button--small">Accept suggestion</button>
+              <button class="button button--small"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-refresh"/></svg>Regenerate</button>
+              <button class="button button--link button--small">Discard</button>
+            </div>
+          </div>
+          <div class="row">
+            <span class="badge badge--ai"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkles"/></svg>AI generated</span>
+            <button class="button"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-sparkles"/></svg>Generate with AI</button>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__header</code> (sparkles icon + <code>__title</code> + optional <code>badge--ai</code>) · <code>__body</code> / <code>__text</code> · <code>__actions</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Accept is the only <code>--primary</code>; Regenerate is outline; Discard is <code>--link</code>. Accepting writes the value into the field — the suggestion never replaces the field.</li>
+            <li>“Generate with AI” triggers are outline buttons with the sparkles icon — never <code>--primary</code> (generation is an offer, not the screen’s main action).</li>
+            <li><code>badge--ai</code> is informational, never clickable; usage limits reuse <code>.progress</code>; consent reuses <code>.notice</code>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="guide.js"></script>
+</body>
+</html>

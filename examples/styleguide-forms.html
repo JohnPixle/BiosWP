@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide — Forms & actions</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-alert-circle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-4v4m0 4h.01"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l5 5L20 7"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/></symbol>
+<symbol id="i-circle-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/><path d="m9 12l2 2l4-4"/></g></symbol>
+<symbol id="i-cloud-upload" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M7 18a4.6 4.4 0 0 1 0-9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"/><path d="m9 15l3-3l3 3m-3-3v9"/></g></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" /> <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></g></symbol>
+<symbol id="i-dots-vertical" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M11 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M11 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></g></symbol>
+<symbol id="i-grip-vertical" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M8 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M8 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M8 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M14 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M14 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M14 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></g></symbol>
+<symbol id="i-pencil" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /> <path d="M13.5 6.5l4 4" /></g></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /> <path d="M12 5l0 14" /> <path d="M5 12l14 0" /></g></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></symbol>
+</svg>
+
+<div class="guide">
+
+  <h1 class="guide__title">Forms & actions</h1>
+  <p class="guide__intro">Inputs, settings rows, selection controls, and every action surface: buttons, menus, filters, and the save bar. Tokens, knobs, and the component index live in the <a href="styleguide.html">style guide</a>.</p>
+
+  <section class="guide__section">
+    <h2 class="guide__section-title">Component specs</h2>
+
+    <!-- buttons -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Button</h3><div class="spec__badges"><code class="spec__name">.button</code></div></div><p class="spec__purpose">All actions. Default is the secondary (outline) style.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="row">
+          <button class="button button--primary">Primary action</button>
+          <button class="button">Secondary action</button>
+          <button class="button button--danger">Danger action</button>
+          <button class="button button--link">Link action</button>
+          <button class="button button--small">Small action</button>
+          <button class="button button--small button--danger">Small danger</button>
+          <button class="button" disabled>Disabled action</button>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Modifiers</dt><dd><code>--primary</code> · <code>--danger</code> · <code>--link</code> · <code>--small</code> · <code>--disabled</code> / <code>:disabled</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>One <code>--primary</code> per card footer, maximum.</li>
+            <li><code>--danger</code> for destructive actions only; pair with a <code>.modal</code> confirmation.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- field -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Field</h3><div class="spec__badges"><code class="spec__name">.field</code></div></div><p class="spec__purpose">Vertical field: label above control. For forms outside the settings-row pattern.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack">
+          <div class="field">
+            <label class="field__label" for="sg-input">Field label</label>
+            <input class="field__input" id="sg-input" type="text" placeholder="Placeholder text">
+            <p class="field__hint">Field hint text goes here.</p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="sg-select">Field label</label>
+            <select class="field__select" id="sg-select"><option>Option one</option><option>Option two</option></select>
+          </div>
+          <div class="field">
+            <label class="field__label" for="sg-narrow">Field label</label>
+            <input class="field__input field__input--narrow" id="sg-narrow" type="number" value="5">
+          </div>
+          <div class="field">
+            <label class="field__label" for="sg-textarea">Field label</label>
+            <textarea class="field__textarea" id="sg-textarea" placeholder="Placeholder text"></textarea>
+            <p class="field__hint">Field hint text goes here.</p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="sg-search">Search label</label>
+            <input class="field__input field__input--search" id="sg-search" type="search" placeholder="Search items…">
+          </div>
+          <div class="field field--error">
+            <label class="field__label" for="sg-error">Field label</label>
+            <input class="field__input" id="sg-error" type="text" value="Invalid value" aria-invalid="true" aria-describedby="sg-error-msg">
+            <p class="field__message" id="sg-error-msg"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-alert-circle"/></svg>Validation error message text.</p>
+          </div>
+          <div class="field field--success">
+            <label class="field__label" for="sg-success">Field label</label>
+            <input class="field__input" id="sg-success" type="text" value="Valid value">
+            <p class="field__message"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-circle-check"/></svg>Validation success message text.</p>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__label</code> · <code>__input</code> · <code>__select</code> · <code>__textarea</code> · <code>__hint</code> · <code>__message</code> (validation icon + text)</dd>
+        <dt>Modifiers</dt><dd><code>__input--narrow</code> (80px, numeric) · <code>__input--search</code> (leading search icon) · <code>--error</code> / <code>--success</code> on the block (colors control border + <code>__message</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Validation is per-field: <code>--error</code>/<code>--success</code> + a <code>__message</code> with an <code>alert-circle</code>/<code>circle-check</code> icon. Form-level results use a <code>.notice</code> above the cards.</li>
+            <li>Pair <code>--error</code> with <code>aria-invalid="true"</code> and link the message via <code>aria-describedby</code>.</li>
+            <li><code>__message</code> replaces <code>__hint</code> while a state is shown — never both at once.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- setting -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Setting row</h3><div class="spec__badges"><code class="spec__name">.setting</code></div></div><p class="spec__purpose">Settings row: label column left, control right (wp form-table pattern). Stacks at ≤700px.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="settings">
+        <div class="setting">
+          <label class="setting__label" for="sg-set-select">Setting label</label>
+          <div class="setting__control">
+            <div class="setting__inline">
+              <select class="field__select" id="sg-set-select"><option>Option one</option></select>
+              <span class="setting__note">Setting note text.</span>
+            </div>
+          </div>
+        </div>
+        <div class="setting">
+          <div class="setting__label">Setting label</div>
+          <div class="setting__control">
+            <label class="checkbox"><input class="checkbox__input" type="checkbox" checked><span>Checkbox label</span></label>
+          </div>
+        </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__label</code> · <code>__control</code> · <code>__inline</code> · <code>__note</code></dd>
+      </dl>
+    </div>
+
+    <!-- checkbox / radio / toggle -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Selection controls</h3><div class="spec__badges"><code class="spec__name">.checkbox</code><code class="spec__name">.radio</code><code class="spec__name">.toggle</code></div></div><p class="spec__purpose">Selection controls. Checkbox = independent options, radio = one of a set, toggle = immediate on/off state.</p></div>
+      <div class="spec__demo spec__demo--card-bg stack">
+        <div class="stack stack--tight">
+          <label class="checkbox"><input class="checkbox__input" type="checkbox" checked><span>Checkbox label</span></label>
+          <label class="checkbox"><input class="checkbox__input" type="checkbox"><span>Checkbox label <span class="checkbox__hint">— Checkbox hint text (inline, default)</span></span></label>
+          <label class="checkbox checkbox--hint-below"><input class="checkbox__input" type="checkbox"><span>Checkbox label <span class="checkbox__hint">Checkbox hint text (--hint-below)</span></span></label>
+          <label class="checkbox"><input class="checkbox__input" type="checkbox" checked disabled><span>Checkbox label <span class="checkbox__hint">(disabled)</span></span></label>
+        </div>
+        <div class="card__divider"></div>
+        <div class="stack stack--tight">
+          <label class="radio"><input class="radio__input" type="radio" name="sg-radio" checked><span>Radio label</span></label>
+          <label class="radio"><input class="radio__input" type="radio" name="sg-radio"><span>Radio label <span class="radio__hint">— Radio hint text (inline, default)</span></span></label>
+          <label class="radio radio--hint-below"><input class="radio__input" type="radio" name="sg-radio"><span>Radio label <span class="radio__hint">Radio hint text (--hint-below)</span></span></label>
+        </div>
+        <div class="card__divider"></div>
+        <div class="stack stack--tight">
+          <label class="toggle"><input class="toggle__input" type="checkbox" checked><span class="toggle__track" aria-hidden="true"></span><span>Toggle label</span></label>
+          <label class="toggle"><input class="toggle__input" type="checkbox"><span class="toggle__track" aria-hidden="true"></span><span>Toggle label <span class="toggle__hint">— Toggle hint text (inline, default)</span></span></label>
+          <label class="toggle toggle--hint-below"><input class="toggle__input" type="checkbox"><span class="toggle__track" aria-hidden="true"></span><span>Toggle label <span class="toggle__hint">Toggle hint text (--hint-below)</span></span></label>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy (toggle)</dt><dd><code>label.toggle &gt; input.toggle__input + span.toggle__track + span</code> — the input is visually hidden, the track renders the switch.</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Toggle applies immediately; checkbox waits for a save action. Don't mix the semantics.</li>
+            <li>All three share the same hint pattern: <code>__hint</code> in secondary text. Default renders inline after the label (with an em-dash); the <code>--hint-below</code> variant puts it on its own line.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- copy-field -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Copy field</h3><div class="spec__badges"><code class="spec__name">.copy-field</code></div></div><p class="spec__purpose">Read-only value with a copy button: API keys, shortcodes, webhook URLs. Input and button fuse into one control.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack demo-w-md">
+          <div class="copy-field">
+            <input class="field__input copy-field__input" type="text" readonly value="[example_shortcode id=&quot;1&quot;]">
+            <button class="copy-field__button button"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-copy"/></svg>Copy</button>
+          </div>
+          <div class="copy-field">
+            <input class="field__input copy-field__input" type="text" readonly value="https://example.com/webhook/a1b2c3">
+            <button class="copy-field__button button"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-copy"/></svg>Copy</button>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>input.field__input.copy-field__input[readonly]</code> + <code>button.button.copy-field__button</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Value renders monospace; the input is always <code>readonly</code>.</li>
+            <li>The copy action itself is host-page JS; on success show a <code>.toast</code> or swap the button label.</li>
+            <li>For license keys use <code>.license</code> — it owns masking and validation states.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- tag-input -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Upload</h3><div class="spec__badges"><code class="spec__name">.upload</code></div></div><p class="spec__purpose">File input. Default: native input with a styled choose button, composed with a .button for the submit action (the WP install/import row). Dropzone variant for drag-and-drop.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack demo-w-lg">
+          <div class="upload">
+            <input class="upload__input" type="file" aria-label="Choose file">
+            <button class="button">Secondary action</button>
+          </div>
+          <label class="upload upload--dropzone">
+            <input class="upload__input" type="file">
+            <svg class="icon icon--lg upload__icon" aria-hidden="true"><use href="#i-cloud-upload"/></svg>
+            <span class="upload__text">Choose a file or drag it here</span>
+            <span class="upload__hint">Upload hint text goes here.</span>
+          </label>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy (row)</dt><dd><code>.upload &gt; input.upload__input[type=file] + .button</code></dd>
+        <dt>Anatomy (dropzone)</dt><dd><code>label.upload.upload--dropzone &gt; hidden __input + __icon + __text + __hint</code></dd>
+        <dt>Modifiers</dt><dd><code>--dropzone</code> · <code>--dragover</code> (state, host JS toggles it)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>The native input does the work — selection display, keyboard, form posting. No JS required for either form.</li>
+            <li>Dropzone is a <code>label</code> wrapping a hidden input: click and keyboard come free; <code>focus-within</code> draws the ring. Drag-over = host JS toggling <code>--dragover</code>.</li>
+            <li>Row form pairs with an outline <code>.button</code> for the submit action; the button stays disabled until a file is chosen (host JS).</li>
+            <li>Reach for <code>--dropzone</code> only when drag-and-drop genuinely helps (bulk/media); install/import rows stay the default form.</li>
+            <li>Validation feedback → the <code>.field</code> error pattern or a <code>.notice</code>, never custom styling here.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Tag input</h3><div class="spec__badges"><code class="spec__name">.tag-input</code><code class="spec__name">.tag</code><code class="spec__name">.tags</code></div></div><p class="spec__purpose">Multi-value input: type to add tags; each chip removes with its x. Outside the input, a .tags row shows the same chips statically or as links.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack stack--loose demo-w-lg">
+          <div class="field">
+            <label class="field__label" for="sg-tags">Field label</label>
+            <div class="tag-input">
+              <span class="tag">Tag label<button class="tag__remove" aria-label="Remove tag"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button></span>
+              <span class="tag">Tag label<button class="tag__remove" aria-label="Remove tag"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button></span>
+              <span class="tag">Tag label<button class="tag__remove" aria-label="Remove tag"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button></span>
+              <input class="tag-input__field" id="sg-tags" type="text" placeholder="Add tag">
+            </div>
+            <p class="field__hint">Field hint text goes here.</p>
+          </div>
+          <div class="stack" style="gap: var(--space-sm);">
+            <p class="card__description"><code>.tags</code> — static / linked chips outside the input</p>
+            <div class="tags">
+              <span class="tag">Tag label</span>
+              <a class="tag" href="#">Tag label</a>
+              <a class="tag" href="#">Tag label</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.tag-input &gt; .tag (label text + __remove) + __field</code>; composes inside <code>.field</code> for label + hint. Display: <code>.tags &gt; .tag</code> (span, or <code>a</code> when it navigates) — no remove button outside the input.</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Enter commits the typed value as a chip; Backspace on empty input removes the last chip (host page behavior).</li>
+            <li><code>__remove</code> is a real button with <code>aria-label="Remove tag"</code>.</li>
+            <li>The wrapper carries the input border; the inner field is borderless. Focus ring via <code>:focus-within</code>.</li>
+            <li>Linked chips keep chip colors — hover strengthens the border, not the text; the shape is the affordance. No weighted "clouds": filtering a collection by tag with counts is <code>.views</code>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- repeater -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Repeater</h3><div class="spec__badges"><code class="spec__name">.repeater</code></div></div><p class="spec__purpose">Sortable row group (ACF-style): each row has a drag handle, a content slot of fields, and a remove button, plus an add-row footer.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="repeater demo-w-xl">
+          <div class="repeater__row">
+            <button class="repeater__handle" type="button" aria-label="Reorder row"><svg class="icon" aria-hidden="true"><use href="#i-grip-vertical"/></svg></button>
+            <div class="repeater__content">
+              <input class="field__input" type="text" value="Row label" aria-label="Row label" style="flex: 1;">
+              <select class="field__select" aria-label="Row option"><option>Option one</option><option>Option two</option></select>
+            </div>
+            <button class="repeater__remove" type="button" aria-label="Remove row"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="repeater__row">
+            <button class="repeater__handle" type="button" aria-label="Reorder row"><svg class="icon" aria-hidden="true"><use href="#i-grip-vertical"/></svg></button>
+            <div class="repeater__content">
+              <input class="field__input" type="text" value="Row label" aria-label="Row label" style="flex: 1;">
+              <select class="field__select" aria-label="Row option"><option>Option one</option></select>
+            </div>
+            <button class="repeater__remove" type="button" aria-label="Remove row"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="repeater__footer">
+            <button class="button"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-plus"/></svg>Add row</button>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__row</code> · <code>__handle</code> · <code>__content</code> (flex slot of fields) · <code>__remove</code> · <code>__footer</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Markup-only: drag-to-reorder is host-page JS; the handle is the affordance.</li>
+            <li>Rows hold controls, not prose — for collapsible content rows use <code>.panel</code> instead.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- conditions -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Conditions</h3><div class="spec__badges"><code class="spec__name">.conditions</code></div></div><p class="spec__purpose">Rule builder for conditional logic ("show/run when …"): subject · operator · value per row, composed from field controls. Rows AND within a group; groups OR between them.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="conditions">
+          <div class="conditions__group">
+            <div class="conditions__row">
+              <span class="conditions__connector">When</span>
+              <select class="field__select" aria-label="Condition subject"><option>Option one</option></select>
+              <select class="field__select" aria-label="Condition operator"><option>is equal to</option></select>
+              <select class="field__select" aria-label="Condition value"><option>Option one</option></select>
+              <button class="conditions__remove" type="button" aria-label="Remove condition"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+            </div>
+            <div class="conditions__row">
+              <span class="conditions__connector">and</span>
+              <select class="field__select" aria-label="Condition subject"><option>Option two</option></select>
+              <select class="field__select" aria-label="Condition operator"><option>is not</option></select>
+              <input class="field__input" value="Value" aria-label="Condition value">
+              <button class="conditions__remove" type="button" aria-label="Remove condition"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+            </div>
+            <div class="conditions__footer">
+              <button class="button button--small" type="button"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-plus"/></svg>Add condition</button>
+            </div>
+          </div>
+          <span class="conditions__or">or</span>
+          <div class="conditions__group">
+            <div class="conditions__row">
+              <span class="conditions__connector">When</span>
+              <select class="field__select" aria-label="Condition subject"><option>Option one</option></select>
+              <select class="field__select" aria-label="Condition operator"><option>is equal to</option></select>
+              <select class="field__select" aria-label="Condition value"><option>Option two</option></select>
+              <button class="conditions__remove" type="button" aria-label="Remove condition"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+            </div>
+          </div>
+          <div class="conditions__footer">
+            <button class="button button--small" type="button"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-plus"/></svg>Add "or" group</button>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__group</code> (AND set, on the subtle bg) · <code>__row</code> ("When"/"and" <code>__connector</code> + subject/operator/value controls + <code>__remove</code>) · <code>__or</code> (centered label between groups) · <code>__footer</code> (add buttons)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Grammar is fixed: rows AND within a group, groups OR between them — never mixed operators inside one group.</li>
+            <li>Controls reuse <code>field__select</code>/<code>field__input</code>; the value control varies by subject (select, input, date) — swapping it is host-page JS, as are add/remove.</li>
+            <li>Row logic only — for reorderable content rows use <code>.repeater</code>; for filtering a list use <code>.filter</code>/<code>.views</code>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- filter -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Filter</h3><div class="spec__badges"><code class="spec__name">.filter</code></div></div><p class="spec__purpose">Advanced filter dropdown. Default: single-select list. --multi: checkbox options with a search field. Advanced component — prefer plain selects for simple cases.</p></div>
+      <div class="spec__demo spec__demo--h-lg">
+        <div class="row" style="align-items: flex-start; justify-content: space-between;">
+          <div class="filter">
+            <button class="button" aria-expanded="true">Filter label<svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+            <div class="filter__panel">
+              <div class="filter__options" role="listbox" aria-label="Filter options">
+                <div class="filter__option filter__option--selected" role="option" aria-selected="true" tabindex="0">Option label<svg class="filter__option-check icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg></div>
+                <div class="filter__option" role="option" aria-selected="false" tabindex="0">Option label</div>
+                <div class="filter__option" role="option" aria-selected="false" tabindex="0">Option label</div>
+                <div class="filter__option" role="option" aria-selected="false" tabindex="0">Option label</div>
+              </div>
+            </div>
+          </div>
+          <div class="filter">
+            <button class="button" aria-expanded="true">Filter label<svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-down"/></svg></button>
+            <div class="filter__panel">
+              <div class="filter__search">
+                <input class="field__input" type="search" placeholder="Search options" aria-label="Search options">
+              </div>
+              <div class="filter__options">
+                <label class="filter__option"><input class="checkbox__input" type="checkbox" checked>Option label</label>
+                <label class="filter__option"><input class="checkbox__input" type="checkbox" checked>Option label</label>
+                <label class="filter__option"><input class="checkbox__input" type="checkbox">Option label</label>
+                <label class="filter__option"><input class="checkbox__input" type="checkbox">Option label</label>
+                <label class="filter__option"><input class="checkbox__input" type="checkbox">Option label</label>
+              </div>
+              <div class="filter__footer">
+                <button class="button button--link button--small">Clear</button>
+                <button class="button button--primary button--small">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.filter &gt; .button (trigger) + __panel &gt; [__search] + __options &gt; __option (+ __option-check) + [__footer]</code></dd>
+        <dt>Variants</dt><dd>default (single-select, check marks current) · multi-select (checkbox options + <code>__search</code> + <code>__footer</code> with Clear/Apply)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Open/close is the host page's concern; trigger sets <code>aria-expanded</code>.</li>
+            <li>Single-select applies immediately; multi-select batches via the Apply button.</li>
+            <li>Show the search field only above ~7 options.</li>
+            <li>Options list scrolls past 240px.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- menu -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Action menu</h3><div class="spec__badges"><code class="spec__name">.menu</code></div></div><p class="spec__purpose">Anchored action menu (kebab, dots-vertical trigger): row and card actions that don’t fit inline. Panel shown statically here; open/close is the host page’s concern.</p></div>
+      <div class="spec__demo spec__demo--card-bg spec__demo--h-md">
+        <div class="menu">
+          <button class="button button--small" aria-haspopup="true" aria-expanded="true" aria-label="More actions"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-dots-vertical"/></svg></button>
+          <div class="menu__panel" role="menu">
+            <button class="menu__item" role="menuitem"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-pencil"/></svg>Edit item</button>
+            <button class="menu__item" role="menuitem"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-copy"/></svg>Duplicate item</button>
+            <div class="menu__divider" role="separator"></div>
+            <button class="menu__item menu__item--danger" role="menuitem"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-trash"/></svg>Delete item</button>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__panel</code> (anchored dropdown) · <code>__item</code> (button or link) · <code>__divider</code></dd>
+        <dt>Modifiers</dt><dd><code>__panel--right</code> (right-aligns to the trigger) · <code>__item--danger</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Three or more actions, or any destructive one → menu; one or two safe actions stay inline as buttons/links.</li>
+            <li><code>--danger</code> items sit last, behind a <code>__divider</code>, and still confirm via <code>.modal</code>.</li>
+            <li>For filtering a collection use <code>.filter</code>; the menu is for actions only.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- save-bar -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Save bar</h3><div class="spec__badges"><code class="spec__name">.save-bar</code></div></div><p class="spec__purpose">Full-width sticky bottom action bar for settings screens. Sticks to the viewport bottom while unsaved changes exist.</p></div>
+      <div class="spec__demo">
+        <div class="save-bar">
+          <span class="save-bar__message"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-alert-circle"/></svg>Unsaved changes message goes here.</span>
+          <div class="save-bar__actions">
+            <button class="button">Secondary action</button>
+            <button class="button button--primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.save-bar &gt; __message + __actions</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Place as a sibling after <code>.plugin__body</code> (last child of the plugin container) so it spans the full width; <code>position: sticky; bottom: 0</code> keeps it visible while scrolling.</li>
+            <li>Show only while there are unsaved changes; saving fires a toast ("Changes saved").</li>
+            <li>One <code>--primary</code> button; secondary action is optional (e.g. "Discard").</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="guide.js"></script>
+</body>
+</html>

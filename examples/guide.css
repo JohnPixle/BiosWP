@@ -1,0 +1,117 @@
+/* ---- Style-guide-only scaffolding (not part of the plugin UI) ---- */
+
+:root { --jumpnav-h: 46px; --guide-bg: #ffffff; --guide-dot: rgba(0,0,0,.06); --guide-stub: rgba(0,0,0,.05); --guide-card-radius: 14px; --guide-card-shadow: none; }
+/* Demo framing scale (guide-only). Values are the ones the demos already
+   used inline; naming them here keeps raw px out of the copyable markup. */
+:root { --demo-w-xs: 240px; --demo-w-sm: 320px; --demo-w-md: 420px; --demo-w-lg: 480px; --demo-w-xl: 560px; --demo-w-tabs: 180px; --demo-h-sm: 180px; --demo-h-md: 210px; --demo-h-lg: 340px; --demo-h-xl: 380px; --demo-pad-top: 48px; }
+:root[data-theme="dark"] { --guide-bg: #14181c; --guide-dot: rgba(255,255,255,.05); --guide-stub: rgba(255,255,255,.05); }
+/* Guide page modernized — white/dark page + subtle dot grid, rounded
+   elevated cards. Guide chrome only; real plugin screens keep the canvas. */
+body {
+  background-color: var(--guide-bg);
+  background-image: radial-gradient(circle, var(--guide-dot) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+  background-position: -1px -1px;
+  background-attachment: fixed;
+}
+.guide { max-width: 1000px; margin: 0 auto; padding: var(--space-xl) var(--space-lg); padding-top: calc(var(--jumpnav-h) + var(--space-xl)); }
+.guide ul li + li, .guide ol li + li { margin-top: var(--space-sm); } /* readable bullet rhythm */
+.guide__title { font-size: 36px; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: var(--color-text-heading); margin: 0 0 var(--space-sm); }
+.guide__intro { color: var(--color-text-secondary); font-size: var(--text-lg); line-height: var(--leading-body); margin: 0 0 var(--space-xl); max-width: 80ch; }
+.guide__section { margin-bottom: calc(var(--space-xl) * 1.5); }
+.guide__card { background: var(--color-bg-surface); border: 1px solid var(--color-border-default); border-radius: var(--guide-card-radius); box-shadow: var(--guide-card-shadow); padding: var(--space-lg); }
+.guide__card > :last-child { margin-bottom: 0; }
+.guide__section-title { font-size: var(--heading-xl); font-weight: 700; margin: 0 0 var(--space-md); }
+.guide__theme-toggle { position: fixed; top: calc(var(--jumpnav-h) + var(--space-md)); right: var(--space-md); z-index: 50; }
+.guide__jumpnav { position: fixed; top: 0; left: 0; right: 0; height: var(--jumpnav-h); box-sizing: border-box; z-index: 60; display: flex; gap: var(--space-md); align-items: center; overflow-x: auto; white-space: nowrap; background: var(--color-bg-surface); border-bottom: 1px solid var(--color-border-default); padding: 0 var(--space-lg); scrollbar-width: none; -ms-overflow-style: none; }
+.guide__jumpnav::-webkit-scrollbar { display: none; }
+.guide__jumpnav a { color: var(--color-text-secondary); text-decoration: none; font-size: var(--text-sm); flex-shrink: 0; }
+.guide__jumpnav a:hover { color: var(--color-text-primary); }
+.guide__jumpnav a.guide__jumpnav-current { color: var(--color-action-primary); }
+.guide__jumpnav-sep { color: var(--color-border-strong); flex-shrink: 0; }
+.guide__section, .spec { scroll-margin-top: calc(var(--jumpnav-h) + var(--space-md)); }
+.customizer { position: fixed; bottom: var(--space-md); right: var(--space-md); z-index: 50; width: 44px; background: var(--color-bg-surface); border: 1px solid var(--color-border-default); border-radius: var(--radius-md); box-shadow: 0 4px 12px rgba(0,0,0,0.12); overflow: hidden; }
+.customizer[open] { width: 260px; }
+.customizer summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary); }
+.customizer summary:hover { color: var(--color-text-primary); }
+.customizer summary::-webkit-details-marker { display: none; }
+.customizer__icon-close { display: none; }
+.customizer[open] .customizer__icon-open { display: none; }
+.customizer[open] .customizer__icon-close { display: block; }
+.customizer__body { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 10px; max-height: 75vh; overflow-y: auto; }
+.customizer__row { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: var(--text-sm); }
+.customizer__row label { flex: 1; }
+.customizer__row output { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); min-width: 34px; text-align: right; }
+.customizer__row input[type="range"] { flex: 1.4; accent-color: var(--color-action-primary); }
+.customizer__row input[type="color"] { width: 34px; height: 24px; padding: 0; border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: none; cursor: pointer; }
+.customizer__css { width: 100%; height: 96px; font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-secondary); background: var(--color-bg-subtle); border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: 6px; resize: vertical; }
+
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: var(--space-md); }
+.swatch { background: var(--color-bg-surface); border: 1px solid var(--color-border-default); border-radius: var(--guide-card-radius); box-shadow: var(--guide-card-shadow); overflow: hidden; }
+.swatch__chip { height: 56px; border-bottom: 1px solid var(--color-border-default); }
+.swatch__meta { padding: var(--space-sm) var(--space-sm) 10px; }
+.swatch__name { display: block; font-size: var(--text-sm); font-weight: 600; font-family: var(--font-mono); }
+.swatch__value { display: block; font-size: var(--text-xs); color: var(--color-text-secondary); font-family: var(--font-mono); }
+
+.type-specimen { background: var(--color-bg-surface); border: 1px solid var(--color-border-default); border-radius: var(--guide-card-radius); box-shadow: var(--guide-card-shadow); padding: var(--space-lg); }
+.type-specimen__row { display: flex; align-items: baseline; gap: var(--space-md); padding: var(--space-sm) 0; }
+.type-specimen__row + .type-specimen__row { border-top: 1px solid var(--color-border-default); }
+.type-specimen__label { flex: 0 0 170px; font-size: var(--text-xs); font-family: var(--font-mono); color: var(--color-text-secondary); }
+/* Overline sample — mirrors .table__head-cell's typography, which is the
+   only specimen row that isn't a plain size/colour pair. */
+.type-specimen__overline { font-size: var(--text-xs); color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: .05em; }
+
+/* Component spec block */
+.spec { background: var(--color-bg-surface); border: 1px solid var(--color-border-default); border-radius: var(--guide-card-radius); box-shadow: var(--guide-card-shadow); margin-bottom: var(--space-xl); overflow: hidden; }
+.spec__head { padding: var(--space-md) var(--space-lg); border-bottom: 1px solid var(--color-border-default); display: flex; flex-direction: column; gap: var(--space-sm); }
+.spec__head-row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); flex-wrap: wrap; }
+.spec__title { font-size: var(--heading-lg); font-weight: 700; margin: 0; letter-spacing: -0.01em; color: var(--color-text-heading); }
+.spec__badges { display: flex; align-items: center; gap: var(--space-xs); flex-wrap: wrap; }
+.spec__name { font-size: var(--text-sm); font-weight: 600; font-family: var(--font-mono); color: var(--color-text-secondary); background: var(--color-bg-subtle); border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: 2px 8px; }
+.spec__purpose { color: var(--color-text-secondary); font-size: var(--text-md); margin: 0; }
+.spec__demo { padding: var(--space-lg); background: var(--color-bg-canvas); }
+.spec__demo--card-bg { background: var(--color-bg-surface); }
+.spec__demo--relative { position: relative; min-height: 260px; }
+
+/* Demo stage sizing — gives a demo room for an overlay/absolute child or a
+   tall component. Same role as --relative's min-height, named on a ladder. */
+.spec__demo--h-sm { min-height: var(--demo-h-sm); }
+.spec__demo--h-md { min-height: var(--demo-h-md); }
+.spec__demo--h-lg { min-height: var(--demo-h-lg); }
+.spec__demo--h-xl { min-height: var(--demo-h-xl); }
+.spec__demo--pad-top { padding-top: var(--demo-pad-top); }
+
+/* Demo framing — constrains the *component* being demoed to a realistic
+   width so it isn't stretched across the full guide column, and (--framed)
+   gives an edgeless component a boundary when shown out of context.
+   Guide scaffolding, NOT kit API: these exist so demo markup carries no
+   inline styles and no raw literals for an agent to copy into a screen. */
+.demo-w-xs { max-width: var(--demo-w-xs); }
+.demo-w-sm { max-width: var(--demo-w-sm); }
+.demo-w-md { max-width: var(--demo-w-md); }
+.demo-w-lg { max-width: var(--demo-w-lg); }
+.demo-w-xl { max-width: var(--demo-w-xl); }
+.demo-w-tabs { width: var(--demo-w-tabs); }
+/* The demo menu is the real wp sidebar, so it rides the actual knob. */
+.demo-w-sidebar { width: var(--width-sidebar); }
+.demo-framed { border: 1px solid var(--color-border-default); border-radius: var(--radius-md); }
+.spec__api { padding: var(--space-md) var(--space-lg); font-size: var(--text-md); }
+.spec__api dt { font-weight: 600; margin: 14px 0 7px; }
+.spec__api dt:first-child { margin-top: 0; }
+.spec__api dd { margin: 0; color: var(--color-text-secondary); line-height: 1.9; }
+.spec__api dd code { white-space: nowrap; }
+.spec__rules { margin: var(--space-sm) 0 0; padding-left: 18px; color: var(--color-text-secondary); }
+.spec__rules li + li { margin-top: var(--space-xs); }
+
+.row { display: flex; flex-wrap: wrap; gap: var(--space-sm); align-items: center; }
+
+/* Modal demo shown in-flow, not fixed */
+.spec__demo .modal-overlay { position: absolute; inset: 0; border-radius: 0; }
+.spec__demo .drawer-overlay { position: absolute; inset: 0; border-radius: 0; }
+.spec__demo .toast-stack { position: static; }
+
+/* Shared demo placeholders: a single quiet wash for "content goes here"
+   regions (adjust via --guide-stub), and the canvas panel that fused
+   strips (.subnav--tabs, bare .tabs--boxed) dissolve into. */
+.pattern__stub { height: 96px; border-radius: var(--radius-control); background: var(--guide-stub); }
+.spec__fuse-panel { background: var(--color-bg-canvas); height: 48px; }

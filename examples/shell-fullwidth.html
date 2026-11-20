@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shell — Full width</title>
+<link rel="stylesheet" href="../tokens.css">
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-arrows-horizontal" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 8l-4 4l4 4m10-8l4 4l-4 4M3 12h18"/></symbol>
+<symbol id="i-chevron-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l-6 6l6 6"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 6l6 6l-6 6"/></symbol>
+<symbol id="i-layout-dashboard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1m0 12h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1m10-4h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1m0-8h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1"/></symbol>
+<symbol id="i-layout-sidebar-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm11-2v16"/></symbol>
+<symbol id="i-list-details" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5h8m-8 4h5m-5 6h8m-8 4h5M3 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm0 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"/></symbol>
+<symbol id="i-rocket" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M4 13a8 8 0 0 1 7 7a6 6 0 0 0 3-5a9 9 0 0 0 6-8a3 3 0 0 0-3-3a9 9 0 0 0-8 6a6 6 0 0 0-5 3"/><path d="M7 14a6 6 0 0 0-3 6a6 6 0 0 0 6-3m4-8a1 1 0 1 0 2 0a1 1 0 1 0-2 0"/></g></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></g></symbol>
+<symbol id="i-wp-admin-appearance" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M14.48 11.06L7.41 3.99l1.5-1.5c.5-.56 2.3-.47 3.51.32 1.21.8 1.43 1.28 2.91 2.1 1.18.64 2.45 1.26 4.45.85zm-.71.71L6.7 4.7 4.93 6.47a.996.996 0 000 1.41l1.06 1.06c.39.39.39 1.03 0 1.42-.6.6-1.43 1.11-2.21 1.69-.35.26-.7.53-1.01.84C1.43 14.23.4 16.08 1.4 17.07c.99 1 2.84-.03 4.18-1.36.31-.31.58-.66.85-1.02.57-.78 1.08-1.61 1.69-2.21a.996.996 0 011.41 0l1.06 1.06c.39.39 1.02.39 1.41 0z"/></symbol>
+<symbol id="i-wp-admin-comments" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M5 2h9c1.1 0 2 .9 2 2v7c0 1.1-.9 2-2 2h-2l-5 5v-5H5c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z"/></symbol>
+<symbol id="i-wp-admin-generic" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M18 12h-2.18c-.17.7-.44 1.35-.81 1.93l1.54 1.54-2.1 2.1-1.54-1.54c-.58.36-1.23.63-1.91.79V19H8v-2.18c-.68-.16-1.33-.43-1.91-.79l-1.54 1.54-2.12-2.12 1.54-1.54c-.36-.58-.63-1.23-.79-1.91H1V9.03h2.17c.16-.7.44-1.35.8-1.94L2.43 5.55l2.1-2.1 1.54 1.54c.58-.37 1.24-.64 1.93-.81V2h3v2.18c.68.16 1.33.43 1.91.79l1.54-1.54 2.12 2.12-1.54 1.54c.36.59.64 1.24.8 1.94H18V12zm-8.5 1.5c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/></symbol>
+<symbol id="i-wp-admin-home" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M16 8.5l1.53 1.53-1.06 1.06L10 4.62l-6.47 6.47-1.06-1.06L10 2.5l4 4v-2h2v4zm-6-2.46l6 5.99V18H4v-5.97zM12 17v-5H8v5h4z"/></symbol>
+<symbol id="i-wp-admin-media" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M13 11V4c0-.55-.45-1-1-1h-1.67L9 1H5L3.67 3H2c-.55 0-1 .45-1 1v7c0 .55.45 1 1 1h10c.55 0 1-.45 1-1zM7 4.5a2.5 2.5 0 010 5 2.5 2.5 0 010-5zM14 6h5v10.5a2.5 2.5 0 01-5 0 2.5 2.5 0 013-2.45V9h-3V6zm-4 8.05V13h2v3.5a2.5 2.5 0 01-5 0 2.5 2.5 0 013-2.45z"/></symbol>
+<symbol id="i-wp-admin-page" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M6 15V2h10v13H6zm-1 1h8v2H3V5h2v11z"/></symbol>
+<symbol id="i-wp-admin-plugins" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M13.11 4.36L9.87 7.6 8 5.73l3.24-3.24c.35-.34 1.05-.2 1.56.32.52.51.66 1.21.31 1.55zm-8 1.77l.91-1.12 9.01 9.01-1.19.84c-.71.71-2.63 1.16-3.82 1.16H6.14L4.9 17.26c-.59.59-1.54.59-2.12 0a1.49 1.49 0 010-2.12l1.24-1.24v-3.88c0-1.13.4-3.19 1.09-3.89zm7.26 3.97l3.24-3.24c.34-.35 1.04-.21 1.55.31.52.51.66 1.21.31 1.55l-3.24 3.25z"/></symbol>
+<symbol id="i-wp-admin-post" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M10.44 3.02l1.82-1.82 6.36 6.35-1.83 1.82a2.731 2.731 0 00-3.41.36l-.75.75c-.92.93-1.04 2.35-.35 3.41l-1.83 1.82-2.41-2.41-2.8 2.79c-.42.42-3.38 2.71-3.8 2.29s1.86-3.39 2.28-3.81l2.79-2.79L4.1 9.36l1.83-1.82c1.05.69 2.48.57 3.4-.36l.75-.75c.93-.92 1.05-2.35.36-3.41z"/></symbol>
+<symbol id="i-wp-admin-settings" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M18 16V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h13c.55 0 1-.45 1-1zM8 11h1c.55 0 1 .45 1 1s-.45 1-1 1H8v1.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V13H6c-.55 0-1-.45-1-1s.45-1 1-1h1V5.5c0-.28.22-.5.5-.5s.5.22.5.5V11zm5-2h-1c-.55 0-1-.45-1-1s.45-1 1-1h1V5.5c0-.28.22-.5.5-.5s.5.22.5.5V7h1c.55 0 1 .45 1 1s-.45 1-1 1h-1v5.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5V9z"/></symbol>
+<symbol id="i-wp-admin-tools" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M16.68 9.77a4.543 4.543 0 01-4.95.99l-5.41 6.52c-.99.99-2.59.99-3.58 0s-.99-2.59 0-3.57l6.52-5.42c-.68-1.65-.35-3.61.99-4.95 1.28-1.28 3.12-1.62 4.72-1.06l-2.89 2.89 2.82 2.82 2.86-2.87c.53 1.58.18 3.39-1.08 4.65zM3.81 16.21c.4.39 1.04.39 1.43 0 .4-.4.4-1.04 0-1.43-.39-.4-1.03-.4-1.43 0a1.02 1.02 0 000 1.43z"/></symbol>
+<symbol id="i-wp-admin-users" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M10 9.25c-2.27 0-2.73-3.44-2.73-3.44C7 4.02 7.82 2 9.97 2c2.16 0 2.98 2.02 2.71 3.81 0 0-.41 3.44-2.68 3.44zm0 2.57L12.72 10c2.39 0 4.52 2.33 4.52 4.53v2.49s-3.65 1.13-7.24 1.13c-3.65 0-7.24-1.13-7.24-1.13v-2.49c0-2.25 1.94-4.48 4.47-4.48z"/></symbol>
+<symbol id="i-wp-dashboard" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M3.76 16h12.48A7.998 7.998 0 0010 3a7.998 7.998 0 00-6.24 13zM10 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM6 6c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm8 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-5.37 5.55L12 7v6c0 1.1-.9 2-2 2s-2-.9-2-2c0-.57.24-1.08.63-1.45zM4 10c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm12 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-5 3c0-.55-.45-1-1-1s-1 .45-1 1 .45 1 1 1 1-.45 1-1z"/></symbol>
+<symbol id="i-wp-plus" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M17 7v3h-5v5H9v-5H4V7h5V2h3v5h5z"/></symbol>
+<symbol id="i-wp-update" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M10.2 3.28c3.53 0 6.43 2.61 6.92 6h2.08l-3.5 4-3.5-4h2.32a4.439 4.439 0 00-4.32-3.45c-1.45 0-2.73.71-3.54 1.78L4.95 5.66a6.965 6.965 0 015.25-2.38zm-.4 13.44c-3.52 0-6.43-2.61-6.92-6H.8l3.5-4c1.17 1.33 2.33 2.67 3.5 4H5.48a4.439 4.439 0 004.32 3.45c1.45 0 2.73-.71 3.54-1.78l1.71 1.95a6.95 6.95 0 01-5.25 2.38z"/></symbol>
+<symbol id="i-wp-wordpress" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M20 10c0-5.52-4.48-10-10-10S0 4.48 0 10s4.48 10 10 10 10-4.48 10-10zM10 1.01c4.97 0 8.99 4.02 8.99 8.99s-4.02 8.99-8.99 8.99S1.01 14.97 1.01 10 5.03 1.01 10 1.01zM8.01 14.82L4.96 6.61c.49-.03 1.05-.08 1.05-.08.43-.05.38-1.01-.06-.99 0 0-1.29.1-2.13.1-.15 0-.33 0-.52-.01 1.44-2.17 3.9-3.6 6.7-3.6 2.09 0 3.99.79 5.41 2.09-.6-.08-1.45.35-1.45 1.42 0 .66.38 1.22.79 1.88.31.54.5 1.22.5 2.21 0 1.34-1.27 4.48-1.27 4.48l-2.71-7.5c.48-.03.75-.16.75-.16.43-.05.38-1.1-.05-1.08 0 0-1.3.11-2.14.11-.78 0-2.11-.11-2.11-.11-.43-.02-.48 1.06-.05 1.08l.84.08 1.12 3.04zm6.02 2.15L16.64 10s.67-1.69.39-3.81c.63 1.14.94 2.42.94 3.81 0 2.96-1.56 5.58-3.94 6.97zM2.68 6.77L6.5 17.25c-2.67-1.3-4.47-4.08-4.47-7.25 0-1.16.2-2.23.65-3.23zm7.45 4.53l2.29 6.25c-.75.27-1.57.42-2.42.42-.72 0-1.41-.11-2.06-.3z"/></symbol>
+</svg>
+
+<div class="shell">
+
+  <!-- wp-admin context chrome (demo only) -->
+  <div class="shell__adminbar admin-bar">
+    <a class="admin-bar__item" href="#" aria-label="About WordPress"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-wordpress"/></svg></a>
+    <div class="admin-bar__menu">
+      <a class="admin-bar__item" href="#"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-admin-home"/></svg>example.com</a>
+      <div class="admin-bar__submenu">
+        <a class="admin-bar__submenu-item" href="#">Visit Site</a>
+      </div>
+    </div>
+    <a class="admin-bar__item" href="#" aria-label="1 update available"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-update"/></svg><span class="admin-bar__badge">1</span></a>
+    <a class="admin-bar__item" href="#" aria-label="2 comments awaiting moderation"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-admin-comments"/></svg><span class="admin-bar__bubble">2</span></a>
+    <a class="admin-bar__item" href="#"><svg class="admin-bar__icon" aria-hidden="true"><use href="#i-wp-plus"/></svg>New</a>
+    <span class="admin-bar__spacer"></span>
+    <div class="admin-bar__menu">
+      <a class="admin-bar__item" href="#">Howdy, Username<span class="admin-bar__avatar" aria-hidden="true"></span></a>
+      <div class="admin-bar__submenu admin-bar__submenu--right">
+        <div class="admin-bar__user">
+          <span class="admin-bar__user-avatar" aria-hidden="true"></span>
+          <div><span class="admin-bar__user-name">Username</span><span class="admin-bar__user-login">username</span></div>
+        </div>
+        <a class="admin-bar__submenu-item" href="#">Edit Profile</a>
+        <a class="admin-bar__submenu-item" href="#">Log Out</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="admin-menu" aria-label="Admin menu">
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-dashboard"/></svg>Dashboard</a>
+    <div class="admin-menu__separator" aria-hidden="true"></div>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-post"/></svg>Posts</a>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-media"/></svg>Media</a>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-page"/></svg>Pages</a>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-comments"/></svg>Comments</a>
+    <div class="admin-menu__separator" aria-hidden="true"></div>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-appearance"/></svg>Appearance</a>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-plugins"/></svg>Plugins <span class="admin-menu__bubble">2</span></a>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-users"/></svg>Users</a>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-tools"/></svg>Tools</a>
+    <a class="admin-menu__item" href="#"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-settings"/></svg>Settings</a>
+    <a class="admin-menu__item admin-menu__item--current" href="#" aria-current="page"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-generic"/></svg>Plugin Name</a>
+    <a class="admin-menu__submenu-item" href="example.html">Working reference</a>
+    <a class="admin-menu__submenu-item" href="shell-sidebar.html">Shell: Sidebar</a>
+    <a class="admin-menu__submenu-item admin-menu__submenu-item--current" href="shell-fullwidth.html" aria-current="page">Shell: Full-width</a>
+    <a class="admin-menu__submenu-item" href="shell-onboarding.html">Shell: Onboarding</a>
+    <a class="admin-menu__submenu-item" href="styleguide.html">Style guide</a>
+    <a class="admin-menu__submenu-item" href="navigation-patterns.html">Nav patterns</a>
+  </nav>
+
+  <main class="shell__content">
+
+    <header class="plugin__topbar">
+      <h1 class="plugin__brand">Plugin Name</h1>
+      <div class="plugin__topbar-actions">
+        <a href="styleguide.html">Topbar link</a>
+        <a href="#">Topbar link</a>
+        <span class="badge badge--accent">Badge label</span>
+        <button class="plugin__theme-toggle" data-theme-toggle type="button" aria-label="Toggle dark mode"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-moon"/></svg></button>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Plugin sections">
+      <a class="tabs__tab" href="example.html"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layout-dashboard"/></svg>Tab label</a>
+      <a class="tabs__tab" href="example.html"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-settings"/></svg>Tab label</a>
+      <a class="tabs__tab" href="example.html"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-list-details"/></svg>Tab label</a>
+      <a class="tabs__tab tabs__tab--current" href="shell-fullwidth.html" aria-current="page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-arrows-horizontal"/></svg>Tab label</a>
+      <a class="tabs__tab" href="shell-sidebar.html"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layout-sidebar-right"/></svg>Tab label</a>
+      <a class="tabs__tab" href="shell-onboarding.html"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-rocket"/></svg>Tab label</a>
+    </nav>
+
+    <div class="plugin__body plugin__body--full">
+
+      <header class="page-header">
+        <h2 class="page-header__title">Page title</h2>
+        <p class="page-header__lead">Page lead paragraph. One or two sentences describing what this screen does. <a href="#">Learn more</a></p>
+      </header>
+
+      <section class="card card--flush">
+        <div class="card__header">
+          <div class="card__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-list-details"/></svg></div>
+          <div class="card__heading">
+            <h3 class="card__title">Card title</h3>
+            <p class="card__description">Card description text goes here. One or two sentences of supporting context.</p>
+          </div>
+        </div>
+      <div class="list-table list-table--flush">
+        <div class="list-table__toolbar">
+          <div class="list-table__group">
+            <select class="field__select" aria-label="Bulk actions">
+              <option>Bulk action</option>
+            </select>
+            <button class="button">Apply</button>
+          </div>
+          <div class="list-table__group">
+            <select class="field__select" aria-label="Filter option">
+              <option>Filter option</option>
+            </select>
+            <button class="button">Filter</button>
+          </div>
+          <span class="list-table__count">12 items</span>
+        </div>
+        <table class="list-table__table">
+          <thead>
+            <tr>
+              <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select all"></td>
+              <th class="list-table__head-cell">Column</th>
+              <th class="list-table__head-cell">Column</th>
+              <th class="list-table__head-cell">Column</th>
+              <th class="list-table__head-cell">Column</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="list-table__row">
+              <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select row"></td>
+              <td class="list-table__cell">
+                <a class="list-table__primary" href="#">Row title</a>
+                <div class="list-table__actions">
+                  <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                  <a class="list-table__action list-table__action--danger" href="#">Danger action</a>
+                </div>
+              </td>
+              <td class="list-table__cell">Cell value</td>
+              <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+              <td class="list-table__cell"><span class="badge badge--success">Status label</span></td>
+            </tr>
+            <tr class="list-table__row">
+              <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select row"></td>
+              <td class="list-table__cell">
+                <a class="list-table__primary" href="#">Row title</a>
+                <div class="list-table__actions">
+                  <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                  <a class="list-table__action list-table__action--danger" href="#">Danger action</a>
+                </div>
+              </td>
+              <td class="list-table__cell">Cell value</td>
+              <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+              <td class="list-table__cell"><span class="badge badge--success">Status label</span></td>
+            </tr>
+            <tr class="list-table__row">
+              <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select row"></td>
+              <td class="list-table__cell">
+                <a class="list-table__primary" href="#">Row title</a>
+                <div class="list-table__actions">
+                  <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                  <a class="list-table__action list-table__action--danger" href="#">Danger action</a>
+                </div>
+              </td>
+              <td class="list-table__cell">Cell value</td>
+              <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+              <td class="list-table__cell"><span class="badge badge--success">Status label</span></td>
+            </tr>
+            <tr class="list-table__row">
+              <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select row"></td>
+              <td class="list-table__cell">
+                <a class="list-table__primary" href="#">Row title</a>
+                <div class="list-table__actions">
+                  <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                  <a class="list-table__action list-table__action--danger" href="#">Danger action</a>
+                </div>
+              </td>
+              <td class="list-table__cell">Cell value</td>
+              <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+              <td class="list-table__cell"><span class="badge badge--success">Status label</span></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select all"></td>
+              <th class="list-table__head-cell">Column</th>
+              <th class="list-table__head-cell">Column</th>
+              <th class="list-table__head-cell">Column</th>
+              <th class="list-table__head-cell">Column</th>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="list-table__toolbar list-table__toolbar--bottom">
+          <span class="list-table__count">12 items</span>
+          <div class="list-table__pagination">
+            <button class="button button--small" disabled aria-label="Previous page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+            <span class="list-table__count">1 of 3</span>
+            <button class="button button--small" aria-label="Next page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+          </div>
+        </div>
+      </div>
+      </section>
+
+    </div>
+
+  </main>
+</div>
+
+<script>
+  document.querySelectorAll('[data-theme-toggle]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var r = document.documentElement;
+      r.dataset.theme = r.dataset.theme === 'dark' ? '' : 'dark';
+    });
+  });
+</script>
+</body>
+</html>

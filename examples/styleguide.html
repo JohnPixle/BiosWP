@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide &amp; Component Specs</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-cloud-upload" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M7 18a4.6 4.4 0 0 1 0-9a5 4.5 0 0 1 11 2h1a3.5 3.5 0 0 1 0 7h-1"/><path d="m9 15l3-3l3 3m-3-3v9"/></g></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></g></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7h16m-10 4v6m4-6v6M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></symbol>
+</svg>
+
+<div class="guide">
+
+  <h1 class="guide__title">Style guide &amp; component specs</h1>
+  <p class="guide__intro">Source of truth for the admin design system. All tokens and component styles live in <code>tokens.css</code>; pages add no component CSS of their own. BEM classes, two-tier tokens (<strong>primitives</strong> → <strong>semantic</strong>; components use semantic only), dark mode via <code>[data-theme="dark"]</code>. See <code>example.html</code> for the full-page reference and <code>shell-*.html</code> for layout variations.</p>
+
+  <!-- ============ TOKEN ARCHITECTURE ============ -->
+  <section class="guide__section">
+    <h2 class="guide__section-title">1 · Token architecture</h2>
+    <div class="guide__card">
+    <ul class="spec__rules">
+      <li><strong>Tier 1 — primitives:</strong> raw values (<code>--gray-900</code>, <code>--blue-600</code>, <code>--space-16</code>, <code>--font-size-13</code>). Never referenced by components. In a design tool: one collection, single mode.</li>
+      <li><strong>Tier 2 — semantic:</strong> role aliases (<code>--color-text-primary</code>, <code>--color-bg-surface</code>, <code>--space-md</code>). The only tokens components may use. In a design tool: one collection with Light and Dark modes.</li>
+      <li><strong>Accent knob:</strong> everything accent-colored routes through <code>--accent</code> / <code>--accent-hover</code> / <code>--accent-soft</code>. Resolution: explicit brand color → the user's wp-admin color scheme (WP core's <code>--wp-admin-theme-color</code>) → native admin blue. Static previews can force a scheme with <code>data-admin-scheme</code> (try the picker, top right).</li>
+      <li>Dark mode changes <em>color roles only</em>. Type, spacing, radius and size roles are mode-independent.</li>
+      <li>The wp-admin shell (<code>.shell</code>) is fixed-dark in both modes and uses primitives directly — it mimics wp-admin chrome and is not part of the plugin system.</li>
+      <li>Naming: <code>--color-{category}-{role}</code> for color; <code>--{scale}-{step}</code> for everything else.</li>
+    </ul>
+    </div>
+  </section>
+
+  <!-- ============ CUSTOMIZATION KNOBS ============ -->
+  <section class="guide__section">
+    <h2 class="guide__section-title">1b · Customization knobs</h2>
+    <p class="guide__intro">The kit reskins through a small set of variables — the settings shared with the setup skill. Everything else derives.</p>
+    <div class="guide__card">
+    <ul class="spec__rules">
+      <li><strong>Accent (3):</strong> <code>--accent</code> · <code>--accent-hover</code> · <code>--accent-soft</code> — brand color; falls back to the user's wp-admin scheme, then admin blue. Presets: <code>data-admin-scheme</code>.</li>
+      <li><strong>Spacing engine (1):</strong> <code>--space-unit</code> (4px) — every spacing step is a multiple (×1 ×2 ×4 ×6 ×10). Presets: <code>data-density="compact"</code> (3px) / <code>"relaxed"</code> (5px). Type and control sizes stay fixed by design. Try the density picker, top right.</li>
+      <li><strong>Roundness (two-tier):</strong> <code>--radius</code> (4px) — master, drives the container tier (cards, panels, notices); <code>--radius-control</code> (half the master = 2px) drives buttons, inputs, and other crisp parts. One dial governs both — <code>0</code> squares the UI. Per-part overrides: <code>--radius-button</code> · <code>--radius-card</code> · <code>--radius-input</code>. Pills (<code>--radius-full</code>: badges, toggle) stay round by design.</li>
+      <li><strong>Vertical rhythm (4):</strong> <code>--gap-tight</code> · <code>--gap-content</code> · <code>--gap-section</code> · <code>--gap-label</code> (field label → its controls, 12) — stack gaps; also follow the spacing engine.</li>
+      <li><strong>Layout widths (8):</strong> <code>--width-content-max</code> 1100 · <code>--width-aside</code> 300 · <code>--width-onboarding</code> 560 · <code>--width-drawer</code> 420 · <code>--width-modal</code> 440 · <code>--width-popup</code> 320 · <code>--width-toast</code> 360 · <code>--width-filter-menu</code> 240.</li>
+      <li>Breakpoints (700px setting stack, 960px columns stack) are constants — media queries cannot read custom properties.</li>
+    </ul>
+    </div>
+  </section>
+
+  <!-- ============ SEMANTIC COLOR ============ -->
+  <section class="guide__section">
+    <h2 class="guide__section-title">2 · Semantic color tokens</h2>
+    <p class="guide__intro">Swatches render live — flip the dark-mode toggle to see both modes. Values shown are the light-mode resolution.</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-text-primary)"></div><div class="swatch__meta"><span class="swatch__name">--color-text-primary</span><span class="swatch__value">gray-900</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-text-secondary)"></div><div class="swatch__meta"><span class="swatch__name">--color-text-secondary</span><span class="swatch__value">gray-700</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-text-link)"></div><div class="swatch__meta"><span class="swatch__name">--color-text-link</span><span class="swatch__value">blue-600</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-bg-canvas)"></div><div class="swatch__meta"><span class="swatch__name">--color-bg-canvas</span><span class="swatch__value">gray-100</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-bg-surface)"></div><div class="swatch__meta"><span class="swatch__name">--color-bg-surface</span><span class="swatch__value">white</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-bg-subtle)"></div><div class="swatch__meta"><span class="swatch__name">--color-bg-subtle</span><span class="swatch__value">gray-50</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-border-default)"></div><div class="swatch__meta"><span class="swatch__name">--color-border-default</span><span class="swatch__value">gray-200</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-border-strong)"></div><div class="swatch__meta"><span class="swatch__name">--color-border-strong</span><span class="swatch__value">gray-500</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-action-primary)"></div><div class="swatch__meta"><span class="swatch__name">--color-action-primary</span><span class="swatch__value">blue-600</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-action-primary-hover)"></div><div class="swatch__meta"><span class="swatch__name">--color-action-primary-hover</span><span class="swatch__value">blue-700</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-action-soft)"></div><div class="swatch__meta"><span class="swatch__name">--color-action-soft</span><span class="swatch__value">blue-50</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-success)"></div><div class="swatch__meta"><span class="swatch__name">--color-success</span><span class="swatch__value">green-600</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-warning)"></div><div class="swatch__meta"><span class="swatch__name">--color-warning</span><span class="swatch__value">yellow-600</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-danger)"></div><div class="swatch__meta"><span class="swatch__name">--color-danger</span><span class="swatch__value">red-600</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-danger-soft)"></div><div class="swatch__meta"><span class="swatch__name">--color-danger-soft</span><span class="swatch__value">red-50</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--color-focus)"></div><div class="swatch__meta"><span class="swatch__name">--color-focus</span><span class="swatch__value">blue-600</span></div></div>
+    </div>
+    <ul class="spec__rules">
+      <li>Text on light surfaces: <code>--color-text-primary</code> / <code>--color-text-secondary</code>. On accent fills: <code>--color-text-on-accent</code>.</li>
+      <li><code>--color-border-strong</code> is deliberately darker than <code>--color-border-default</code> — form controls must read as interactive; never use the card border on inputs.</li>
+      <li><code>--color-action-soft</code> is for tinted fills only (icon tiles, secondary button hover, info surfaces) — never for text.</li>
+      <li>Components must never reference primitives (<code>--blue-600</code> etc.) directly. If a role is missing, add a semantic token first.</li>
+    </ul>
+  </section>
+
+  <!-- ============ TYPE & SPACING ============ -->
+  <section class="guide__section">
+    <h2 class="guide__section-title">3 · Type, spacing, radius, size</h2>
+    <div class="type-specimen">
+      <div class="type-specimen__row"><span class="type-specimen__label">--heading-xl · 21–26 / 400</span><span style="font-size:var(--heading-xl);font-weight:400;line-height:var(--leading-heading)">Page title (one per page, fluid)</span></div>
+      <div class="type-specimen__row"><span class="type-specimen__label">--heading-lg · 20 / 600</span><span style="font-size:var(--heading-lg);font-weight:600;line-height:var(--leading-heading)">Guide sections, rare in-plugin</span></div>
+      <div class="type-specimen__row"><span class="type-specimen__label">--heading-md · 16 / 600</span><span style="font-size:var(--heading-md);font-weight:600;line-height:var(--leading-heading)">Card titles, plugin brand</span></div>
+      <div class="type-specimen__row"><span class="type-specimen__label">--heading-sm · 15 / 600</span><span style="font-size:var(--heading-sm);font-weight:600;line-height:var(--leading-heading)">Sub-groups, modal titles, empty-state titles</span></div>
+      <div class="type-specimen__row"><span class="type-specimen__label">--text-lg · 14</span><span style="font-size:var(--text-lg)">Page lead paragraph, tab labels</span></div>
+      <div class="type-specimen__row"><span class="type-specimen__label">--text-md · 13</span><span style="font-size:var(--text-md)">Base body, buttons, form controls, table cells</span></div>
+      <div class="type-specimen__row"><span class="type-specimen__label">--text-sm · 12</span><span style="font-size:var(--text-sm);color:var(--color-text-secondary)">Hints, meta, badges, code chips</span></div>
+      <div class="type-specimen__row"><span class="type-specimen__label">--text-xs · 11</span><span class="type-specimen__overline">Table column labels</span></div>
+    </div>
+    <ul class="spec__rules">
+      <li>Spacing roles map to primitives: <code>--space-xs</code> 4 · <code>--space-sm</code> 8 · <code>--space-md</code> 16 · <code>--space-lg</code> 24 · <code>--space-xl</code> 40. No raw pixel spacing outside tokens.css.</li>
+      <li>Radius is two-tier: <code>--radius-control</code> 2 (buttons, inputs, chips, checkbox) · <code>--radius-md</code> 4 (cards, panels, notices, wells) · <code>--radius-full</code> (badges, toggle).</li>
+      <li>Size roles: <code>--size-control</code> 16 (checkbox/radio) · <code>--size-step</code> 24 · <code>--size-icon-tile</code> 36 · <code>--size-icon-tile-lg</code> 44 · <code>--width-input-narrow</code> 80 · <code>--width-sidebar</code> 160 · <code>--width-setting-label</code> 180.</li>
+      <li>Cards stack with <code>--space-lg</code>; content within a card steps in <code>--space-md</code>; label-to-control gaps are <code>--space-xs</code>.</li>
+      <li>Font is the system stack only — no webfonts in the plugin admin.</li>
+      <li>Line heights are tokens: headings <code>--leading-heading</code> (1.25), body <code>--leading-body</code> (1.5). Never set raw line-height values.</li>
+      <li>Hierarchy rule: the page title is the largest text on any screen. The plugin brand is <code>--heading-md</code> and must never outweigh it.</li>
+      <li><code>--heading-sm</code> (15) is intentionally one px above <code>--text-lg</code> (14) so headings and large body text are never ambiguous.</li>
+    </ul>
+  </section>
+
+  <!-- ============ ICONS ============ -->
+  <section class="guide__section">
+    <h2 class="guide__section-title">4 · Icons</h2>
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Icon</h3><div class="spec__badges"><code class="spec__name">.icon</code></div></div><p class="spec__purpose">Tabler icons only, as inline SVG sprite symbols — clean markup, currentColor for free, zero external requests.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="row">
+          <svg class="icon icon--sm" aria-hidden="true"><use href="#i-settings"/></svg>
+          <svg class="icon" aria-hidden="true"><use href="#i-settings"/></svg>
+          <svg class="icon icon--lg" aria-hidden="true"><use href="#i-settings"/></svg>
+          <span style="color:var(--color-action-primary)"><svg class="icon" aria-hidden="true"><use href="#i-cloud-upload"/></svg></span>
+          <span style="color:var(--color-danger)"><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Usage</dt>
+        <dd><code>&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-{name}"/&gt;&lt;/svg&gt;</code> — each example includes the SVG symbols it uses from <code>icons/</code></dd>
+        <dt>Modifiers</dt>
+        <dd><code>.icon--sm</code> 14px · default 18px · <code>.icon--lg</code> 22px</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Tabler set only. Icon name in code = tabler icon name = component name in a design tool.</li>
+            <li>Icons inherit <code>currentColor</code> from context — never set icon color directly.</li>
+            <li>Always <code>aria-hidden="true"</code>; icons are decorative, the adjacent label carries meaning.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ COMPONENT INDEX ============ -->
+  <section class="guide__section">
+    <h2 class="guide__section-title">5 · Components</h2>
+    <p class="guide__intro">The component specs live on six group pages. Every UI element must be one of these components; something new goes on its group page and in tokens.css first — never as page-local CSS.</p>
+    <div class="guide__card">
+      <ul class="spec__rules">
+        <li><a href="styleguide-navigation.html"><strong>Navigation</strong></a> — tabs (+ card/boxed/vertical/segmented), subnav, views, page header, pagination, stepper. <a href="navigation-patterns.html">Composition patterns →</a></li>
+        <li><a href="styleguide-forms.html"><strong>Forms &amp; actions</strong></a> — button, field, setting row, selection controls, copy field, tag input, repeater, filter, action menu, save bar.</li>
+        <li><a href="styleguide-containers.html"><strong>Containers &amp; chrome</strong></a> — card family, stack, layout variations, plugin header, admin bar, admin menu.</li>
+        <li><a href="styleguide-data.html"><strong>Data</strong></a> — table, list table, badge, stats, checklist, disclosure.</li>
+        <li><a href="styleguide-feedback.html"><strong>Feedback</strong></a> — notice, empty state, modal, toast, drawer, popup, tooltip, loading states, progress.</li>
+        <li><a href="styleguide-addons-ai.html"><strong>Add-ons &amp; AI</strong></a> — add-ons, pricing, upsell, license, link list, chat, AI suggestion.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<script src="guide.js"></script>
+
+</body>
+</html>

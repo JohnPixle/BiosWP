@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide — Data</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m6 9l6 6l6-6"/></symbol>
+<symbol id="i-chevron-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l-6 6l6 6"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 6l6 6l-6 6"/></symbol>
+</svg>
+
+<div class="guide">
+
+  <h1 class="guide__title">Data</h1>
+  <p class="guide__intro">Tables, list tables, badges, stats, and read-only listing patterns. Tokens, knobs, and the component index live in the <a href="styleguide.html">style guide</a>.</p>
+
+  <section class="guide__section">
+    <h2 class="guide__section-title">Component specs</h2>
+
+    <!-- table -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Table</h3><div class="spec__badges"><code class="spec__name">.table</code></div></div><p class="spec__purpose">Data listing inside a card. Row hover, last row borderless.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <table class="table">
+          <thead>
+            <tr><th class="table__head-cell">Column</th><th class="table__head-cell">Column</th><th class="table__head-cell">Status</th><th class="table__head-cell">Actions</th></tr>
+          </thead>
+          <tbody>
+            <tr class="table__row">
+              <td class="table__cell">Cell value</td>
+              <td class="table__cell table__cell--muted">Muted cell value</td>
+              <td class="table__cell"><span class="badge badge--success">Status label</span></td>
+              <td class="table__cell"><button class="button button--small">Small action</button></td>
+            </tr>
+            <tr class="table__row">
+              <td class="table__cell table__empty" colspan="4">Empty row message goes here.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__head-cell</code> · <code>__row</code> · <code>__cell</code> · <code>__empty</code></dd>
+        <dt>Modifiers</dt><dd><code>__cell--muted</code></dd>
+      </dl>
+    </div>
+
+    <!-- list-table -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">List table</h3><div class="spec__badges"><code class="spec__name">.list-table</code></div></div><p class="spec__purpose">wp-list-table pattern: bulk actions + filters in a toolbar above and below, column headers repeated in the footer, selectable rows with quick actions on hover.</p></div>
+      <div class="spec__demo">
+        <div class="list-table">
+          <div class="list-table__toolbar">
+            <div class="list-table__group">
+              <label class="field__label" for="sg-lt-bulk">Bulk actions</label>
+              <select class="field__select" id="sg-lt-bulk">
+                <option>Bulk action</option>
+                <option>Bulk action</option>
+              </select>
+              <button class="button">Apply</button>
+            </div>
+            <div class="list-table__group">
+              <select class="field__select" aria-label="Filter option">
+                <option>Filter option</option>
+                <option>Filter option</option>
+              </select>
+              <select class="field__select" aria-label="Filter option">
+                <option>Filter option</option>
+                <option>Filter option</option>
+              </select>
+              <button class="button">Filter</button>
+            </div>
+            <span class="list-table__count">12 items</span>
+          </div>
+          <table class="list-table__table">
+            <thead>
+              <tr>
+                <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select all"></td>
+                <th class="list-table__head-cell">Column</th>
+                <th class="list-table__head-cell">Column</th>
+                <th class="list-table__head-cell">Column</th>
+                <th class="list-table__head-cell">Column</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="list-table__row">
+                <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select row"></td>
+                <td class="list-table__cell">
+                  <a class="list-table__primary" href="#">Row title</a>
+                  <div class="list-table__actions">
+                    <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                    <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                    <a class="list-table__action list-table__action--danger" href="#">Danger action</a>
+                  </div>
+                </td>
+                <td class="list-table__cell">Cell value</td>
+                <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+                <td class="list-table__cell"><span class="badge badge--success">Status label</span></td>
+              </tr>
+              <tr class="list-table__row list-table__row--selected">
+                <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" checked aria-label="Select row"></td>
+                <td class="list-table__cell">
+                  <a class="list-table__primary" href="#">Row title</a>
+                  <div class="list-table__actions">
+                    <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                    <a class="list-table__action list-table__action--danger" href="#">Danger action</a>
+                  </div>
+                </td>
+                <td class="list-table__cell">Cell value</td>
+                <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+                <td class="list-table__cell"><span class="badge">Status label</span></td>
+              </tr>
+              <tr class="list-table__row list-table__row--warning">
+                <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select row"></td>
+                <td class="list-table__cell">
+                  <a class="list-table__primary" href="#">Row title</a>
+                  <div class="list-table__actions">
+                    <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                    <a class="list-table__action list-table__action--danger" href="#">Danger action</a>
+                  </div>
+                </td>
+                <td class="list-table__cell">Cell value</td>
+                <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+                <td class="list-table__cell"><span class="badge">Status label</span></td>
+              </tr>
+              <tr class="list-table__row list-table__row--danger">
+                <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select row"></td>
+                <td class="list-table__cell">
+                  <a class="list-table__primary" href="#">Row title</a>
+                  <div class="list-table__actions">
+                    <a class="list-table__action" href="#">Quick action</a><span class="list-table__actions-sep">|</span>
+                    <a class="list-table__action list-table__action--danger" href="#">Danger action</a>
+                  </div>
+                </td>
+                <td class="list-table__cell">Cell value</td>
+                <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+                <td class="list-table__cell"><span class="badge badge--danger">Status label</span></td>
+              </tr>
+              <tr class="list-table__row list-table__row--disabled">
+                <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" disabled aria-label="Select row"></td>
+                <td class="list-table__cell">
+                  <a class="list-table__primary" href="#">Row title</a>
+                </td>
+                <td class="list-table__cell">Cell value</td>
+                <td class="list-table__cell list-table__cell--muted">2026-01-01 00:00:00</td>
+                <td class="list-table__cell"><span class="badge">Status label</span></td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td class="list-table__check-cell"><input class="checkbox__input" type="checkbox" aria-label="Select all"></td>
+                <th class="list-table__head-cell">Column</th>
+                <th class="list-table__head-cell">Column</th>
+                <th class="list-table__head-cell">Column</th>
+                <th class="list-table__head-cell">Column</th>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="list-table__toolbar list-table__toolbar--bottom">
+            <div class="list-table__group">
+              <select class="field__select" aria-label="Bulk actions">
+                <option>Bulk action</option>
+              </select>
+              <button class="button">Apply</button>
+            </div>
+            <span class="list-table__count">12 items</span>
+            <div class="list-table__pagination">
+              <button class="button button--small" disabled aria-label="Previous page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+              <span class="list-table__count">1 of 3</span>
+              <button class="button button--small" aria-label="Next page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.list-table &gt; __toolbar (__group + __count + __pagination) + __table (thead + tbody &gt; __row + tfoot) + __toolbar--bottom</code></dd>
+        <dt>Row anatomy</dt><dd><code>__row &gt; __check-cell + __cell (__primary + __actions &gt; __action / __actions-sep) + __cell…</code></dd>
+        <dt>Row variants</dt><dd>default · <code>--selected</code> · <code>--warning</code> · <code>--danger</code> · <code>--disabled</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Quick actions are hidden until row <code>:hover</code> or <code>:focus-within</code> — keyboard users get them on tab.</li>
+            <li>Column headers repeat in <code>tfoot</code>, wp-list-table style; toolbar repeats below with bulk actions + pagination.</li>
+            <li><code>--selected</code> pairs with a checked row checkbox; <code>--disabled</code> disables the checkbox and hides quick actions.</li>
+            <li>Danger quick actions still require a <code>.modal</code> confirmation.</li>
+            <li>In a design tool: the row is its own component with the five variants above; the table composes row instances.</li>
+            <li>For a titled screen, wrap in <code>.card--flush</code> + <code>.list-table--flush</code>: the card supplies the header, the table runs edge to edge (see example.html, list pattern).</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- badge -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Badge</h3><div class="spec__badges"><code class="spec__name">.badge</code></div></div><p class="spec__purpose">Status pill with a dot. Read-only; never clickable.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="row">
+          <span class="badge">Badge label</span>
+          <span class="badge badge--success">Status label</span>
+          <span class="badge badge--danger">Status label</span>
+          <span class="badge badge--accent">Badge label</span>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Modifiers</dt><dd><code>--success</code> · <code>--danger</code> · <code>--accent</code></dd>
+      </dl>
+    </div>
+
+    <!-- stat -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Stats</h3><div class="spec__badges"><code class="spec__name">.stat</code><code class="spec__name">.stats</code></div></div><p class="spec__purpose">Dashboard metric: label, big value, optional delta badge + meta. .stats is the responsive grid wrapper inside a card body.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stats">
+          <div class="stat">
+            <span class="stat__label">Stat label</span>
+            <span class="stat__value">1,234</span>
+            <span class="stat__meta"><span class="badge badge--success">+12%</span> vs previous period</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Stat label</span>
+            <span class="stat__value">56.7%</span>
+            <span class="stat__meta"><span class="badge badge--danger">−3%</span> vs previous period</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Stat label</span>
+            <span class="stat__value">89</span>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__label</code> · <code>__value</code> · <code>__meta</code> (delta <code>.badge</code> + text)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Deltas reuse <code>.badge --success/--danger</code> — no new color surface.</li>
+            <li>Values are display text, not headings — screen structure stays with the card heading.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- steps -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Checklist</h3><div class="spec__badges"><code class="spec__name">.checklist</code></div></div><p class="spec__purpose">Numbered getting-started list. Counter is CSS-generated.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <ol class="checklist">
+          <li class="checklist__item"><div><span class="checklist__title">Step title</span> — step description text goes here.</div></li>
+          <li class="checklist__item"><div><span class="checklist__title">Step title</span> — step description text goes here.</div></li>
+        </ol>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__item</code> · <code>__title</code></dd>
+      </dl>
+    </div>
+
+    <!-- disclosure -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Disclosure</h3><div class="spec__badges"><code class="spec__name">.disclosure</code></div></div><p class="spec__purpose">Native details/summary for secondary content.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <details class="disclosure" open>
+          <summary class="disclosure__summary"><svg class="disclosure__chevron icon--sm icon" aria-hidden="true"><use href="#i-chevron-down"/></svg>Disclosure summary label</summary>
+          <div class="disclosure__body">Disclosure body text goes here.</div>
+        </details>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__summary</code> · <code>__body</code></dd>
+      </dl>
+    </div>
+
+    <!-- code-block -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Code block</h3><div class="spec__badges"><code class="spec__name">.code-block</code></div></div><p class="spec__purpose">Read-only multi-line code display: shortcode examples, config samples, log excerpts. Display only — editing stays a field + monospace textarea (plugins mount a real editor).</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="code-block">
+          <pre class="code-block__pre"><code>add_filter( 'example_filter', function ( $value ) {
+    return $value;
+} );</code></pre>
+          <button class="button button--small code-block__copy" type="button">Copy</button>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__pre</code> (<code>pre &gt; code</code>) · <code>__copy</code> (optional, top-right; reuses <code>.button --small</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Display only — no syntax highlighting (JS concern, out of scope like editors). One line + copy → <code>.copy-field</code>; editable code → <code>.field</code> + monospace textarea.</li>
+            <li>Long lines scroll horizontally; never wrap code.</li>
+            <li>Clipboard behavior is the host page's concern.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="guide.js"></script>
+</body>
+</html>

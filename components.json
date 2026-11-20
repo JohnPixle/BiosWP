@@ -1,0 +1,2477 @@
+{
+  "schema": "1.1",
+  "generated_from": "examples/styleguide-*.html spec blocks + tokens.css",
+  "note": "Generated from the styleguide component specs and tokens.css.",
+  "count": 49,
+  "tokens": {
+    "note": "Legal token surface. Components and screens use SEMANTIC roles only — primitives are listed by name so they can be recognised and avoided. `accent` is the branding knob (set it; don't read it in markup). Verify a screen with `python3 validate.py <file>`.",
+    "primitives": [
+      "--blue-300",
+      "--blue-400",
+      "--blue-50",
+      "--blue-600",
+      "--blue-700",
+      "--font-family",
+      "--font-mono",
+      "--font-size-11",
+      "--font-size-12",
+      "--font-size-13",
+      "--font-size-14",
+      "--font-size-15",
+      "--font-size-16",
+      "--font-size-20",
+      "--font-size-23",
+      "--gray-100",
+      "--gray-200",
+      "--gray-300",
+      "--gray-400",
+      "--gray-50",
+      "--gray-500",
+      "--gray-700",
+      "--gray-720",
+      "--gray-750",
+      "--gray-800",
+      "--gray-900",
+      "--green-400",
+      "--green-50",
+      "--green-600",
+      "--green-700",
+      "--line-height-base",
+      "--line-height-tight",
+      "--radius-4",
+      "--radius-999",
+      "--red-300",
+      "--red-50",
+      "--red-600",
+      "--red-700",
+      "--size-16",
+      "--size-160",
+      "--size-180",
+      "--size-24",
+      "--size-36",
+      "--size-44",
+      "--size-80",
+      "--space-12",
+      "--space-16",
+      "--space-24",
+      "--space-4",
+      "--space-40",
+      "--space-8",
+      "--space-unit",
+      "--white",
+      "--yellow-50",
+      "--yellow-600"
+    ],
+    "accent": [
+      {
+        "name": "--accent",
+        "light": "var(--wp-admin-theme-color, var(--blue-600))",
+        "dark": "var(--wp-admin-theme-color, var(--blue-300))"
+      },
+      {
+        "name": "--accent-hover",
+        "light": "var(--wp-admin-theme-color-darker-10, var(--blue-700))",
+        "dark": "var(--wp-admin-theme-color-darker-10, var(--blue-400))"
+      },
+      {
+        "name": "--accent-soft",
+        "light": "var(--blue-50)",
+        "dark": "rgba(114, 174, 230, 0.10)"
+      }
+    ],
+    "semantic": [
+      {
+        "name": "--color-action-primary",
+        "light": "var(--accent)"
+      },
+      {
+        "name": "--color-action-primary-hover",
+        "light": "var(--accent-hover)"
+      },
+      {
+        "name": "--color-action-soft",
+        "light": "var(--accent-soft)"
+      },
+      {
+        "name": "--color-bg-canvas",
+        "light": "var(--gray-100)",
+        "dark": "var(--gray-900)"
+      },
+      {
+        "name": "--color-bg-inverse",
+        "light": "var(--gray-900)",
+        "dark": "var(--gray-100)"
+      },
+      {
+        "name": "--color-bg-muted",
+        "light": "var(--gray-200)",
+        "dark": "var(--gray-720)"
+      },
+      {
+        "name": "--color-bg-subtle",
+        "light": "var(--gray-50)",
+        "dark": "var(--gray-750)"
+      },
+      {
+        "name": "--color-bg-surface",
+        "light": "var(--white)",
+        "dark": "var(--gray-800)"
+      },
+      {
+        "name": "--color-border-default",
+        "light": "var(--gray-200)",
+        "dark": "var(--gray-700)"
+      },
+      {
+        "name": "--color-border-muted",
+        "light": "var(--gray-300)",
+        "dark": "var(--gray-700)"
+      },
+      {
+        "name": "--color-border-strong",
+        "light": "var(--gray-500)",
+        "dark": "var(--gray-500)"
+      },
+      {
+        "name": "--color-danger",
+        "light": "var(--red-600)",
+        "dark": "var(--red-300)"
+      },
+      {
+        "name": "--color-danger-hover",
+        "light": "var(--red-700)",
+        "dark": "var(--red-300)"
+      },
+      {
+        "name": "--color-danger-soft",
+        "light": "var(--red-50)",
+        "dark": "rgba(242, 154, 156, 0.10)"
+      },
+      {
+        "name": "--color-focus",
+        "light": "var(--accent)"
+      },
+      {
+        "name": "--color-success",
+        "light": "var(--green-600)"
+      },
+      {
+        "name": "--color-success-soft",
+        "light": "var(--green-50)",
+        "dark": "rgba(0, 163, 42, 0.12)"
+      },
+      {
+        "name": "--color-success-text",
+        "light": "var(--green-700)",
+        "dark": "var(--green-400)"
+      },
+      {
+        "name": "--color-text-heading",
+        "light": "var(--gray-900)",
+        "dark": "var(--gray-100)"
+      },
+      {
+        "name": "--color-text-inverse",
+        "light": "var(--gray-100)",
+        "dark": "var(--gray-900)"
+      },
+      {
+        "name": "--color-text-inverse-muted",
+        "light": "var(--gray-400)",
+        "dark": "var(--gray-700)"
+      },
+      {
+        "name": "--color-text-link",
+        "light": "var(--accent)"
+      },
+      {
+        "name": "--color-text-link-hover",
+        "light": "var(--accent-hover)",
+        "dark": "var(--blue-50)"
+      },
+      {
+        "name": "--color-text-on-accent",
+        "light": "var(--white)",
+        "dark": "var(--gray-900)"
+      },
+      {
+        "name": "--color-text-primary",
+        "light": "var(--gray-720)",
+        "dark": "var(--gray-100)"
+      },
+      {
+        "name": "--color-text-secondary",
+        "light": "var(--gray-700)",
+        "dark": "var(--gray-400)"
+      },
+      {
+        "name": "--color-warning",
+        "light": "var(--yellow-600)"
+      },
+      {
+        "name": "--color-warning-soft",
+        "light": "var(--yellow-50)",
+        "dark": "rgba(219, 166, 23, 0.12)"
+      },
+      {
+        "name": "--gap-content",
+        "light": "var(--space-md)"
+      },
+      {
+        "name": "--gap-label",
+        "light": "var(--space-12)"
+      },
+      {
+        "name": "--gap-section",
+        "light": "var(--space-lg)"
+      },
+      {
+        "name": "--gap-tight",
+        "light": "var(--space-sm)"
+      },
+      {
+        "name": "--heading-lg",
+        "light": "var(--font-size-20)"
+      },
+      {
+        "name": "--heading-md",
+        "light": "var(--font-size-16)"
+      },
+      {
+        "name": "--heading-sm",
+        "light": "var(--font-size-15)"
+      },
+      {
+        "name": "--heading-xl",
+        "light": "var(--font-size-23)"
+      },
+      {
+        "name": "--leading-body",
+        "light": "var(--line-height-base)"
+      },
+      {
+        "name": "--leading-heading",
+        "light": "var(--line-height-tight)"
+      },
+      {
+        "name": "--radius",
+        "light": "var(--radius-4)"
+      },
+      {
+        "name": "--radius-button",
+        "light": "var(--radius-control)"
+      },
+      {
+        "name": "--radius-card",
+        "light": "var(--radius)"
+      },
+      {
+        "name": "--radius-control",
+        "light": "calc(var(--radius) * 0.5)"
+      },
+      {
+        "name": "--radius-full",
+        "light": "var(--radius-999)"
+      },
+      {
+        "name": "--radius-input",
+        "light": "var(--radius-control)"
+      },
+      {
+        "name": "--radius-md",
+        "light": "var(--radius)"
+      },
+      {
+        "name": "--radius-sm",
+        "light": "var(--radius-control)"
+      },
+      {
+        "name": "--size-control",
+        "light": "var(--size-16)"
+      },
+      {
+        "name": "--size-icon-tile",
+        "light": "var(--size-36)"
+      },
+      {
+        "name": "--size-icon-tile-lg",
+        "light": "var(--size-44)"
+      },
+      {
+        "name": "--size-step",
+        "light": "var(--size-24)"
+      },
+      {
+        "name": "--space-lg",
+        "light": "var(--space-24)"
+      },
+      {
+        "name": "--space-md",
+        "light": "var(--space-16)"
+      },
+      {
+        "name": "--space-sm",
+        "light": "var(--space-8)"
+      },
+      {
+        "name": "--space-xl",
+        "light": "var(--space-40)"
+      },
+      {
+        "name": "--space-xs",
+        "light": "var(--space-4)"
+      },
+      {
+        "name": "--text-lg",
+        "light": "var(--font-size-14)"
+      },
+      {
+        "name": "--text-md",
+        "light": "var(--font-size-13)"
+      },
+      {
+        "name": "--text-sm",
+        "light": "var(--font-size-12)"
+      },
+      {
+        "name": "--text-xs",
+        "light": "var(--font-size-11)"
+      },
+      {
+        "name": "--width-aside",
+        "light": "300px"
+      },
+      {
+        "name": "--width-content-max",
+        "light": "1100px"
+      },
+      {
+        "name": "--width-drawer",
+        "light": "420px"
+      },
+      {
+        "name": "--width-filter-menu",
+        "light": "240px"
+      },
+      {
+        "name": "--width-input-narrow",
+        "light": "var(--size-80)"
+      },
+      {
+        "name": "--width-modal",
+        "light": "440px"
+      },
+      {
+        "name": "--width-onboarding",
+        "light": "560px"
+      },
+      {
+        "name": "--width-popup",
+        "light": "320px"
+      },
+      {
+        "name": "--width-setting-label",
+        "light": "var(--size-180)"
+      },
+      {
+        "name": "--width-sidebar",
+        "light": "var(--size-160)"
+      },
+      {
+        "name": "--width-toast",
+        "light": "360px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "add-ons",
+      "title": "Add-ons",
+      "category": "addons-ai",
+      "classes": [
+        ".addons",
+        ".addon",
+        ".addon--pro"
+      ],
+      "blocks": [
+        "addon",
+        "addons"
+      ],
+      "purpose": "Catalog grid of installable/purchasable extensions. Cards carry an icon tile or a full-bleed thumbnail; the --pro modifier is the locked upgrade state.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__top",
+            "__icon",
+            "__thumb (image variant, replaces __icon)",
+            "__body",
+            "__title",
+            "__description",
+            "__footer",
+            "__note"
+          ]
+        },
+        {
+          "label": "Anatomy",
+          "items": [
+            ".addon.addon--pro > __top (__icon [lock] + .badge--pro) + __body + __footer (upgrade .button--primary + __note)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Locked extensions keep full descriptions — sell the value, mute only the icon tile.",
+            "Icon becomes Tabler lock; badge is --pro; footer pairs the upgrade button with a \"Requires Pro\" __note.",
+            "__thumb holds an <img> (bleeds to the card edges, 16:9, object-fit: cover); shown here as an empty gray placeholder.",
+            "Only a filled badge (--pro) may overlay the thumb — it carries its own background; dot badges have none and would fail contrast over an image.",
+            "Grids may mix unlocked and locked add-ons; optionally end the screen with one .upsell banner."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Addon",
+          "Addons"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"addons\">\n  <article class=\"addon\">\n    <div class=\"addon__top\">\n      <div class=\"addon__icon\"><svg class=\"icon icon--lg\" aria-hidden=\"true\"><use href=\"#i-puzzle\"/></svg></div>\n      <span class=\"badge badge--success\">Status label</span>\n    </div>\n    <div class=\"addon__body\">\n      <h3 class=\"addon__title\">Add-on title</h3>\n      <p class=\"addon__description\">Add-on description text goes here. Two or three sentences explaining what this add-on does.</p>\n    </div>\n    <div class=\"addon__footer\"><button class=\"button\">Secondary action</button></div>\n  </article>\n  <article class=\"addon addon--pro\">\n    <div class=\"addon__top\">\n      <div class=\"addon__icon\"><svg class=\"icon icon--lg\" aria-hidden=\"true\"><use href=\"#i-lock\"/></svg></div>\n      <span class=\"badge badge--pro\">Pro</span>\n    </div>\n    <div class=\"addon__body\">\n      <h3 class=\"addon__title\">Add-on title</h3>\n      <p class=\"addon__description\">Add-on description text goes here. Two or three sentences explaining what this add-on does.</p>\n    </div>\n    <div class=\"addon__footer\">\n      <button class=\"button button--primary\">Upgrade action</button>\n      <span class=\"addon__note\">Requires Pro</span>\n    </div>\n  </article>\n  <article class=\"addon addon--pro\">\n    <div class=\"addon__thumb\">\n      <span class=\"badge badge--pro\">Pro</span>\n    </div>\n    <div class=\"addon__body\">\n      <h3 class=\"addon__title\">Add-on title</h3>\n      <p class=\"addon__description\">Add-on description text goes here. Two or three sentences explaining what this add-on does.</p>\n    </div>\n    <div class=\"addon__footer\">\n      <button class=\"button button--primary\">Upgrade action</button>\n      <span class=\"addon__note\">Requires Pro</span>\n    </div>\n  </article>\n</div>"
+    },
+    {
+      "id": "pricing",
+      "title": "Pricing",
+      "category": "addons-ai",
+      "classes": [
+        ".pricing"
+      ],
+      "blocks": [
+        "pricing"
+      ],
+      "purpose": "Plan comparison cards for a pricing page or in-plugin compare screen. Annual-billing tiers with one emphasized \"Most Popular\" plan.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".pricing (grid) > article.pricing__plan > __name + __price (__amount + __period) + __meta + ul.pricing__features + .button + __note; emphasize one tier with .pricing__plan--featured + a __badge."
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "One --featured tier per grid — the accent ring and centered \"Most Popular\" __badge mark the recommended plan; its CTA is --primary.",
+            "Default to annual billing; __price pairs the amount with a __period. Keep to 3–4 tiers so cards stay scannable.",
+            "Feature .icon checks inherit accent; the __note under the CTA carries the guarantee or renewal line (risk reversal), not a card footer."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Pricing"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"pricing\">\n  <article class=\"pricing__plan\">\n    <h3 class=\"pricing__name\">Plan name</h3>\n    <div class=\"pricing__price\"><span class=\"pricing__amount\">$49</span><span class=\"pricing__period\">/ year</span></div>\n    <p class=\"pricing__meta\">Use on 1 site</p>\n    <ul class=\"pricing__features\">\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n    </ul>\n    <button class=\"button\">Get started</button>\n    <p class=\"pricing__note\">14-day money-back guarantee</p>\n  </article>\n  <article class=\"pricing__plan pricing__plan--featured\">\n    <span class=\"pricing__badge\">Most Popular</span>\n    <h3 class=\"pricing__name\">Plan name</h3>\n    <div class=\"pricing__price\"><span class=\"pricing__amount\">$99</span><span class=\"pricing__period\">/ year</span></div>\n    <p class=\"pricing__meta\">Use on 5 sites</p>\n    <ul class=\"pricing__features\">\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Priority support</li>\n    </ul>\n    <button class=\"button button--primary\">Get started</button>\n    <p class=\"pricing__note\">14-day money-back guarantee</p>\n  </article>\n  <article class=\"pricing__plan\">\n    <h3 class=\"pricing__name\">Plan name</h3>\n    <div class=\"pricing__price\"><span class=\"pricing__amount\">$199</span><span class=\"pricing__period\">/ year</span></div>\n    <p class=\"pricing__meta\">Use on 25 sites</p>\n    <ul class=\"pricing__features\">\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Feature included</li>\n      <li><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg>Priority support</li>\n    </ul>\n    <button class=\"button\">Get started</button>\n    <p class=\"pricing__note\">14-day money-back guarantee</p>\n  </article>\n</div>"
+    },
+    {
+      "id": "upsell",
+      "title": "Upsell",
+      "category": "addons-ai",
+      "classes": [
+        ".upsell",
+        ".badge--pro"
+      ],
+      "blocks": [
+        "badge",
+        "upsell"
+      ],
+      "purpose": "Premium feature marketing: PRO badge for locked options, CTA banner for upgrade prompts.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".upsell > __icon + __content (__title + __description) + __actions; .badge--pro is a badge modifier (no dot, accent fill, uppercase)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            ".badge--pro marks locked controls inline; the control itself renders disabled.",
+            "One upsell banner per screen, maximum — never stack them.",
+            "Banner uses --color-action-soft, not a state color: upsell is promotion, not a warning."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Badge",
+          "Upsell"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"upsell\">\n  <div class=\"upsell__icon\" aria-hidden=\"true\"><svg class=\"icon icon--lg\" aria-hidden=\"true\"><use href=\"#i-sparkles\"/></svg></div>\n  <div class=\"upsell__content\">\n    <h4 class=\"upsell__title\">Upsell title <span class=\"badge badge--pro\">Pro</span></h4>\n    <p class=\"upsell__description\">Upsell description text goes here. One sentence on the value of upgrading.</p>\n  </div>\n  <div class=\"upsell__actions\">\n    <button class=\"button button--primary\">Upgrade action</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "license",
+      "title": "License",
+      "category": "addons-ai",
+      "classes": [
+        ".license"
+      ],
+      "blocks": [
+        "license"
+      ],
+      "purpose": "License key validation (Freemius / EDD style) and the account-connect path. Lives in a card body or an aside widget.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".license > __status (badge/spinner + __meta) + [__connect (.button--primary + __or)] + __form (.field__input + .button) + [__help]"
+          ]
+        },
+        {
+          "label": "States",
+          "items": [
+            "badge default = unlicensed",
+            "spinner = connecting",
+            "--success = active (button says Deactivate)",
+            "default \"Expired\" = lapsed (Renew; updates/support pause but the plugin keeps working)",
+            "--danger = invalid (meta carries the error, __help surfaces troubleshooting)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Key input is monospace; mask stored keys as XXXX-XXXX-XXXX-XXXX.",
+            "Offer __connect (account link) above the key fallback where the product supports it; Activate/Renew is --primary, Deactivate is the outline default.",
+            "Expired degrades updates and support first — never brick installed functionality (WordPress.org forbids trialware lockouts).",
+            "Attach __help under a failed or expired state; keep it to a few plain-language causes plus one guide link.",
+            "See shell-sidebar.html for the aside-widget placement."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "License"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"license\">\n  <div class=\"license__status\">\n    <span class=\"badge\">Unlicensed</span>\n  </div>\n  <div class=\"license__connect\">\n    <button class=\"button button--primary\">Connect account</button>\n    <span class=\"license__or\">or enter a license key</span>\n  </div>\n  <div class=\"license__form\">\n    <input class=\"field__input\" type=\"text\" placeholder=\"Enter license key\" aria-label=\"License key\">\n    <button class=\"button\">Verify</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "link-list",
+      "title": "Link list",
+      "category": "addons-ai",
+      "classes": [
+        ".link-list"
+      ],
+      "blocks": [
+        "link-list"
+      ],
+      "purpose": "Aside-widget list of useful links, each with a Tabler icon.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            "ul.link-list > li > a.link-list__link (icon + label text)"
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Link-List"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<ul class=\"link-list\">\n  <li><a class=\"link-list__link\" href=\"#\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-book\"/></svg>Link label</a></li>\n  <li><a class=\"link-list__link\" href=\"#\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-help-circle\"/></svg>Link label</a></li>\n  <li><a class=\"link-list__link\" href=\"#\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-external-link\"/></svg>Link label</a></li>\n</ul>"
+    },
+    {
+      "id": "chat",
+      "title": "Chat",
+      "category": "addons-ai",
+      "classes": [
+        ".chat"
+      ],
+      "blocks": [
+        "chat"
+      ],
+      "purpose": "AI assistant conversation panel: log of messages, typing indicator, suggested prompts, composer. Lives in a flush card or a drawer. Static markup — sending/streaming is host-page JS.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__log",
+            "__message (+ --user)",
+            "__body",
+            "__meta",
+            "__bubble",
+            "__typing (3 × __dot)",
+            "__actions / __action",
+            "__suggestions / __suggestion",
+            "__composer",
+            "__input",
+            "__footnote"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Assistant messages align left with the sparkles avatar; user messages mirror right with the soft accent bubble. Colors are semantic — dark mode is free.",
+            "The log is role=\"log\"; the typing indicator is role=\"status\"; action buttons are icon-only and carry aria-labels.",
+            "Every chat ships the __footnote disclaimer. Data-flow consent belongs in a .notice on the settings screen, not in the chat.",
+            "Prefer .ai-suggestion for field-level AI; chat is for when conversation itself is the feature."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Chat"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"chat\">\n  <div class=\"chat__log\" role=\"log\" aria-label=\"Conversation\">\n    <div class=\"chat__suggestions\">\n      <button class=\"chat__suggestion\">Suggested prompt one</button>\n      <button class=\"chat__suggestion\">Suggested prompt two</button>\n      <button class=\"chat__suggestion\">Suggested prompt three</button>\n    </div>\n    <div class=\"chat__message chat__message--user\">\n      <div class=\"chat__body\">\n        <span class=\"chat__meta\">Username · 2026-01-01 00:00:00</span>\n        <div class=\"chat__bubble\"><p>User message text goes here.</p></div>\n      </div>\n    </div>\n    <div class=\"chat__message\">\n      <div class=\"chat__body\">\n        <span class=\"chat__meta\">Assistant · 2026-01-01 00:00:00</span>\n        <div class=\"chat__bubble\"><p>Assistant reply text goes here.</p><p>Second paragraph of the reply.</p></div>\n        <div class=\"chat__actions\">\n          <button class=\"chat__action\" aria-label=\"Copy reply\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-copy\"/></svg></button>\n          <button class=\"chat__action\" aria-label=\"Good reply\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-thumb-up\"/></svg></button>\n          <button class=\"chat__action\" aria-label=\"Bad reply\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-thumb-down\"/></svg></button>\n          <button class=\"chat__action\" aria-label=\"Regenerate reply\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-refresh\"/></svg></button>\n        </div>\n      </div>\n    </div>\n    <div class=\"chat__message\">\n      <div class=\"chat__body\">\n        <div class=\"chat__typing\" role=\"status\" aria-label=\"Assistant is typing\"><span class=\"chat__dot\"></span><span class=\"chat__dot\"></span><span class=\"chat__dot\"></span></div>\n      </div>\n    </div>\n  </div>\n  <div class=\"chat__composer\">\n    <input class=\"field__input chat__input\" type=\"text\" placeholder=\"Ask a question…\" aria-label=\"Message\">\n    <button class=\"button button--primary\" aria-label=\"Send message\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-send\"/></svg>Send</button>\n  </div>\n  <p class=\"chat__footnote\">AI responses may be inaccurate. Verify before applying.</p>\n</div>"
+    },
+    {
+      "id": "ai-suggestion",
+      "title": "AI suggestion",
+      "category": "addons-ai",
+      "classes": [
+        ".ai-suggestion",
+        ".badge--ai"
+      ],
+      "blocks": [
+        "ai-suggestion",
+        "badge"
+      ],
+      "purpose": "Inline AI proposal for a nearby field: generated value + Accept / Regenerate / Discard. The badge marks AI-generated or AI-powered content.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__header (sparkles icon + __title + optional badge--ai)",
+            "__body / __text",
+            "__actions"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Accept is the only --primary; Regenerate is outline; Discard is --link. Accepting writes the value into the field — the suggestion never replaces the field.",
+            "“Generate with AI” triggers are outline buttons with the sparkles icon — never --primary (generation is an offer, not the screen’s main action).",
+            "badge--ai is informational, never clickable; usage limits reuse .progress; consent reuses .notice."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Ai-Suggestion",
+          "Badge"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"ai-suggestion\">\n  <div class=\"ai-suggestion__header\">\n    <svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-sparkles\"/></svg>\n    <h4 class=\"ai-suggestion__title\">Suggestion title</h4>\n    <span class=\"badge badge--ai\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-sparkles\"/></svg>AI</span>\n  </div>\n  <div class=\"ai-suggestion__body\">\n    <p class=\"ai-suggestion__text\">Generated suggestion text goes here. One or two sentences proposed by the model for the field above.</p>\n  </div>\n  <div class=\"ai-suggestion__actions\">\n    <button class=\"button button--primary button--small\">Accept suggestion</button>\n    <button class=\"button button--small\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-refresh\"/></svg>Regenerate</button>\n    <button class=\"button button--link button--small\">Discard</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "card",
+      "title": "Card",
+      "category": "containers",
+      "classes": [
+        ".card"
+      ],
+      "blocks": [
+        "card"
+      ],
+      "purpose": "The primary content container. Everything on a screen lives in cards.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__header",
+            "__icon",
+            "__heading",
+            "__title",
+            "__description",
+            "__section-title (group divider in a single-container card body)",
+            "__header-actions",
+            "__well",
+            "__divider",
+            "__footer",
+            "__footer-meta",
+            "__body (padded tab-panel slot in a --flush card hosting .tabs--card)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Settings default to a single --flush card holding all groups, divided by __section-title; use one card per group only for genuinely independent groups.",
+            "Title placement follows the container: single-container may host the .page-header in its __header; multiple cards keep the title on the canvas above them."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Card"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<section class=\"card\">\n  <div class=\"card__header\">\n    <div class=\"card__icon\" aria-hidden=\"true\"><svg class=\"icon icon--lg\" aria-hidden=\"true\"><use href=\"#i-settings\"/></svg></div>\n    <div class=\"card__heading\">\n      <h3 class=\"card__title\">Card title</h3>\n      <p class=\"card__description\">Card description text goes here.</p>\n    </div>\n  </div>\n  <div class=\"card__well\">Well content goes here.</div>\n  <div class=\"card__footer\">\n    <button class=\"button button--primary\">Primary action</button>\n    <span class=\"card__footer-meta\">Footer meta text</span>\n  </div>\n</section>"
+    },
+    {
+      "id": "collapsible-containers",
+      "title": "Collapsible containers",
+      "category": "containers",
+      "classes": [
+        ".card--collapsible",
+        ".panel"
+      ],
+      "blocks": [
+        "card",
+        "panel"
+      ],
+      "purpose": "Toggle containers. Card variant: the whole card collapses to its header. Panel: leaner nested toggle inside a normal card. Bodies are free content slots.",
+      "api": [
+        {
+          "label": "Anatomy (card)",
+          "items": [
+            "details.card.card--collapsible > summary.card__header (… + __chevron) + slot children"
+          ]
+        },
+        {
+          "label": "Anatomy (panel)",
+          "items": [
+            "details.panel > summary.panel__header (label + __chevron) + __body (slot)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Native details/summary — keyboard and screen-reader support for free; add open for expanded-by-default.",
+            "Chevron is Tabler chevron-down, rotating 180° when open.",
+            "In a design tool: two components with a content slot; chevron rotation = open/closed variant.",
+            "Group stacked panels with .stack--tight."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Card",
+          "Panel"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<details class=\"card card--collapsible\" open>\n  <summary class=\"card__header\">\n    <div class=\"card__icon\" aria-hidden=\"true\"><svg class=\"icon icon--lg\" aria-hidden=\"true\"><use href=\"#i-adjustments\"/></svg></div>\n    <div class=\"card__heading\">\n      <h3 class=\"card__title\">Card title</h3>\n      <p class=\"card__description\">Card description text goes here.</p>\n    </div>\n    <svg class=\"card__chevron icon\" aria-hidden=\"true\"><use href=\"#i-chevron-down\"/></svg>\n  </summary>\n  <div class=\"card__well\">Slot content goes here. Any components can live inside.</div>\n</details>"
+    },
+    {
+      "id": "stack",
+      "title": "Stack",
+      "category": "containers",
+      "classes": [
+        ".stack"
+      ],
+      "blocks": [
+        "stack"
+      ],
+      "purpose": "Vertical auto-layout utility: stack children with gap, never margins. Maps 1:1 to a a vertical auto-layout frame.",
+      "api": [
+        {
+          "label": "Modifiers",
+          "items": [
+            "default --gap-content (16)",
+            "--tight --gap-tight (8)",
+            "--loose --gap-section (24)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "The generic stacking frame — control groups, field groups, widget columns all use it.",
+            "Never manage vertical space with margins; if a new rhythm is needed, add a gap role first."
+          ]
+        }
+      ],
+      "variants": [
+        "--gap-content",
+        "--gap-section",
+        "--gap-tight",
+        "--loose",
+        "--tight"
+      ],
+      "figma": {
+        "components": [
+          "Stack"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"stack stack--tight\">\n  <span class=\"badge\">Stacked item</span>\n  <span class=\"badge\">Stacked item</span>\n  <span class=\"badge\">Stacked item</span>\n</div>"
+    },
+    {
+      "id": "layout-variations",
+      "title": "Layout variations",
+      "category": "containers",
+      "classes": [
+        ".columns",
+        ".onboarding",
+        ".plugin__body--full"
+      ],
+      "blocks": [
+        "columns",
+        "onboarding",
+        "plugin"
+      ],
+      "purpose": "Shell layout variations. Open the linked full-page examples.",
+      "api": [
+        {
+          "label": ".plugin__body--full",
+          "items": [
+            "Removes the 1100px max-width — for list-table screens. See shell-fullwidth.html."
+          ]
+        },
+        {
+          "label": ".columns",
+          "items": [
+            ".columns > __main + __aside — main content + 300px aside of widget cards (license, newsletter, links, .upsell--stacked). Stacks below 960px. See shell-sidebar.html."
+          ]
+        },
+        {
+          "label": ".onboarding",
+          "items": [
+            ".onboarding > __panel — replaces topbar/tabs/body with one centered 560px panel (stepper + card). See shell-onboarding.html."
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Aside widgets are plain .cards — no special widget component.",
+            "All shells share the same .admin-menu markup in the first grid slot.",
+            "Onboarding keeps the wp-admin shell; only the plugin chrome is removed."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Columns",
+          "Onboarding",
+          "Plugin"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": null,
+      "examples": [
+        {
+          "label": "Full-width",
+          "path": "examples/shell-fullwidth.html"
+        },
+        {
+          "label": "Sidebar",
+          "path": "examples/shell-sidebar.html"
+        },
+        {
+          "label": "Onboarding",
+          "path": "examples/shell-onboarding.html"
+        }
+      ]
+    },
+    {
+      "id": "plugin-header",
+      "title": "Plugin header",
+      "category": "containers",
+      "classes": [
+        ".plugin__topbar",
+        "__theme-toggle"
+      ],
+      "blocks": [
+        "plugin"
+      ],
+      "purpose": "Plugin header. Variant: a dark/light toggle as an icon-only button in the topbar actions.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".plugin__topbar > __brand + __topbar-actions (links + badge + [__theme-toggle])"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Icon-only button: 28px square, Tabler moon, aria-label=\"Toggle dark mode\".",
+            "Toggles data-theme=\"dark\" on the root element; the demo button here is live.",
+            "Optional element — include only if the plugin ships its own dark mode."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Plugin"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<header class=\"plugin__topbar\">\n  <h1 class=\"plugin__brand\">Plugin Name</h1>\n  <div class=\"plugin__topbar-actions\">\n    <a href=\"#\">Topbar link</a>\n    <span class=\"badge badge--accent\">Badge label</span>\n    <button class=\"plugin__theme-toggle\" data-theme-toggle type=\"button\" aria-label=\"Toggle dark mode\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-moon\"/></svg></button>\n  </div>\n</header>"
+    },
+    {
+      "id": "admin-bar",
+      "title": "Admin bar",
+      "category": "containers",
+      "classes": [
+        ".admin-bar"
+      ],
+      "blocks": [
+        "admin-bar"
+      ],
+      "purpose": "The wp-admin top bar as a component, for full-screen mockups and previews. Chrome like .admin-menu: fixed wp palette, real dashicons, metrics measured on WP 7.0, excluded from dist. Dropdowns open on hover/focus (CSS-only).",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__item",
+            "__icon (20px dashicon, dimmed base)",
+            "__badge (updates count)",
+            "__bubble (moderation count, wp red)",
+            "__spacer",
+            "__avatar (16px square)",
+            "__menu > __submenu (+ --right) > __submenu-item",
+            "__user (64px avatar + __user-name/__user-login)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Hover, focus, and submenu-open share one state (bar hover blue on the darker fill) — measured wp behavior, no transitions.",
+            "Dropdowns are CSS-only (:hover/:focus-within), like wp's no-JS fallback; the right cluster uses __submenu--right.",
+            "Same chrome rules as .admin-menu: dashicons allowed here only; never render inside real wp-admin (dist drops this section); not replicated: <782px mobile mode, nested flyouts.",
+            "Icon-only items carry aria-labels; counts are literal placeholders."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Admin-Bar"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"admin-bar\">\n  <a class=\"admin-bar__item\" href=\"#\" aria-label=\"About WordPress\"><svg class=\"admin-bar__icon\" aria-hidden=\"true\"><use href=\"#i-wp-wordpress\"/></svg></a>\n  <div class=\"admin-bar__menu\">\n    <a class=\"admin-bar__item\" href=\"#\"><svg class=\"admin-bar__icon\" aria-hidden=\"true\"><use href=\"#i-wp-admin-home\"/></svg>example.com</a>\n    <div class=\"admin-bar__submenu\">\n      <a class=\"admin-bar__submenu-item\" href=\"#\">Visit Site</a>\n    </div>\n  </div>\n  <a class=\"admin-bar__item\" href=\"#\" aria-label=\"1 update available\"><svg class=\"admin-bar__icon\" aria-hidden=\"true\"><use href=\"#i-wp-update\"/></svg><span class=\"admin-bar__badge\">1</span></a>\n  <a class=\"admin-bar__item\" href=\"#\" aria-label=\"2 comments awaiting moderation\"><svg class=\"admin-bar__icon\" aria-hidden=\"true\"><use href=\"#i-wp-admin-comments\"/></svg><span class=\"admin-bar__bubble\">2</span></a>\n  <a class=\"admin-bar__item\" href=\"#\"><svg class=\"admin-bar__icon\" aria-hidden=\"true\"><use href=\"#i-wp-plus\"/></svg>New</a>\n  <span class=\"admin-bar__spacer\"></span>\n  <div class=\"admin-bar__menu\">\n    <a class=\"admin-bar__item\" href=\"#\">Howdy, Username<span class=\"admin-bar__avatar\" aria-hidden=\"true\"></span></a>\n    <div class=\"admin-bar__submenu admin-bar__submenu--right\">\n      <div class=\"admin-bar__user\">\n        <span class=\"admin-bar__user-avatar\" aria-hidden=\"true\"></span>\n        <div><span class=\"admin-bar__user-name\">Username</span><span class=\"admin-bar__user-login\">username</span></div>\n      </div>\n      <a class=\"admin-bar__submenu-item\" href=\"#\">Edit Profile</a>\n      <a class=\"admin-bar__submenu-item\" href=\"#\">Log Out</a>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "admin-menu",
+      "title": "Admin menu",
+      "category": "containers",
+      "classes": [
+        ".admin-menu"
+      ],
+      "blocks": [
+        "admin-menu"
+      ],
+      "purpose": "The wp-admin sidebar as a component, for full-screen mockups and previews. Chrome, not plugin UI: fixed wp palette in both modes, real dashicons, metrics measured on WP 7.0. Excluded from the dist build — WordPress renders the real menu.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__item (+ --current: accent fill + canvas arrow)",
+            "__icon (20px dashicon, dimmed base)",
+            "__bubble (update count)",
+            "__separator",
+            "__submenu-item (+ --current)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Icons are real WP dashicons (reference/icons/wp-*.svg, GPL) — the one exception to Tabler-only; never use them in kit components.",
+            "Fixed wp palette in both modes; the current-item fill rides --accent, so admin-scheme presets flow through.",
+            "In the demo shell it is the first grid child, so .shell's first column places it — no slot class needed. Never render it inside real wp-admin — core owns the menu there (dist drops this section).",
+            "A custom plugin item without its own icon uses wp-admin-generic — wp's default."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Admin-Menu"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<nav class=\"admin-menu\" aria-label=\"Admin menu\">\n  <a class=\"admin-menu__item\" href=\"#\"><svg class=\"admin-menu__icon\" aria-hidden=\"true\"><use href=\"#i-wp-dashboard\"/></svg>Dashboard</a>\n  <div class=\"admin-menu__separator\" aria-hidden=\"true\"></div>\n  <a class=\"admin-menu__item\" href=\"#\"><svg class=\"admin-menu__icon\" aria-hidden=\"true\"><use href=\"#i-wp-admin-post\"/></svg>Posts</a>\n  <a class=\"admin-menu__item\" href=\"#\"><svg class=\"admin-menu__icon\" aria-hidden=\"true\"><use href=\"#i-wp-admin-plugins\"/></svg>Plugins <span class=\"admin-menu__bubble\">2</span></a>\n  <a class=\"admin-menu__item admin-menu__item--current\" href=\"#\" aria-current=\"page\"><svg class=\"admin-menu__icon\" aria-hidden=\"true\"><use href=\"#i-wp-admin-generic\"/></svg>Plugin Name</a>\n  <a class=\"admin-menu__submenu-item admin-menu__submenu-item--current\" href=\"#\" aria-current=\"page\">Submenu item</a>\n  <a class=\"admin-menu__submenu-item\" href=\"#\">Submenu item</a>\n  <a class=\"admin-menu__submenu-item\" href=\"#\">Submenu item</a>\n  <a class=\"admin-menu__item\" href=\"#\"><svg class=\"admin-menu__icon\" aria-hidden=\"true\"><use href=\"#i-wp-admin-settings\"/></svg>Settings</a>\n</nav>"
+    },
+    {
+      "id": "table",
+      "title": "Table",
+      "category": "data",
+      "classes": [
+        ".table"
+      ],
+      "blocks": [
+        "table"
+      ],
+      "purpose": "Data listing inside a card. Row hover, last row borderless.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__head-cell",
+            "__row",
+            "__cell",
+            "__empty"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            "__cell--muted"
+          ]
+        }
+      ],
+      "variants": [
+        "--muted"
+      ],
+      "figma": {
+        "components": [
+          "Table"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<table class=\"table\">\n  <thead>\n    <tr><th class=\"table__head-cell\">Column</th><th class=\"table__head-cell\">Column</th><th class=\"table__head-cell\">Status</th><th class=\"table__head-cell\">Actions</th></tr>\n  </thead>\n  <tbody>\n    <tr class=\"table__row\">\n      <td class=\"table__cell\">Cell value</td>\n      <td class=\"table__cell table__cell--muted\">Muted cell value</td>\n      <td class=\"table__cell\"><span class=\"badge badge--success\">Status label</span></td>\n      <td class=\"table__cell\"><button class=\"button button--small\">Small action</button></td>\n    </tr>\n    <tr class=\"table__row\">\n      <td class=\"table__cell table__empty\" colspan=\"4\">Empty row message goes here.</td>\n    </tr>\n  </tbody>\n</table>"
+    },
+    {
+      "id": "list-table",
+      "title": "List table",
+      "category": "data",
+      "classes": [
+        ".list-table"
+      ],
+      "blocks": [
+        "list-table"
+      ],
+      "purpose": "wp-list-table pattern: bulk actions + filters in a toolbar above and below, column headers repeated in the footer, selectable rows with quick actions on hover.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".list-table > __toolbar (__group + __count + __pagination) + __table (thead + tbody > __row + tfoot) + __toolbar--bottom"
+          ]
+        },
+        {
+          "label": "Row anatomy",
+          "items": [
+            "__row > __check-cell + __cell (__primary + __actions > __action / __actions-sep) + __cell…"
+          ]
+        },
+        {
+          "label": "Row variants",
+          "items": [
+            "default",
+            "--selected",
+            "--warning",
+            "--danger",
+            "--disabled"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Quick actions are hidden until row :hover or :focus-within — keyboard users get them on tab.",
+            "Column headers repeat in tfoot, wp-list-table style; toolbar repeats below with bulk actions + pagination.",
+            "--selected pairs with a checked row checkbox; --disabled disables the checkbox and hides quick actions.",
+            "Danger quick actions still require a .modal confirmation.",
+            "In a design tool: the row is its own component with the five variants above; the table composes row instances.",
+            "For a titled screen, wrap in .card--flush + .list-table--flush: the card supplies the header, the table runs edge to edge (see example.html, list pattern)."
+          ]
+        }
+      ],
+      "variants": [
+        "--danger",
+        "--disabled",
+        "--selected",
+        "--warning"
+      ],
+      "figma": {
+        "components": [
+          "List-Table"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"list-table\">\n  <div class=\"list-table__toolbar\">\n    <div class=\"list-table__group\">\n      <label class=\"field__label\" for=\"sg-lt-bulk\">Bulk actions</label>\n      <select class=\"field__select\" id=\"sg-lt-bulk\">\n        <option>Bulk action</option>\n        <option>Bulk action</option>\n      </select>\n      <button class=\"button\">Apply</button>\n    </div>\n    <div class=\"list-table__group\">\n      <select class=\"field__select\" aria-label=\"Filter option\">\n        <option>Filter option</option>\n        <option>Filter option</option>\n      </select>\n      <select class=\"field__select\" aria-label=\"Filter option\">\n        <option>Filter option</option>\n        <option>Filter option</option>\n      </select>\n      <button class=\"button\">Filter</button>\n    </div>\n    <span class=\"list-table__count\">12 items</span>\n  </div>\n  <table class=\"list-table__table\">\n    <thead>\n      <tr>\n        <td class=\"list-table__check-cell\"><input class=\"checkbox__input\" type=\"checkbox\" aria-label=\"Select all\"></td>\n        <th class=\"list-table__head-cell\">Column</th>\n        <th class=\"list-table__head-cell\">Column</th>\n        <th class=\"list-table__head-cell\">Column</th>\n        <th class=\"list-table__head-cell\">Column</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr class=\"list-table__row\">\n        <td class=\"list-table__check-cell\"><input class=\"checkbox__input\" type=\"checkbox\" aria-label=\"Select row\"></td>\n        <td class=\"list-table__cell\">\n          <a class=\"list-table__primary\" href=\"#\">Row title</a>\n          <div class=\"list-table__actions\">\n            <a class=\"list-table__action\" href=\"#\">Quick action</a><span class=\"list-table__actions-sep\">|</span>\n            <a class=\"list-table__action\" href=\"#\">Quick action</a><span class=\"list-table__actions-sep\">|</span>\n            <a class=\"list-table__action list-table__action--danger\" href=\"#\">Danger action</a>\n          </div>\n        </td>\n        <td class=\"list-table__cell\">Cell value</td>\n        <td class=\"list-table__cell list-table__cell--muted\">2026-01-01 00:00:00</td>\n        <td class=\"list-table__cell\"><span class=\"badge badge--success\">Status label</span></td>\n      </tr>\n      <tr class=\"list-table__row list-table__row--selected\">\n        <td class=\"list-table__check-cell\"><input class=\"checkbox__input\" type=\"checkbox\" checked aria-label=\"Select row\"></td>\n        <td class=\"list-table__cell\">\n          <a class=\"list-table__primary\" href=\"#\">Row title</a>\n          <div class=\"list-table__actions\">\n            <a class=\"list-table__action\" href=\"#\">Quick action</a><span class=\"list-table__actions-sep\">|</span>\n            <a class=\"list-table__action list-table__action--danger\" href=\"#\">Danger action</a>\n          </div>\n        </td>\n        <td class=\"list-table__cell\">Cell value</td>\n        <td class=\"list-table__cell list-table__cell--muted\">2026-01-01 00:00:00</td>\n        <td class=\"list-table__cell\"><span class=\"badge\">Status label</span></td>\n      </tr>\n      <tr class=\"list-table__row list-table__row--warning\">\n        <td class=\"list-table__check-cell\"><input class=\"checkbox__input\" type=\"checkbox\" aria-label=\"Select row\"></td>\n        <td class=\"list-table__cell\">\n          <a class=\"list-table__primary\" href=\"#\">Row title</a>\n          <div class=\"list-table__actions\">\n            <a class=\"list-table__action\" href=\"#\">Quick action</a><span class=\"list-table__actions-sep\">|</span>\n            <a class=\"list-table__action list-table__action--danger\" href=\"#\">Danger action</a>\n          </div>\n        </td>\n        <td class=\"list-table__cell\">Cell value</td>\n        <td class=\"list-table__cell list-table__cell--muted\">2026-01-01 00:00:00</td>\n        <td class=\"list-table__cell\"><span class=\"badge\">Status label</span></td>\n      </tr>\n      <tr class=\"list-table__row list-table__row--danger\">\n        <td class=\"list-table__check-cell\"><input class=\"checkbox__input\" type=\"checkbox\" aria-label=\"Select row\"></td>\n        <td class=\"list-table__cell\">\n          <a class=\"list-table__primary\" href=\"#\">Row title</a>\n          <div class=\"list-table__actions\">\n            <a class=\"list-table__action\" href=\"#\">Quick action</a><span class=\"list-table__actions-sep\">|</span>\n            <a class=\"list-table__action list-table__action--danger\" href=\"#\">Danger action</a>\n          </div>\n        </td>\n        <td class=\"list-table__cell\">Cell value</td>\n        <td class=\"list-table__cell list-table__cell--muted\">2026-01-01 00:00:00</td>\n        <td class=\"list-table__cell\"><span class=\"badge badge--danger\">Status label</span></td>\n      </tr>\n      <tr class=\"list-table__row list-table__row--disabled\">\n        <td class=\"list-table__check-cell\"><input class=\"checkbox__input\" type=\"checkbox\" disabled aria-label=\"Select row\"></td>\n        <td class=\"list-table__cell\">\n          <a class=\"list-table__primary\" href=\"#\">Row title</a>\n        </td>\n        <td class=\"list-table__cell\">Cell value</td>\n        <td class=\"list-table__cell list-table__cell--muted\">2026-01-01 00:00:00</td>\n        <td class=\"list-table__cell\"><span class=\"badge\">Status label</span></td>\n      </tr>\n    </tbody>\n    <tfoot>\n      <tr>\n        <td class=\"list-table__check-cell\"><input class=\"checkbox__input\" type=\"checkbox\" aria-label=\"Select all\"></td>\n        <th class=\"list-table__head-cell\">Column</th>\n        <th class=\"list-table__head-cell\">Column</th>\n        <th class=\"list-table__head-cell\">Column</th>\n        <th class=\"list-table__head-cell\">Column</th>\n      </tr>\n    </tfoot>\n  </table>\n  <div class=\"list-table__toolbar list-table__toolbar--bottom\">\n    <div class=\"list-table__group\">\n      <select class=\"field__select\" aria-label=\"Bulk actions\">\n        <option>Bulk action</option>\n      </select>\n      <button class=\"button\">Apply</button>\n    </div>\n    <span class=\"list-table__count\">12 items</span>\n    <div class=\"list-table__pagination\">\n      <button class=\"button button--small\" disabled aria-label=\"Previous page\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-chevron-left\"/></svg></button>\n      <span class=\"list-table__count\">1 of 3</span>\n      <button class=\"button button--small\" aria-label=\"Next page\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-chevron-right\"/></svg></button>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "badge",
+      "title": "Badge",
+      "category": "data",
+      "classes": [
+        ".badge"
+      ],
+      "blocks": [
+        "badge"
+      ],
+      "purpose": "Status pill with a dot. Read-only; never clickable.",
+      "api": [
+        {
+          "label": "Modifiers",
+          "items": [
+            "--success",
+            "--danger",
+            "--accent"
+          ]
+        }
+      ],
+      "variants": [
+        "--accent",
+        "--danger",
+        "--success"
+      ],
+      "figma": {
+        "components": [
+          "Badge"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<span class=\"badge\">Badge label</span>"
+    },
+    {
+      "id": "stats",
+      "title": "Stats",
+      "category": "data",
+      "classes": [
+        ".stat",
+        ".stats"
+      ],
+      "blocks": [
+        "stat",
+        "stats"
+      ],
+      "purpose": "Dashboard metric: label, big value, optional delta badge + meta. .stats is the responsive grid wrapper inside a card body.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__label",
+            "__value",
+            "__meta (delta .badge + text)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Deltas reuse .badge --success/--danger — no new color surface.",
+            "Values are display text, not headings — screen structure stays with the card heading."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Stat",
+          "Stats"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"stat\">\n  <span class=\"stat__label\">Stat label</span>\n  <span class=\"stat__value\">1,234</span>\n  <span class=\"stat__meta\"><span class=\"badge badge--success\">+12%</span> vs previous period</span>\n</div>"
+    },
+    {
+      "id": "checklist",
+      "title": "Checklist",
+      "category": "data",
+      "classes": [
+        ".checklist"
+      ],
+      "blocks": [
+        "checklist"
+      ],
+      "purpose": "Numbered getting-started list. Counter is CSS-generated.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__item",
+            "__title"
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Checklist"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<ol class=\"checklist\">\n  <li class=\"checklist__item\"><div><span class=\"checklist__title\">Step title</span> — step description text goes here.</div></li>\n  <li class=\"checklist__item\"><div><span class=\"checklist__title\">Step title</span> — step description text goes here.</div></li>\n</ol>"
+    },
+    {
+      "id": "disclosure",
+      "title": "Disclosure",
+      "category": "data",
+      "classes": [
+        ".disclosure"
+      ],
+      "blocks": [
+        "disclosure"
+      ],
+      "purpose": "Native details/summary for secondary content.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__summary",
+            "__body"
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Disclosure"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<details class=\"disclosure\" open>\n  <summary class=\"disclosure__summary\"><svg class=\"disclosure__chevron icon--sm icon\" aria-hidden=\"true\"><use href=\"#i-chevron-down\"/></svg>Disclosure summary label</summary>\n  <div class=\"disclosure__body\">Disclosure body text goes here.</div>\n</details>"
+    },
+    {
+      "id": "code-block",
+      "title": "Code block",
+      "category": "data",
+      "classes": [
+        ".code-block"
+      ],
+      "blocks": [
+        "code-block"
+      ],
+      "purpose": "Read-only multi-line code display: shortcode examples, config samples, log excerpts. Display only — editing stays a field + monospace textarea (plugins mount a real editor).",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__pre (pre > code)",
+            "__copy (optional, top-right; reuses .button --small)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Display only — no syntax highlighting (JS concern, out of scope like editors). One line + copy → .copy-field; editable code → .field + monospace textarea.",
+            "Long lines scroll horizontally; never wrap code.",
+            "Clipboard behavior is the host page's concern."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Code-Block"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"code-block\">\n          <pre class=\"code-block__pre\"><code>add_filter( 'example_filter', function ( $value ) {\n    return $value;\n} );</code></pre>\n          <button class=\"button button--small code-block__copy\" type=\"button\">Copy</button>\n        </div>"
+    },
+    {
+      "id": "notice",
+      "title": "Notice",
+      "category": "feedback",
+      "classes": [
+        ".notice"
+      ],
+      "blocks": [
+        "notice"
+      ],
+      "purpose": "Persistent inline message above the cards.",
+      "api": [
+        {
+          "label": "Modifiers",
+          "items": [
+            "--warning",
+            "--danger",
+            "--success"
+          ]
+        }
+      ],
+      "variants": [
+        "--danger",
+        "--success",
+        "--warning"
+      ],
+      "figma": {
+        "components": [
+          "Notice"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"notice\">Info notice text goes here.</div>"
+    },
+    {
+      "id": "empty-state",
+      "title": "Empty state",
+      "category": "feedback",
+      "classes": [
+        ".empty-state"
+      ],
+      "blocks": [
+        "empty-state"
+      ],
+      "purpose": "What a card shows when it has no data. Always offers the next action.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__icon",
+            "__title",
+            "__description",
+            "__actions"
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Empty-State"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"empty-state\">\n  <div class=\"empty-state__icon\" aria-hidden=\"true\"><svg class=\"icon icon--lg\" aria-hidden=\"true\"><use href=\"#i-inbox\"/></svg></div>\n  <h3 class=\"empty-state__title\">Empty state title</h3>\n  <p class=\"empty-state__description\">Empty state description text goes here. Explain what belongs here and how to add the first item.</p>\n  <div class=\"empty-state__actions\"><button class=\"button button--primary\">Primary action</button></div>\n</div>"
+    },
+    {
+      "id": "modal",
+      "title": "Modal",
+      "category": "feedback",
+      "classes": [
+        ".modal"
+      ],
+      "blocks": [
+        "modal"
+      ],
+      "purpose": "Confirmation dialog for destructive or irreversible actions. Static structure; show/hide is the host page's concern.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".modal-overlay > .modal > __header (__title + __close) + __body + __footer"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Required before any .button--danger completes (delete, revoke, restore-overwrite).",
+            "role=\"dialog\", aria-modal=\"true\", labelled by __title.",
+            "Max width 440px; the destructive button sits last."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Modal"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"modal\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"sg-modal-title\">\n  <div class=\"modal__header\">\n    <h3 class=\"modal__title\" id=\"sg-modal-title\">Modal title</h3>\n    <button class=\"modal__close\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n  </div>\n  <div class=\"modal__body\">Modal body text goes here. State the consequence plainly.</div>\n  <div class=\"modal__footer\">\n    <button class=\"button\">Secondary action</button>\n    <button class=\"button button--danger\">Danger action</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "toast",
+      "title": "Toast",
+      "category": "feedback",
+      "classes": [
+        ".toast"
+      ],
+      "blocks": [
+        "toast"
+      ],
+      "purpose": "Transient result feedback after an action. Stacks bottom-right via .toast-stack.",
+      "api": [
+        {
+          "label": "Modifiers",
+          "items": [
+            "--success",
+            "--warning",
+            "--danger"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Toast text mirrors the action verb: \"Save changes\" → \"Changes saved\".",
+            "role=\"status\" so screen readers announce it without interrupting."
+          ]
+        }
+      ],
+      "variants": [
+        "--danger",
+        "--success",
+        "--warning"
+      ],
+      "figma": {
+        "components": [
+          "Toast"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"toast toast--success\" role=\"status\">\n  <span class=\"toast__message\">Success toast message goes here.</span>\n  <button class=\"toast__dismiss\" aria-label=\"Dismiss\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n</div>"
+    },
+    {
+      "id": "drawer",
+      "title": "Drawer",
+      "category": "feedback",
+      "classes": [
+        ".drawer"
+      ],
+      "blocks": [
+        "drawer"
+      ],
+      "purpose": "Side panel overlay for secondary detail or editing. Slides in from the right. Static structure; show/hide is the host page's concern.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".drawer-overlay > .drawer > __header (__title + __close) + __body (__section > __section-title) + __footer"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Max width 420px, full height, anchored right; body scrolls, header and footer stay fixed.",
+            "role=\"dialog\", aria-modal=\"true\", labelled by __title — same a11y contract as .modal.",
+            "Use for secondary detail/editing; confirmations of destructive actions stay in .modal.",
+            "One --primary button in the footer, maximum."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Drawer"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<aside class=\"drawer\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"sg-drawer-title\">\n  <div class=\"drawer__header\">\n    <h3 class=\"drawer__title\" id=\"sg-drawer-title\">Drawer title</h3>\n    <button class=\"drawer__close\" aria-label=\"Close\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n  </div>\n  <div class=\"drawer__body\">\n    <div class=\"drawer__section\">\n      <h4 class=\"drawer__section-title\">Section label</h4>\n      <div class=\"field\">\n        <label class=\"field__label\" for=\"sg-drawer-input\">Field label</label>\n        <input class=\"field__input\" id=\"sg-drawer-input\" type=\"text\" value=\"Input value\">\n        <span class=\"field__hint\">Field hint text goes here.</span>\n      </div>\n    </div>\n    <div class=\"drawer__section\">\n      <h4 class=\"drawer__section-title\">Section label</h4>\n      <p class=\"drawer__text\">Drawer body text goes here. One or two sentences of supporting context.</p>\n    </div>\n  </div>\n  <div class=\"drawer__footer\">\n    <button class=\"button\">Secondary action</button>\n    <button class=\"button button--primary\">Primary action</button>\n  </div>\n</aside>"
+    },
+    {
+      "id": "popup",
+      "title": "Popup",
+      "category": "feedback",
+      "classes": [
+        ".popup"
+      ],
+      "blocks": [
+        "popup"
+      ],
+      "purpose": "Small anchored dialog for notifications and inline confirmations. Lighter than .modal: no overlay; the host page positions it next to its trigger.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".popup > __icon + __content (__title + __message + __actions) + __dismiss"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            "--success",
+            "--warning",
+            "--danger (icon color only)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Notification popups: role=\"status\" + __dismiss. Confirmation popups: role=\"alertdialog\" + __actions, no dismiss.",
+            "Icon matches the state: info-circle · circle-check · alert-triangle · alert-circle.",
+            "Buttons in __actions use --small; destructive confirmations that need full attention use .modal instead.",
+            "Max width 320px; the host page positions it (this guide shows it in-flow)."
+          ]
+        }
+      ],
+      "variants": [
+        "--danger",
+        "--success",
+        "--warning"
+      ],
+      "figma": {
+        "components": [
+          "Popup"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"popup\" role=\"status\">\n  <svg class=\"popup__icon icon\" aria-hidden=\"true\"><use href=\"#i-info-circle\"/></svg>\n  <div class=\"popup__content\">\n    <h4 class=\"popup__title\">Popup title</h4>\n    <p class=\"popup__message\">Popup message text goes here. One or two sentences.</p>\n  </div>\n  <button class=\"popup__dismiss\" aria-label=\"Dismiss\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n</div>"
+    },
+    {
+      "id": "tooltip",
+      "title": "Tooltip",
+      "category": "feedback",
+      "classes": [
+        ".tooltip"
+      ],
+      "blocks": [
+        "tooltip"
+      ],
+      "purpose": "CSS-only label on hover/focus for icon buttons, truncated values, and “?” affordances. Text lives in the data-tip attribute.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".tooltip[data-tip=\"…\"] on the trigger — the bubble is a ::after, no extra markup."
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            "top (default)",
+            "--bottom",
+            "--right",
+            "--left"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Short labels only (max-width 240px). Longer explanations belong in a __hint or a .popup.",
+            "Non-interactive triggers need tabindex=\"0\" so keyboard users get the tip; icon-only triggers still need an aria-label."
+          ]
+        }
+      ],
+      "variants": [
+        "--bottom",
+        "--left",
+        "--right"
+      ],
+      "figma": {
+        "components": [
+          "Tooltip"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<span class=\"tooltip\" data-tip=\"Explains what this setting does.\" tabindex=\"0\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-help-circle\"/></svg></span>"
+    },
+    {
+      "id": "loading-states",
+      "title": "Loading states",
+      "category": "feedback",
+      "classes": [
+        ".spinner",
+        ".skeleton"
+      ],
+      "blocks": [
+        "skeleton",
+        "spinner"
+      ],
+      "purpose": "Loading states. Spinner = indeterminate action in progress; skeleton = content-shaped placeholder while data arrives.",
+      "api": [
+        {
+          "label": "Spinner",
+          "items": [
+            "sizes mirror .icon: --sm 14",
+            "default 18",
+            "--lg 22",
+            "arc = accent, or the button’s text color inside a .button"
+          ]
+        },
+        {
+          "label": "Skeleton",
+          "items": [
+            "__line (+ --half / --third)",
+            "__block — stack them to sketch the loading layout"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Spinner for actions (a click is being processed, disable the trigger); skeleton for regions (a card/table body is loading).",
+            "Standalone spinners need role=\"status\" + aria-label; skeletons are aria-hidden.",
+            "Both stop animating under prefers-reduced-motion (global rule)."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Skeleton",
+          "Spinner"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<span class=\"spinner spinner--sm\" role=\"status\" aria-label=\"Loading\"></span>"
+    },
+    {
+      "id": "progress-bar",
+      "title": "Progress bar",
+      "category": "feedback",
+      "classes": [
+        ".progress"
+      ],
+      "blocks": [
+        "progress"
+      ],
+      "purpose": "Determinate progress for imports, scans, and bulk operations. Distinct from .stepper --bar, which shows wizard position.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__head (__label + __value)",
+            "__track",
+            "__bar (width = inline style)"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            "accent (default)",
+            "--success (complete)",
+            "--danger (failed / aborted)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Bar width is state, not design — the host page sets it as a custom property (style=\"--fill: 60%\"), never a raw inline width — and mirrors it in aria-valuenow.",
+            "Unknown duration → use a .spinner instead; never animate a fake percentage."
+          ]
+        }
+      ],
+      "variants": [
+        "--danger",
+        "--success"
+      ],
+      "figma": {
+        "components": [
+          "Progress"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"progress\">\n  <div class=\"progress__head\"><span class=\"progress__label\">Progress label</span><span class=\"progress__value\">60%</span></div>\n  <div class=\"progress__track\" role=\"progressbar\" aria-valuenow=\"60\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Progress label\"><div class=\"progress__bar\"></div></div>\n</div>"
+    },
+    {
+      "id": "button",
+      "title": "Button",
+      "category": "forms",
+      "classes": [
+        ".button"
+      ],
+      "blocks": [
+        "button"
+      ],
+      "purpose": "All actions. Default is the secondary (outline) style.",
+      "api": [
+        {
+          "label": "Modifiers",
+          "items": [
+            "--primary",
+            "--danger",
+            "--link",
+            "--small",
+            "--disabled / :disabled"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "One --primary per card footer, maximum.",
+            "--danger for destructive actions only; pair with a .modal confirmation."
+          ]
+        }
+      ],
+      "variants": [
+        "--danger",
+        "--disabled",
+        "--link",
+        "--primary",
+        "--small"
+      ],
+      "figma": {
+        "components": [
+          "Button"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<button class=\"button button--primary\">Primary action</button>"
+    },
+    {
+      "id": "field",
+      "title": "Field",
+      "category": "forms",
+      "classes": [
+        ".field"
+      ],
+      "blocks": [
+        "field"
+      ],
+      "purpose": "Vertical field: label above control. For forms outside the settings-row pattern.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__label",
+            "__input",
+            "__select",
+            "__textarea",
+            "__hint",
+            "__message (validation icon + text)"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            "__input--narrow (80px, numeric)",
+            "__input--search (leading search icon)",
+            "--error / --success on the block (colors control border + __message)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Validation is per-field: --error/--success + a __message with an alert-circle/circle-check icon. Form-level results use a .notice above the cards.",
+            "Pair --error with aria-invalid=\"true\" and link the message via aria-describedby.",
+            "__message replaces __hint while a state is shown — never both at once."
+          ]
+        }
+      ],
+      "variants": [
+        "--error",
+        "--narrow",
+        "--search",
+        "--success"
+      ],
+      "figma": {
+        "components": [
+          "Field"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"field\">\n  <label class=\"field__label\" for=\"sg-input\">Field label</label>\n  <input class=\"field__input\" id=\"sg-input\" type=\"text\" placeholder=\"Placeholder text\">\n  <p class=\"field__hint\">Field hint text goes here.</p>\n</div>"
+    },
+    {
+      "id": "setting-row",
+      "title": "Setting row",
+      "category": "forms",
+      "classes": [
+        ".setting"
+      ],
+      "blocks": [
+        "setting"
+      ],
+      "purpose": "Settings row: label column left, control right (wp form-table pattern). Stacks at ≤700px.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__label",
+            "__control",
+            "__inline",
+            "__note"
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Setting"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"setting\">\n  <label class=\"setting__label\" for=\"sg-set-select\">Setting label</label>\n  <div class=\"setting__control\">\n    <div class=\"setting__inline\">\n      <select class=\"field__select\" id=\"sg-set-select\"><option>Option one</option></select>\n      <span class=\"setting__note\">Setting note text.</span>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "selection-controls",
+      "title": "Selection controls",
+      "category": "forms",
+      "classes": [
+        ".checkbox",
+        ".radio",
+        ".toggle"
+      ],
+      "blocks": [
+        "checkbox",
+        "radio",
+        "toggle"
+      ],
+      "purpose": "Selection controls. Checkbox = independent options, radio = one of a set, toggle = immediate on/off state.",
+      "api": [
+        {
+          "label": "Anatomy (toggle)",
+          "items": [
+            "label.toggle > input.toggle__input + span.toggle__track + span — the input is visually hidden, the track renders the switch."
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Toggle applies immediately; checkbox waits for a save action. Don't mix the semantics.",
+            "All three share the same hint pattern: __hint in secondary text. Default renders inline after the label (with an em-dash); the --hint-below variant puts it on its own line."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Checkbox",
+          "Radio",
+          "Toggle"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<label class=\"checkbox\"><input class=\"checkbox__input\" type=\"checkbox\" checked><span>Checkbox label</span></label>"
+    },
+    {
+      "id": "copy-field",
+      "title": "Copy field",
+      "category": "forms",
+      "classes": [
+        ".copy-field"
+      ],
+      "blocks": [
+        "copy-field"
+      ],
+      "purpose": "Read-only value with a copy button: API keys, shortcodes, webhook URLs. Input and button fuse into one control.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            "input.field__input.copy-field__input[readonly] + button.button.copy-field__button"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Value renders monospace; the input is always readonly.",
+            "The copy action itself is host-page JS; on success show a .toast or swap the button label.",
+            "For license keys use .license — it owns masking and validation states."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Copy-Field"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"copy-field\">\n  <input class=\"field__input copy-field__input\" type=\"text\" readonly value=\"[example_shortcode id=&quot;1&quot;]\">\n  <button class=\"copy-field__button button\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-copy\"/></svg>Copy</button>\n</div>"
+    },
+    {
+      "id": "upload",
+      "title": "Upload",
+      "category": "forms",
+      "classes": [
+        ".upload"
+      ],
+      "blocks": [
+        "upload"
+      ],
+      "purpose": "File input. Default: native input with a styled choose button, composed with a .button for the submit action (the WP install/import row). Dropzone variant for drag-and-drop.",
+      "api": [
+        {
+          "label": "Anatomy (row)",
+          "items": [
+            ".upload > input.upload__input[type=file] + .button"
+          ]
+        },
+        {
+          "label": "Anatomy (dropzone)",
+          "items": [
+            "label.upload.upload--dropzone > hidden __input + __icon + __text + __hint"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            "--dropzone",
+            "--dragover (state, host JS toggles it)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "The native input does the work — selection display, keyboard, form posting. No JS required for either form.",
+            "Dropzone is a label wrapping a hidden input: click and keyboard come free; focus-within draws the ring. Drag-over = host JS toggling --dragover.",
+            "Row form pairs with an outline .button for the submit action; the button stays disabled until a file is chosen (host JS).",
+            "Reach for --dropzone only when drag-and-drop genuinely helps (bulk/media); install/import rows stay the default form.",
+            "Validation feedback → the .field error pattern or a .notice, never custom styling here."
+          ]
+        }
+      ],
+      "variants": [
+        "--dragover",
+        "--dropzone"
+      ],
+      "figma": {
+        "components": [
+          "Upload"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"upload\">\n  <input class=\"upload__input\" type=\"file\" aria-label=\"Choose file\">\n  <button class=\"button\">Secondary action</button>\n</div>"
+    },
+    {
+      "id": "tag-input",
+      "title": "Tag input",
+      "category": "forms",
+      "classes": [
+        ".tag-input",
+        ".tag",
+        ".tags"
+      ],
+      "blocks": [
+        "tag",
+        "tag-input",
+        "tags"
+      ],
+      "purpose": "Multi-value input: type to add tags; each chip removes with its x. Outside the input, a .tags row shows the same chips statically or as links.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".tag-input > .tag (label text + __remove) + __field; composes inside .field for label + hint. Display: .tags > .tag (span, or a when it navigates) — no remove button outside the input."
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Enter commits the typed value as a chip; Backspace on empty input removes the last chip (host page behavior).",
+            "__remove is a real button with aria-label=\"Remove tag\".",
+            "The wrapper carries the input border; the inner field is borderless. Focus ring via :focus-within.",
+            "Linked chips keep chip colors — hover strengthens the border, not the text; the shape is the affordance. No weighted \"clouds\": filtering a collection by tag with counts is .views."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Tag",
+          "Tag-Input",
+          "Tags"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"tag-input\">\n  <span class=\"tag\">Tag label<button class=\"tag__remove\" aria-label=\"Remove tag\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button></span>\n  <span class=\"tag\">Tag label<button class=\"tag__remove\" aria-label=\"Remove tag\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button></span>\n  <span class=\"tag\">Tag label<button class=\"tag__remove\" aria-label=\"Remove tag\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button></span>\n  <input class=\"tag-input__field\" id=\"sg-tags\" type=\"text\" placeholder=\"Add tag\">\n</div>"
+    },
+    {
+      "id": "repeater",
+      "title": "Repeater",
+      "category": "forms",
+      "classes": [
+        ".repeater"
+      ],
+      "blocks": [
+        "repeater"
+      ],
+      "purpose": "Sortable row group (ACF-style): each row has a drag handle, a content slot of fields, and a remove button, plus an add-row footer.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__row",
+            "__handle",
+            "__content (flex slot of fields)",
+            "__remove",
+            "__footer"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Markup-only: drag-to-reorder is host-page JS; the handle is the affordance.",
+            "Rows hold controls, not prose — for collapsible content rows use .panel instead."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Repeater"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"repeater\">\n  <div class=\"repeater__row\">\n    <button class=\"repeater__handle\" type=\"button\" aria-label=\"Reorder row\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-grip-vertical\"/></svg></button>\n    <div class=\"repeater__content\">\n      <input class=\"field__input\" type=\"text\" value=\"Row label\" aria-label=\"Row label\">\n      <select class=\"field__select\" aria-label=\"Row option\"><option>Option one</option><option>Option two</option></select>\n    </div>\n    <button class=\"repeater__remove\" type=\"button\" aria-label=\"Remove row\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n  </div>\n  <div class=\"repeater__row\">\n    <button class=\"repeater__handle\" type=\"button\" aria-label=\"Reorder row\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-grip-vertical\"/></svg></button>\n    <div class=\"repeater__content\">\n      <input class=\"field__input\" type=\"text\" value=\"Row label\" aria-label=\"Row label\">\n      <select class=\"field__select\" aria-label=\"Row option\"><option>Option one</option></select>\n    </div>\n    <button class=\"repeater__remove\" type=\"button\" aria-label=\"Remove row\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n  </div>\n  <div class=\"repeater__footer\">\n    <button class=\"button\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-plus\"/></svg>Add row</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "conditions",
+      "title": "Conditions",
+      "category": "forms",
+      "classes": [
+        ".conditions"
+      ],
+      "blocks": [
+        "conditions"
+      ],
+      "purpose": "Rule builder for conditional logic (\"show/run when …\"): subject · operator · value per row, composed from field controls. Rows AND within a group; groups OR between them.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__group (AND set, on the subtle bg)",
+            "__row (\"When\"/\"and\" __connector + subject/operator/value controls + __remove)",
+            "__or (centered label between groups)",
+            "__footer (add buttons)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Grammar is fixed: rows AND within a group, groups OR between them — never mixed operators inside one group.",
+            "Controls reuse field__select/field__input; the value control varies by subject (select, input, date) — swapping it is host-page JS, as are add/remove.",
+            "Row logic only — for reorderable content rows use .repeater; for filtering a list use .filter/.views."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Conditions"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"conditions\">\n  <div class=\"conditions__group\">\n    <div class=\"conditions__row\">\n      <span class=\"conditions__connector\">When</span>\n      <select class=\"field__select\" aria-label=\"Condition subject\"><option>Option one</option></select>\n      <select class=\"field__select\" aria-label=\"Condition operator\"><option>is equal to</option></select>\n      <select class=\"field__select\" aria-label=\"Condition value\"><option>Option one</option></select>\n      <button class=\"conditions__remove\" type=\"button\" aria-label=\"Remove condition\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n    </div>\n    <div class=\"conditions__row\">\n      <span class=\"conditions__connector\">and</span>\n      <select class=\"field__select\" aria-label=\"Condition subject\"><option>Option two</option></select>\n      <select class=\"field__select\" aria-label=\"Condition operator\"><option>is not</option></select>\n      <input class=\"field__input\" value=\"Value\" aria-label=\"Condition value\">\n      <button class=\"conditions__remove\" type=\"button\" aria-label=\"Remove condition\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n    </div>\n    <div class=\"conditions__footer\">\n      <button class=\"button button--small\" type=\"button\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-plus\"/></svg>Add condition</button>\n    </div>\n  </div>\n  <span class=\"conditions__or\">or</span>\n  <div class=\"conditions__group\">\n    <div class=\"conditions__row\">\n      <span class=\"conditions__connector\">When</span>\n      <select class=\"field__select\" aria-label=\"Condition subject\"><option>Option one</option></select>\n      <select class=\"field__select\" aria-label=\"Condition operator\"><option>is equal to</option></select>\n      <select class=\"field__select\" aria-label=\"Condition value\"><option>Option two</option></select>\n      <button class=\"conditions__remove\" type=\"button\" aria-label=\"Remove condition\"><svg class=\"icon\" aria-hidden=\"true\"><use href=\"#i-x\"/></svg></button>\n    </div>\n  </div>\n  <div class=\"conditions__footer\">\n    <button class=\"button button--small\" type=\"button\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-plus\"/></svg>Add \"or\" group</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "filter",
+      "title": "Filter",
+      "category": "forms",
+      "classes": [
+        ".filter"
+      ],
+      "blocks": [
+        "filter"
+      ],
+      "purpose": "Advanced filter dropdown. Default: single-select list. --multi: checkbox options with a search field. Advanced component — prefer plain selects for simple cases.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".filter > .button (trigger) + __panel > [__search] + __options > __option (+ __option-check) + [__footer]"
+          ]
+        },
+        {
+          "label": "Variants",
+          "items": [
+            "default (single-select, check marks current)",
+            "multi-select (checkbox options + __search + __footer with Clear/Apply)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Open/close is the host page's concern; trigger sets aria-expanded.",
+            "Single-select applies immediately; multi-select batches via the Apply button.",
+            "Show the search field only above ~7 options.",
+            "Options list scrolls past 240px."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Filter"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"filter\">\n  <button class=\"button\" aria-expanded=\"true\">Filter label<svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-chevron-down\"/></svg></button>\n  <div class=\"filter__panel\">\n    <div class=\"filter__options\" role=\"listbox\" aria-label=\"Filter options\">\n      <div class=\"filter__option filter__option--selected\" role=\"option\" aria-selected=\"true\" tabindex=\"0\">Option label<svg class=\"filter__option-check icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg></div>\n      <div class=\"filter__option\" role=\"option\" aria-selected=\"false\" tabindex=\"0\">Option label</div>\n      <div class=\"filter__option\" role=\"option\" aria-selected=\"false\" tabindex=\"0\">Option label</div>\n      <div class=\"filter__option\" role=\"option\" aria-selected=\"false\" tabindex=\"0\">Option label</div>\n    </div>\n  </div>\n</div>"
+    },
+    {
+      "id": "action-menu",
+      "title": "Action menu",
+      "category": "forms",
+      "classes": [
+        ".menu"
+      ],
+      "blocks": [
+        "menu"
+      ],
+      "purpose": "Anchored action menu (kebab, dots-vertical trigger): row and card actions that don’t fit inline. Panel shown statically here; open/close is the host page’s concern.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            "__panel (anchored dropdown)",
+            "__item (button or link)",
+            "__divider"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            "__panel--right (right-aligns to the trigger)",
+            "__item--danger"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Three or more actions, or any destructive one → menu; one or two safe actions stay inline as buttons/links.",
+            "--danger items sit last, behind a __divider, and still confirm via .modal.",
+            "For filtering a collection use .filter; the menu is for actions only."
+          ]
+        }
+      ],
+      "variants": [
+        "--danger",
+        "--right"
+      ],
+      "figma": {
+        "components": [
+          "Menu"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"menu\">\n  <button class=\"button button--small\" aria-haspopup=\"true\" aria-expanded=\"true\" aria-label=\"More actions\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-dots-vertical\"/></svg></button>\n  <div class=\"menu__panel\" role=\"menu\">\n    <button class=\"menu__item\" role=\"menuitem\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-pencil\"/></svg>Edit item</button>\n    <button class=\"menu__item\" role=\"menuitem\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-copy\"/></svg>Duplicate item</button>\n    <div class=\"menu__divider\" role=\"separator\"></div>\n    <button class=\"menu__item menu__item--danger\" role=\"menuitem\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-trash\"/></svg>Delete item</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "save-bar",
+      "title": "Save bar",
+      "category": "forms",
+      "classes": [
+        ".save-bar"
+      ],
+      "blocks": [
+        "save-bar"
+      ],
+      "purpose": "Full-width sticky bottom action bar for settings screens. Sticks to the viewport bottom while unsaved changes exist.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".save-bar > __message + __actions"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Place as a sibling after .plugin__body (last child of the plugin container) so it spans the full width; position: sticky; bottom: 0 keeps it visible while scrolling.",
+            "Show only while there are unsaved changes; saving fires a toast (\"Changes saved\").",
+            "One --primary button; secondary action is optional (e.g. \"Discard\")."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Save-Bar"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"save-bar\">\n  <span class=\"save-bar__message\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-alert-circle\"/></svg>Unsaved changes message goes here.</span>\n  <div class=\"save-bar__actions\">\n    <button class=\"button\">Secondary action</button>\n    <button class=\"button button--primary\">Save changes</button>\n  </div>\n</div>"
+    },
+    {
+      "id": "tabs",
+      "title": "Tabs",
+      "category": "navigation",
+      "classes": [
+        ".tabs"
+      ],
+      "blocks": [
+        "tabs"
+      ],
+      "purpose": "Horizontal section navigation. Chrome placement (below the plugin topbar) or card placement (sub-navigation inside a flush card).",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            ".tabs__tab"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            ".tabs__tab--current (pair with aria-current=\"page\")",
+            ".tabs--card (sub-navigation inside a .card--flush, below the card header; smaller type, underline hugs the label)",
+            ".tabs--boxed (same sub-navigation rung as --card, folder tabs that fuse into the panel below — stronger current-page anchor for dense screens)",
+            ".tabs--vertical (same rung, rail layout for a .columns two-column screen; current state is an accent-fill, not an underline)",
+            ".tabs--segmented (inline button-group control for a small 2-4 equally-weighted toggle, not a section list — the one variant that doesn't require a breadcrumb; square radius matches .button, not a pill shape)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "At most one chrome .tabs strip per screen: it's the primary nav for a single menu-item plugin, or a page's section nav under the header when the sidebar submenu is primary (the WP settings-tabs pattern). Never two competing strips.",
+            "--card/--boxed/--vertical are page-level sub-navigation only; never use them in parallel with a chrome .tabs strip on the same screen, and never use two of them together.",
+            "In card placement the tab panel content goes in .card__body, directly after the tabs row.",
+            "--segmented is for interchangeable views of the same thing (Visual/Code, Day/Week/Month) — if the options are a section list instead, use --card/--boxed/--vertical or .subnav.",
+            "Composition: see the strip working as primary nav, and stacked with subnav and drill-in, in navigation patterns."
+          ]
+        }
+      ],
+      "variants": [
+        "--boxed",
+        "--card",
+        "--current",
+        "--flush",
+        "--segmented",
+        "--vertical"
+      ],
+      "figma": {
+        "components": [
+          "Tabs"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<nav class=\"tabs\" aria-label=\"Demo tabs\">\n  <a class=\"tabs__tab tabs__tab--current\" href=\"#\" aria-current=\"page\">Tab label</a>\n  <a class=\"tabs__tab\" href=\"#\">Tab label</a>\n  <a class=\"tabs__tab\" href=\"#\">Tab label</a>\n</nav>"
+    },
+    {
+      "id": "subnav",
+      "title": "Subnav",
+      "category": "navigation",
+      "classes": [
+        ".subnav",
+        ".subnav--links",
+        ".subnav--tabs"
+      ],
+      "blocks": [
+        "subnav"
+      ],
+      "purpose": "Secondary navigation strip directly under whichever primary nav is in use — chrome tabs, or directly under .page-header when the sidebar submenu is primary: pages of a section (navigation level 2). Two variants — pick one.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            "nav.subnav.subnav--links|--tabs > __link — no pipes, no counts (those are the .views signature)"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            ".subnav--links (spaced text links; --current is bold, text-primary)",
+            ".subnav--tabs (block tabs filling the row; --current takes the canvas/body bg and drops the bar border to blend into the content below)",
+            ".subnav__link--current (pair with aria-current=\"page\")"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Navigation ladder: primary = sidebar submenu OR (single menu-item) a top-level chrome .tabs strip · secondary (max one) = chrome .tabs under the header (WP settings-tabs) OR .subnav OR the .tabs--card/--boxed/--vertical drill-in patterns · .views = filtering, not a nav level.",
+            "Default home: directly under the titled .page-header (full-bleed, outside any card) — never directly under another nav strip. A strip needs a title above it (the labeled-parent rule, heuristics §2b).",
+            "--links is the quiet default under a header. --tabs exists for one composition only — the bare direct stack fused under the chrome .tabs strip, which agents build on explicit user request only (heads-up about the anchoring cost, then comply). On the canvas under a header, the stronger-anchor option is .tabs--boxed, not --tabs.",
+            "Composition: the \"tabs + subnav\" and \"submenu + page tabs\" layouts are worked out in navigation patterns."
+          ]
+        }
+      ],
+      "variants": [
+        "--current",
+        "--links",
+        "--tabs"
+      ],
+      "figma": {
+        "components": [
+          "Subnav"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<nav class=\"subnav subnav--links\" aria-label=\"Demo section pages, links variant\">\n  <a class=\"subnav__link subnav__link--current\" href=\"#\" aria-current=\"page\">Subnav label</a>\n  <a class=\"subnav__link\" href=\"#\">Subnav label</a>\n  <a class=\"subnav__link\" href=\"#\">Subnav label</a>\n</nav>"
+    },
+    {
+      "id": "section-index",
+      "title": "Section index",
+      "category": "navigation",
+      "classes": [
+        ".section-index"
+      ],
+      "blocks": [
+        "section-index"
+      ],
+      "purpose": "In-page table of contents for long settings pages (~2+ viewport heights): anchor links to the page's sections. Pure anchors + CSS — no JS. Not a nav level; it points inside the current page.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            "nav.section-index > __title + __list > li > __link — always an aria-labeled nav"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            ".section-index__link--current (pair with aria-current=\"true\"; dark bold — \"colored = clickable, dark = you are here\")",
+            ".section-index--sticky (pins inside a .columns__aside rail)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Optional, for pages exceeding ~2 viewport heights — shorter pages don't need one.",
+            "Static by default. --sticky only inside a .columns aside rail; the kit sets root scroll-padding-top so anchor jumps don't hide section titles, and links keep the visible keyboard focus.",
+            "Not a nav level: it coexists with any primary/secondary nav (like .views, it's orthogonal to the ladder).",
+            "Composition frame: navigation patterns."
+          ]
+        }
+      ],
+      "variants": [
+        "--current",
+        "--sticky"
+      ],
+      "figma": {
+        "components": [
+          "Section-Index"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<nav class=\"section-index\" aria-label=\"On this page\">\n  <p class=\"section-index__title\">On this page</p>\n  <ul class=\"section-index__list\">\n    <li><a class=\"section-index__link section-index__link--current\" href=\"#\" aria-current=\"true\">Section label</a></li>\n    <li><a class=\"section-index__link\" href=\"#\">Section label</a></li>\n    <li><a class=\"section-index__link\" href=\"#\">Section label</a></li>\n    <li><a class=\"section-index__link\" href=\"#\">Section label</a></li>\n  </ul>\n</nav>"
+    },
+    {
+      "id": "page-header",
+      "title": "Page header",
+      "category": "navigation",
+      "classes": [
+        ".page-header"
+      ],
+      "blocks": [
+        "page-header"
+      ],
+      "purpose": "Title + lead at the top of every plugin screen. Exactly one per page.",
+      "api": [
+        {
+          "label": "Elements",
+          "items": [
+            ".page-header__title",
+            ".page-header__lead",
+            "drill-in: __breadcrumb (__back icon button + crumb links + __crumb-sep)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Breadcrumb row is for drill-in subpages only; the current page is plain text, parents are links.",
+            "Still exactly one .page-header per screen — on tabbed subpages it lives inside the .card--flush header.",
+            "Composition: the breadcrumb's role in the \"depth via drill-in\" flow is shown in navigation patterns."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Page-Header"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<header class=\"page-header\">\n  <div class=\"page-header__breadcrumb\">\n    <button class=\"page-header__back\" type=\"button\" aria-label=\"Back\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-chevron-left\"/></svg></button>\n    <a href=\"#\">Parent page title</a>\n    <span class=\"page-header__crumb-sep\" aria-hidden=\"true\">\\</span>\n    <span>Page title</span>\n  </div>\n  <h2 class=\"page-header__title\">Page title</h2>\n  <p class=\"page-header__lead\">Page lead paragraph. One or two sentences describing what this screen does. <a href=\"#\">Learn more</a></p>\n</header>"
+    },
+    {
+      "id": "views",
+      "title": "Views",
+      "category": "navigation",
+      "classes": [
+        ".views"
+      ],
+      "blocks": [
+        "views"
+      ],
+      "purpose": "Text-link filter row over a collection (wp-admin \"subsubsub\"): switches subsets of the same list, with counts.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            "ul.views > __item > __view (+ __count) — pipe separators are CSS-generated between items"
+          ]
+        },
+        {
+          "label": "Modifiers",
+          "items": [
+            ".views__view--current (bold, text-primary; pair with aria-current=\"true\")"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Filtering, not navigation: views switch subsets of the same collection. Different content → .tabs.",
+            "Place directly above the list-table, inside the .card--flush after the card header.",
+            "Counts are optional but recommended; they stay regular weight inside the bold current view."
+          ]
+        }
+      ],
+      "variants": [
+        "--current"
+      ],
+      "figma": {
+        "components": [
+          "Views"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<ul class=\"views\" aria-label=\"Filter views\">\n  <li class=\"views__item\"><a class=\"views__view views__view--current\" href=\"#\" aria-current=\"true\">View label <span class=\"views__count\">(12)</span></a></li>\n  <li class=\"views__item\"><a class=\"views__view\" href=\"#\">View label <span class=\"views__count\">(8)</span></a></li>\n  <li class=\"views__item\"><a class=\"views__view\" href=\"#\">View label <span class=\"views__count\">(3)</span></a></li>\n  <li class=\"views__item\"><a class=\"views__view\" href=\"#\">View label <span class=\"views__count\">(1)</span></a></li>\n</ul>"
+    },
+    {
+      "id": "pagination",
+      "title": "Pagination",
+      "category": "navigation",
+      "classes": [
+        ".pagination"
+      ],
+      "blocks": [
+        "pagination"
+      ],
+      "purpose": "Standalone pager for card grids and log views. Inside .list-table the same anatomy stays embedded in the toolbar.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            "prev/next .button --small icon buttons",
+            "__label (“1 of 5”)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Disable, don’t hide, the edge buttons on first/last page.",
+            "No page-number lists — prev/next + position is the wp-admin grammar."
+          ]
+        }
+      ],
+      "variants": [],
+      "figma": {
+        "components": [
+          "Pagination"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<nav class=\"pagination\" aria-label=\"Pagination\">\n  <button class=\"button button--small\" disabled aria-label=\"Previous page\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-chevron-left\"/></svg></button>\n  <span class=\"pagination__label\">1 of 5</span>\n  <button class=\"button button--small\" aria-label=\"Next page\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-chevron-right\"/></svg></button>\n</nav>"
+    },
+    {
+      "id": "stepper",
+      "title": "Stepper",
+      "category": "navigation",
+      "classes": [
+        ".stepper"
+      ],
+      "blocks": [
+        "stepper"
+      ],
+      "purpose": "Onboarding / wizard progress. Default: numbered steps with connectors. --bar: compact progress bar with step count.",
+      "api": [
+        {
+          "label": "Anatomy",
+          "items": [
+            ".stepper > __step (__marker + label text)",
+            "bar variant: .stepper--bar > __meta (__meta-label) + __bar > __bar-fill"
+          ]
+        },
+        {
+          "label": "Step variants",
+          "items": [
+            "default (upcoming)",
+            "--current (pair with aria-current=\"step\")",
+            "--complete (marker shows Tabler check)"
+          ]
+        },
+        {
+          "label": "Rules",
+          "items": [
+            "Use the numbered variant for 3–5 step wizards; the bar variant when space is tight or steps are many.",
+            "Bar fill width is set by the host page as a custom property (style=\"--fill: 50%\"), never a raw inline width.",
+            "Completed markers use the accent fill; only one --current step at a time."
+          ]
+        }
+      ],
+      "variants": [
+        "--complete",
+        "--current"
+      ],
+      "figma": {
+        "components": [
+          "Stepper"
+        ],
+        "note": "block→component; modifier→variant; tokens map 1:1 to CSS custom properties"
+      },
+      "snippet": "<div class=\"stepper\">\n  <div class=\"stepper__step stepper__step--complete\">\n    <span class=\"stepper__marker\"><svg class=\"icon icon--sm\" aria-hidden=\"true\"><use href=\"#i-check\"/></svg></span>\n    Step label\n  </div>\n  <div class=\"stepper__step stepper__step--current\" aria-current=\"step\">\n    <span class=\"stepper__marker\">2</span>\n    Step label\n  </div>\n  <div class=\"stepper__step\">\n    <span class=\"stepper__marker\">3</span>\n    Step label\n  </div>\n  <div class=\"stepper__step\">\n    <span class=\"stepper__marker\">4</span>\n    Step label\n  </div>\n</div>"
+    }
+  ]
+}

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIOS — Documentation</title>
+<style>
+/* ============================================================
+   BIOS docs — standalone mini design system (NOT kit tokens;
+   the kit is the subject, the docs chrome stays neutral).
+   Surface: 4 text styles · 6 semantic colors · dark mode via
+   [data-theme="dark"] with prefers-color-scheme as the default.
+   ============================================================ */
+:root {
+  /* color */
+  --d-bg:      #ffffff;
+  --d-surface: #f6f7f7;
+  --d-text:    #1d2327;
+  --d-muted:   #646970;
+  --d-border:  #dcdcde;
+  --d-accent:  #2271b1;
+  /* type (the four styles) */
+  --d-font: -apple-system, "system-ui", "Segoe UI", Roboto, Oxygen-Sans,
+            Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  --d-mono: Consolas, Monaco, monospace;
+  --d-title:   21px;  /* article title */
+  --d-heading: 15px;  /* block heading inside an article */
+  --d-body:    14px;  /* body + nav */
+  --d-code:    12.5px;
+}
+[data-theme="dark"] {
+  --d-bg:      #1d2327;
+  --d-surface: #2c3338;
+  --d-text:    #f0f0f1;
+  --d-muted:   #a7aaad;
+  --d-border:  #3c434a;
+  --d-accent:  #72aee6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --d-bg: #1d2327; --d-surface: #2c3338; --d-text: #f0f0f1;
+    --d-muted: #a7aaad; --d-border: #3c434a; --d-accent: #72aee6;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: var(--d-font);
+  font-size: var(--d-body);
+  line-height: 1.6;
+  color: var(--d-text);
+  background: var(--d-bg);
+}
+a { color: var(--d-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---- frame: header / sidebar / content ---- */
+.doc-header {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; gap: 12px;
+  height: 48px; padding: 0 20px;
+  background: var(--d-bg);
+  border-bottom: 1px solid var(--d-border);
+}
+.doc-header__brand { font-weight: 600; }
+.doc-header__version { color: var(--d-muted); font-size: var(--d-code); }
+.doc-header__spacer { flex: 1; }
+.doc-header__toggle {
+  font: inherit; font-size: var(--d-code);
+  color: var(--d-muted); background: none;
+  border: 1px solid var(--d-border); border-radius: 4px;
+  padding: 4px 10px; cursor: pointer;
+}
+.doc-header__toggle:hover { color: var(--d-text); }
+
+.doc-layout {
+  display: grid;
+  grid-template-columns: 232px minmax(0, 1fr);
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* ---- nav (the architecture) ---- */
+.doc-nav {
+  position: sticky; top: 48px;
+  height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 20px 16px 40px 20px;
+  border-right: 1px solid var(--d-border);
+}
+.doc-nav__group {
+  margin: 0 0 6px;
+  padding-top: 14px;
+  font-size: var(--d-code);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--d-muted);
+}
+.doc-nav__group:first-child { padding-top: 0; }
+.doc-nav a {
+  display: block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: var(--d-text);
+}
+.doc-nav a:hover { background: var(--d-surface); text-decoration: none; }
+.doc-nav a.is-stub { color: var(--d-muted); }
+
+/* ---- content / article template ---- */
+.doc-main { padding: 28px 20px 80px 32px; max-width: 760px; }
+
+.doc-article { padding: 0 0 36px; margin: 0 0 36px; border-bottom: 1px solid var(--d-border); }
+.doc-article:last-child { border-bottom: 0; }
+
+.doc-article h1 {
+  font-size: var(--d-title);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 4px;
+}
+.doc-article .doc-purpose { margin: 0 0 16px; color: var(--d-muted); }
+
+.doc-article h2 {
+  font-size: var(--d-heading);
+  font-weight: 600;
+  margin: 20px 0 6px;
+}
+.doc-article p, .doc-article ul, .doc-article ol { margin: 0 0 10px; }
+.doc-article ul, .doc-article ol { padding-left: 20px; }
+.doc-article li { margin-bottom: 2px; }
+
+code {
+  font-family: var(--d-mono);
+  font-size: var(--d-code);
+  background: var(--d-surface);
+  border: 1px solid var(--d-border);
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+pre {
+  margin: 0 0 10px;
+  padding: 12px 14px;
+  background: var(--d-surface);
+  border: 1px solid var(--d-border);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+pre code { background: none; border: 0; padding: 0; display: block; line-height: 1.55; }
+
+table { border-collapse: collapse; width: 100%; margin: 0 0 10px; font-size: var(--d-body); }
+th, td { text-align: left; padding: 5px 10px; border: 1px solid var(--d-border); }
+th { background: var(--d-surface); font-weight: 600; }
+
+.doc-note {
+  padding: 8px 12px;
+  border-left: 3px solid var(--d-accent);
+  background: var(--d-surface);
+  border-radius: 0 6px 6px 0;
+  margin: 0 0 10px;
+}
+.doc-stub { color: var(--d-muted); font-style: italic; }
+
+@media (max-width: 860px) {
+  .doc-layout { grid-template-columns: 1fr; }
+  .doc-nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--d-border); }
+}
+</style>
+</head>
+<body>
+
+<header class="doc-header">
+  <span class="doc-header__brand">BIOS</span>
+  <span class="doc-header__version">docs · 0.9.0</span>
+  <span class="doc-header__spacer"></span>
+  <button class="doc-header__toggle" data-theme-toggle type="button">Theme</button>
+</header>
+
+<div class="doc-layout">
+
+<!-- ================= NAV = the docs architecture ================= -->
+<nav class="doc-nav" aria-label="Documentation">
+  <p class="doc-nav__group">Start here</p>
+  <a href="#what-is-bios">What BIOS is</a>
+  <a href="#quick-start">Quick start</a>
+  <a href="#build-a-screen">Build a screen</a>
+  <a href="#mental-model">How it works</a>
+  <a href="#validator">What the validator checks</a>
+
+  <p class="doc-nav__group">Setup</p>
+  <a href="#files">Files</a>
+  <a href="#wp-admin">Inside wp-admin</a>
+
+  <p class="doc-nav__group">Foundations</p>
+  <a href="#customize">Customize</a>
+  <a href="#tokens">Tokens &amp; knobs</a>
+  <a href="#color">Color &amp; accent</a>
+  <a href="#typography">Typography</a>
+  <a href="#spacing">Spacing, density &amp; shape</a>
+  <a href="#dark-mode">Dark mode</a>
+  <a href="#icons">Icons</a>
+
+  <p class="doc-nav__group">Components</p>
+  <!-- The styleguide pages ARE the component reference (live demo +
+       spec block per component). Groups mirror them 1:1. -->
+  <a href="#components">Component reference</a>
+  <a href="../examples/styleguide-navigation.html">Navigation</a>
+  <a href="../examples/styleguide-forms.html">Forms &amp; actions</a>
+  <a href="../examples/styleguide-containers.html">Containers &amp; chrome</a>
+  <a href="../examples/styleguide-data.html">Data</a>
+  <a href="../examples/styleguide-feedback.html">Feedback</a>
+  <a href="../examples/styleguide-addons-ai.html">Add-ons &amp; AI</a>
+
+  <p class="doc-nav__group">Patterns</p>
+  <a href="#screens">Reference screens</a>
+  <a href="#nav-ladder">Navigation ladder</a>
+  <a href="#domain-map">Domain → component map</a>
+  <a href="#states">Empty, loading, error</a>
+
+  <p class="doc-nav__group">For agents</p>
+  <a href="#agent-flow">Plan → confirm → build</a>
+  <a href="#extension">Extension protocol</a>
+</nav>
+
+<!-- ================= CONTENT ================= -->
+<main class="doc-main">
+
+  <!-- Register: terse, academic. One idea per sentence. Rules are cited
+       by number (R1–R9, docs/contract.md §2), never restated. -->
+
+  <article class="doc-article" id="what-is-bios">
+    <h1>What BIOS is</h1>
+    <p class="doc-purpose">A component system for WordPress plugin administration screens, written to be read and applied by people and by software agents.</p>
+    <ul>
+      <li>The system is one stylesheet, <code>tokens.css</code>: 49 components in six groups, and the tokens they consume. It is the owner’s file to edit.</li>
+      <li>Components are BEM class blocks. No JavaScript is required for rendering; interactive behavior is left to the host page (<code>examples/bios.js</code> covers the common cases).</li>
+      <li>Dimensions, colors, and type are taken from measurements of the WordPress administration interface (WP 7.0).</li>
+      <li>Configuration is done through a small set of custom properties (knobs). Component rules are not edited.</li>
+      <li>Two documents carry the rules: <code>docs/contract.md</code> (what the system is: tokens, inventory, the nine hard rules) and <code>docs/agent-heuristics.md</code> (how to choose between components).</li>
+    </ul>
+  </article>
+
+  <article class="doc-article" id="quick-start">
+    <h1>Quick start</h1>
+    <p class="doc-purpose">Open the examples, copy the closest screen, and edit markup first.</p>
+    <ol>
+      <li>Open <code>examples/styleguide.html</code>. Use it as the component index and visual reference.</li>
+      <li>Open <code>examples/example.html</code>. Try editing a setting, then save or discard it. The dashboard and list patterns are visual examples.</li>
+      <li>Copy <code>examples/example.html</code> to a new file in the same folder.</li>
+      <li>Remove sections you do not need, duplicate sections you do need, and replace the literal placeholder text.</li>
+      <li>Refresh the browser. The examples link <code>tokens.css</code> by relative path, so copied files should stay inside the package folder.</li>
+      <li>From the kit root, run <code>python3 validate.py examples/my-screen.html</code> when the screen looks finished. A browser renders a drifted screen at about 95% correct; the validator catches the rest.</li>
+    </ol>
+    <p>You do not need to understand every component before starting. Build from the closest example, then use the reference when a choice is unclear.</p>
+  </article>
+
+  <article class="doc-article" id="build-a-screen">
+    <h1>Build a screen</h1>
+    <p class="doc-purpose">Most plugin pages are a small number of repeated patterns, not custom layouts from scratch.</p>
+    <table>
+      <tr><th>Need</th><th>Start from</th><th>Use</th></tr>
+      <tr><td>Overview, status, first actions</td><td><code>examples/example.html</code></td><td>Status card, getting-started card, stats</td></tr>
+      <tr><td>Configuration</td><td><code>examples/example.html</code></td><td>Settings rows, fields, save action</td></tr>
+      <tr><td>Entries, logs, records</td><td><code>examples/example.html</code></td><td>Views row, list table, bulk actions</td></tr>
+      <tr><td>Wide table</td><td><code>examples/shell-fullwidth.html</code></td><td>Full-width body with list table</td></tr>
+      <tr><td>Main content with side widgets</td><td><code>examples/shell-sidebar.html</code></td><td>Columns, aside cards, drill-in header</td></tr>
+      <tr><td>First-run flow</td><td><code>examples/shell-onboarding.html</code></td><td>Centered panel, stepper, primary action</td></tr>
+      <tr><td>AI assistant, suggestions</td><td><code>examples/ai-components.html</code></td><td>Chat panel, inline suggestion, consent</td></tr>
+    </table>
+    <h2>Default workflow</h2>
+    <ol>
+      <li>Pick the closest reference page.</li>
+      <li>Compose with existing components before adding CSS. Copy their markup from the styleguide; do not reconstruct it from memory.</li>
+      <li>Use <code>.card</code> for surfaces and <code>.stack</code> for vertical rhythm.</li>
+      <li>When nothing fits, add a real component (see <a href="#extension">Extension protocol</a>).</li>
+      <li>Run <code>validate.py</code> on the file, then check it in a browser in light and dark.</li>
+    </ol>
+  </article>
+
+  <article class="doc-article" id="mental-model">
+    <h1>How it works</h1>
+    <p class="doc-purpose">The architecture in one sentence; the rules in this documentation follow from it.</p>
+    <div class="doc-note"><strong>Knobs set values → tokens name them → components consume them → screens compose them.</strong> Never let a layer reach around another.</div>
+    <h2>The layers</h2>
+    <table>
+      <tr><th>Layer</th><th>Definition</th><th>Modified when</th></tr>
+      <tr><td>Knobs</td><td><code>--accent</code>, <code>--space-unit</code>, <code>--radius</code>, widths, presets</td><td>Setting brand color, density, or shape</td></tr>
+      <tr><td>Tokens</td><td>Semantic roles (<code>--color-text-primary</code>, <code>--gap-content</code>)</td><td>Not modified; they resolve from knobs</td></tr>
+      <tr><td>Components</td><td>BEM blocks consuming semantic tokens only</td><td>Writing markup</td></tr>
+      <tr><td>Screens</td><td>Compositions of components, no page CSS</td><td>Building screens</td></tr>
+    </table>
+    <h2>Configuration</h2>
+    <pre><code>:root {
+  --accent: #7f54b3;        /* brand color; hover/soft derive */
+  --space-unit: 3px;        /* compact rhythm (default 4px) */
+  --radius: 0px;            /* square UI (default 4px) */
+}</code></pre>
+    <p>If no accent is set, the interface follows the administrator's wp-admin color scheme.</p>
+    <p>The block above configures the design pages. Inside wp-admin, the stylesheet is scoped to a plugin-specific wrapper class (see <code>docs/wp-admin.md</code>), and the same knobs are set on that wrapper instead — <code>:root</code> values do not reach the wrapper's scope there.</p>
+  </article>
+
+  <article class="doc-article" id="validator">
+    <h1>What the validator checks</h1>
+    <p class="doc-purpose">The hard rules are nine, stated once in <code>docs/contract.md</code> §2 (R1–R9). Six consequences of them are mechanical; <code>validate.py</code> checks those, reading <code>tokens.css</code> at run time.</p>
+    <table>
+      <tr><th>Check</th><th>Catches</th></tr>
+      <tr><td><code>undefined-token</code></td><td>A <code>var()</code> that names no token in <code>tokens.css</code>. A <code>var()</code> with a fallback passes: that marks a deliberate input such as <code>--fill</code>.</td></tr>
+      <tr><td><code>unknown-class</code></td><td>A class with no rule anywhere: invented BEM (<code>.card__meta</code>).</td></tr>
+      <tr><td><code>inline-style</code></td><td>An inline declaration that is not a custom property.</td></tr>
+      <tr><td><code>raw-literal</code></td><td><code>320px</code> or <code>#fff</code> in a declaration value.</td></tr>
+      <tr><td><code>primitive</code></td><td>A primitive token (<code>--gray-900</code>) in markup.</td></tr>
+      <tr><td><code>page-css</code></td><td>A <code>&lt;style&gt;</code> block with anything but a <code>:root</code> knob block.</td></tr>
+    </table>
+    <p>Two profiles. The guide pages (<code>styleguide*.html</code>, <code>navigation-patterns.html</code>) are scaffolding and run a relaxed set. Every other file is a screen and runs all six at zero tolerance; that is the profile your own files get.</p>
+    <p>The rules the validator cannot see are reviewed by eye: gap instead of margins (R2), one page header (R6), one primary action (R7), danger confirms through a modal (R8), labels are design and data is placeholder (R9).</p>
+    <pre><code>python3 validate.py my-screen.html      # exit code 1 on failure; fits CI
+python3 validate.py examples/*.html     # several files at once</code></pre>
+  </article>
+
+  <article class="doc-article" id="files">
+    <h1>Files</h1>
+    <p class="doc-purpose">The files below are included in BIOS.</p>
+    <table>
+      <tr><th>Path</th><th>Use</th></tr>
+      <tr><td><code>tokens.css</code></td><td>Design tokens and all component styles.</td></tr>
+      <tr><td><code>examples/styleguide.html</code></td><td>Component index, foundations, and live customizer.</td></tr>
+      <tr><td><code>examples/styleguide-*.html</code></td><td>The component specs, one page per group.</td></tr>
+      <tr><td><code>examples/example.html</code></td><td>Live settings demo and visual dashboard and list examples.</td></tr>
+      <tr><td><code>examples/shell-*.html</code></td><td>Layout variants: full-width, sidebar, onboarding.</td></tr>
+      <tr><td><code>examples/navigation-patterns.html</code></td><td>Navigation composition guide: the depth ladder and worked patterns.</td></tr>
+      <tr><td><code>examples/ai-components.html</code></td><td>Reference screen for the AI set.</td></tr>
+      <tr><td><code>examples/bios.js</code></td><td>Optional behavior helper: theme toggle, drawer and modal, view switch, copy, save bar; wired through <code>data-*</code> attributes.</td></tr>
+      <tr><td><code>validate.py</code></td><td>Screen check: <code>python3 validate.py my-screen.html</code>. Python 3, no dependencies.</td></tr>
+      <tr><td><code>components.json</code></td><td>The kit as data: every component with its classes and snippet, plus the token surface. For agents and tooling.</td></tr>
+      <tr><td><code>icons/</code></td><td>The Tabler icon files the kit uses, plus the wp-admin chrome glyphs.</td></tr>
+      <tr><td><code>docs/contract.md</code></td><td>The contract: hard rules R1–R9, token architecture, naming, component inventory, content rules, accessibility baseline.</td></tr>
+      <tr><td><code>docs/agent-heuristics.md</code></td><td>Decision rules for choosing components and patterns.</td></tr>
+      <tr><td><code>docs/customization-notes.md</code></td><td>The knob surface and the rationale behind it.</td></tr>
+      <tr><td><code>docs/wp-admin.md</code></td><td>Procedure for moving screens into real wp-admin.</td></tr>
+      <tr><td><code>.claude/skills/bios-setup/SKILL.md</code></td><td>The setup skill: plan → confirm → build for a whole plugin.</td></tr>
+      <tr><td><code>CLAUDE.md</code> / <code>AGENTS.md</code></td><td>Agent context, read automatically when the folder is opened in an agentic editor.</td></tr>
+      <tr><td><code>LICENSE</code> / <code>CHANGELOG.md</code></td><td>The BIOS license and release history.</td></tr>
+    </table>
+  </article>
+
+  <article class="doc-article" id="wp-admin">
+    <h1>Inside wp-admin</h1>
+    <p class="doc-purpose">Use the preview pages to design. Scope the kit before rendering it inside WordPress.</p>
+    <ol>
+      <li>Wrap your plugin markup in a plugin-specific class, such as <code>myplugin-admin</code>.</li>
+      <li>Remove the demo shell/admin chrome sections from your copy of the stylesheet.</li>
+      <li>Prefix selectors so rules apply only inside the wrapper.</li>
+      <li>Add the measured neutralizer before the scoped component rules.</li>
+      <li>Move knob overrides from <code>:root</code> to the wrapper class.</li>
+    </ol>
+    <p>The full procedure, including the neutralizer block, is in <code>docs/wp-admin.md</code>. It was validated against a real WordPress installation: 36 selector collisions before, zero after, in both directions.</p>
+  </article>
+
+  <article class="doc-article" id="customize">
+    <h1>Customize</h1>
+    <p class="doc-purpose">Start with the small knob surface: accent, density, radius, widths, and mode. Change five numbers, get a different product.</p>
+    <pre><code>:root {
+  --accent: #7f54b3;       /* brand color */
+  --accent-hover: #664491; /* hover color */
+  --accent-soft: rgb(127 84 179 / 10%); /* tinted surface */
+  --space-unit: 3px;   /* compact rhythm; default is 4px */
+  --radius: 0px;       /* square UI; default is 4px */
+}</code></pre>
+    <h2>Common changes</h2>
+    <table>
+      <tr><th>Change</th><th>Use</th></tr>
+      <tr><td>Brand color</td><td><code>--accent</code>, <code>--accent-hover</code>, <code>--accent-soft</code></td></tr>
+      <tr><td>Density</td><td><code>data-density="compact"</code> or <code>data-density="relaxed"</code></td></tr>
+      <tr><td>Roundness</td><td><code>--radius</code>, with optional per-part overrides</td></tr>
+      <tr><td>Page width</td><td><code>--width-content-max</code>, <code>--width-aside</code>, surface width knobs</td></tr>
+      <tr><td>Dark mode</td><td><code>data-theme="dark"</code></td></tr>
+      <tr><td>Match a wp-admin scheme in a preview</td><td><code>data-admin-scheme="ectoplasm"</code> (any of the eight core schemes)</td></tr>
+    </table>
+    <p>The styleguide customizer produces the <code>:root</code> block interactively. Beyond the knobs, <code>tokens.css</code> is ordinary CSS. Keep the two-tier structure when editing: primitives feed semantic roles; components consume semantic roles. That keeps the styleguide truthful and dark mode working.</p>
+  </article>
+
+  <article class="doc-article" id="tokens">
+    <h1>Tokens &amp; knobs</h1>
+    <p class="doc-purpose">Two tiers of custom properties and one branding knob. Components read the semantic tier only (R1); the tiers map 1:1 to design-tool variable collections.</p>
+    <h2>Tier 1 — primitives</h2>
+    <p>Raw values, never referenced by a component.</p>
+    <ul>
+      <li>Color ramps: <code>--gray-900…50</code>, <code>--white</code>, <code>--blue-700/600/400/300/50</code>, <code>--green-700/600/400/50</code>, <code>--yellow-600/50</code>, <code>--red-700/600/300/50</code>.</li>
+      <li>Type: <code>--font-size-11…23</code>, <code>--line-height-tight/base</code>, <code>--font-family</code>, <code>--font-mono</code>.</li>
+      <li>Space: <code>--space-unit</code> (4px) and its multiples <code>--space-4/8/12/16/24/40</code>.</li>
+      <li>Radius: <code>--radius-4/999</code>. Size: <code>--size-16/24/36/44/80/160/180</code>.</li>
+    </ul>
+    <h2>Tier 1b — the accent knob</h2>
+    <p><code>--accent</code>, <code>--accent-hover</code>, <code>--accent-soft</code>, one set per mode. Every accent-colored role routes through them. See <a href="#color">Color &amp; accent</a>.</p>
+    <h2>Tier 2 — semantic roles</h2>
+    <p>The only tokens components use. Light and dark are two modes of this tier.</p>
+    <ul>
+      <li>Color: <code>--color-{category}-{role}</code> for text, bg, border, action, states, and focus.</li>
+      <li>Type: <code>--text-xs/sm/md/lg</code>, <code>--heading-sm/md/lg/xl</code>, <code>--leading-heading/body</code>.</li>
+      <li>Space: <code>--space-xs/sm/md/lg/xl</code>; rhythm: <code>--gap-tight/label/content/section</code>.</li>
+      <li>Radius: <code>--radius</code> (master), <code>--radius-control</code>, per-part <code>--radius-button/card/input</code>, <code>--radius-full</code>.</li>
+      <li>Size: <code>--size-control/step/icon-tile/icon-tile-lg</code>, <code>--width-input-narrow/sidebar/setting-label</code>; surface widths <code>--width-*</code>.</li>
+    </ul>
+    <h2>The knob surface</h2>
+    <table>
+      <tr><th>Knob</th><th>Default</th><th>Governs</th></tr>
+      <tr><td><code>--accent</code> / <code>--accent-hover</code> / <code>--accent-soft</code></td><td>wp-admin scheme → admin blue</td><td>actions, links, focus, soft fills</td></tr>
+      <tr><td><code>--space-unit</code></td><td>4px</td><td>every spacing step (×1 ×2 ×3 ×4 ×6 ×10)</td></tr>
+      <tr><td><code>--gap-tight</code> / <code>--gap-label</code> / <code>--gap-content</code> / <code>--gap-section</code></td><td>8 / 12 / 16 / 24</td><td>vertical rhythm roles</td></tr>
+      <tr><td><code>--radius</code></td><td>4px</td><td>container tier; 0 = square UI</td></tr>
+      <tr><td><code>--radius-control</code></td><td>half the master (2px)</td><td>buttons, inputs, checkbox, chips</td></tr>
+      <tr><td><code>--radius-button</code> / <code>--radius-card</code> / <code>--radius-input</code></td><td>derive</td><td>per-part overrides</td></tr>
+      <tr><td><code>--width-content-max</code> / <code>--width-aside</code></td><td>1100 / 300</td><td>plugin body; sidebar-widgets column</td></tr>
+      <tr><td><code>--width-onboarding</code> / <code>-drawer</code> / <code>-modal</code> / <code>-popup</code> / <code>-toast</code> / <code>-filter-menu</code></td><td>560 / 420 / 440 / 320 / 360 / 240</td><td>surface widths</td></tr>
+    </table>
+    <p>Presets need no CSS: <code>data-density="compact|relaxed"</code>, <code>data-admin-scheme="modern|light|blue|coffee|ectoplasm|midnight|ocean|sunrise"</code>, <code>data-theme="dark"</code>.</p>
+    <p>The same structure holds in a design tool, should you build one yourself: primitives as one collection with a single mode, semantic roles as one collection with Light and Dark modes, the accent trio as a rebindable variable set. Names are identical to the CSS custom properties.</p>
+  </article>
+
+  <article class="doc-article" id="color">
+    <h1>Color &amp; accent</h1>
+    <p class="doc-purpose">One input, the accent, and a stable vocabulary of roles that consume it.</p>
+    <h2>Resolution chain</h2>
+    <p>An explicit brand override → the administrator's wp-admin color scheme, read from WP core's own <code>--wp-admin-theme-color</code> → the native admin blue. An unbranded plugin sets nothing and matches the user's scheme automatically, Ectoplasm included. The <code>data-admin-scheme</code> presets replicate the eight core schemes for static previews.</p>
+    <h2>Why three values</h2>
+    <p>Hover and soft cannot be derived from one color in CSS without <code>color-mix()</code>, and explicit knobs are what design-tool variables mirror 1:1. Brand = set the three: hover is the brand at HSL lightness −10, soft is a 10% alpha tint. The setup skill computes both from one hex.</p>
+    <h2><code>--accent</code> versus <code>--color-action-*</code></h2>
+    <p><code>--accent*</code> is the input: where the color comes from. <code>--color-action-primary</code>, <code>--color-text-link</code>, <code>--color-focus</code> and their siblings are the consumption vocabulary: what the color is used for. Today the roles all alias the accent; the separation is load-bearing. You can override one role without touching a component ("brand the buttons, keep links blue" = override <code>--color-text-link</code> only), and the sourcing chain can change without a component edit.</p>
+    <h2>Role categories</h2>
+    <ul>
+      <li>text: primary, secondary, inverse, inverse-muted, on-accent, link, link-hover</li>
+      <li>bg: canvas, surface, subtle, inverse · border: default, strong</li>
+      <li>action: primary, primary-hover, soft · focus</li>
+      <li>states: success, success-text, success-soft, warning, warning-soft, danger, danger-hover, danger-soft</li>
+    </ul>
+    <p><code>--color-action-soft</code> is for tinted fills only (icon tiles, soft surfaces), never for text. Promotion uses the soft action color, never a state color.</p>
+    <h2>Contrast</h2>
+    <p>About 29 real text and UI pairs per mode are audited at the default accent: text at AA 4.5:1, UI boundaries at 3:1, translucent softs composited over their real backgrounds. Dark mode passes clean. One pinned wp-parity exception remains: WP's red on the gray-50 surface at 4.40. Muted scheme accents such as Coffee produce greyish tints; adequate for chrome matching, not for brand expression.</p>
+  </article>
+
+  <article class="doc-article" id="typography">
+    <h1>Typography</h1>
+    <p class="doc-purpose">The wp-admin system stack at wp-admin sizes, measured on WP 7.0, in eight roles.</p>
+    <p>Body font: the system stack (<code>-apple-system</code>, <code>system-ui</code>, Segoe UI, Roboto, …). Mono (<code>--font-mono</code>) for keys, shortcodes and code. Two leading roles: <code>--leading-heading</code> (tight) and <code>--leading-body</code> (base).</p>
+    <table>
+      <tr><th>Role</th><th>Size</th><th>Used for</th></tr>
+      <tr><td><code>--text-xs</code></td><td>11px</td><td>table column labels</td></tr>
+      <tr><td><code>--text-sm</code></td><td>12px</td><td>hints, meta, badges</td></tr>
+      <tr><td><code>--text-md</code></td><td>13px</td><td>base body, buttons, dialogs, menus</td></tr>
+      <tr><td><code>--text-lg</code></td><td>14px</td><td>content: labels, controls, cells, help, leads, tabs</td></tr>
+      <tr><td><code>--heading-sm</code></td><td>15px</td><td>card and section titles</td></tr>
+      <tr><td><code>--heading-md</code></td><td>16px</td><td>the plugin brand</td></tr>
+      <tr><td><code>--heading-lg</code></td><td>20px</td><td>large headings, stat values</td></tr>
+      <tr><td><code>--heading-xl</code></td><td>23px</td><td>the page title (WP's <code>.wrap h1</code>, measured)</td></tr>
+    </table>
+    <ul>
+      <li>The page title is the largest text on any screen; the plugin brand is <code>--heading-md</code> and never outweighs it.</li>
+      <li>Navigation labels (tabs, subnav, views, menu) are sentence case. List-table column headers keep the uppercase idiom; it is a separate register.</li>
+      <li>Type does not scale with density. Density tightens breathing room, not legibility.</li>
+    </ul>
+  </article>
+
+  <article class="doc-article" id="spacing">
+    <h1>Spacing, density &amp; shape</h1>
+    <p class="doc-purpose">One unit, linear multiples, four rhythm roles. Vertical space is flex + gap (R2).</p>
+    <h2>The engine</h2>
+    <p>Every spacing primitive is a multiple of <code>--space-unit</code>: ×1 ×2 ×3 ×4 ×6 ×10 gives 4 / 8 / 12 / 16 / 24 / 40. The roles alias them: <code>--space-xs</code> 4, <code>-sm</code> 8, <code>-md</code> 16, <code>-lg</code> 24, <code>-xl</code> 40. Multiples are linear, not a geometric ratio: a ratio produces off-grid fractions and cannot reproduce the 4px grid wp-admin sits on.</p>
+    <h2>Rhythm roles</h2>
+    <table>
+      <tr><th>Role</th><th>Default</th><th>Owns</th></tr>
+      <tr><td><code>--gap-tight</code></td><td>8</td><td>stacked controls, action clusters</td></tr>
+      <tr><td><code>--gap-label</code></td><td>12</td><td>a field label to its control(s)</td></tr>
+      <tr><td><code>--gap-content</code></td><td>16</td><td>blocks inside a card, drawer, or popup</td></tr>
+      <tr><td><code>--gap-section</code></td><td>24</td><td>page level: header, notices, cards</td></tr>
+    </table>
+    <p>Containers own their rhythm through these roles. The <code>.stack</code> utility is the generic stacking frame: default gap is <code>--gap-content</code>; <code>.stack--tight</code> and <code>.stack--loose</code> use the tight and section roles. A gap that "does not work" is usually a missing <code>.stack</code> on the intermediate element, not a missing margin.</p>
+    <h2>Density</h2>
+    <p><code>data-density="compact"</code> sets the unit to 3px (−25%); <code>"relaxed"</code> to 5px (+25%). Steps stay integers at all three presets. Type sizes and control hit areas (32px inputs, 16px checkboxes) do not scale. Breakpoints are constants (700px: settings rows stack; 960px: columns stack) because media queries cannot read custom properties.</p>
+    <h2>Shape</h2>
+    <p>Two radius tiers in the classic wp-admin register: containers a touch rounder (<code>--radius</code>, 4px: cards, panels, notices), controls crisp (<code>--radius-control</code>, half the master: buttons, inputs, checkbox, chips). One dial governs both, so <code>--radius: 0</code> squares the whole interface; <code>--radius-button</code>, <code>--radius-card</code> and <code>--radius-input</code> re-round one part. Pills (badges, toggle, tags, stepper markers) use <code>--radius-full</code> and do not follow the master: they are a shape, not a roundness level.</p>
+  </article>
+
+  <article class="doc-article" id="dark-mode">
+    <h1>Dark mode</h1>
+    <p class="doc-purpose"><code>data-theme="dark"</code> swaps the semantic color tier (R5). Nothing else changes.</p>
+    <ul>
+      <li>Set the attribute on <code>&lt;html&gt;</code> in the design pages; inside wp-admin, on the plugin wrapper (the scoping pass rewrites <code>[data-theme]</code> blocks to the wrapper).</li>
+      <li>Type, space, radius and size are mode-independent. No component carries dark-specific rules.</li>
+      <li>The accent brightens to the blue-300 grade with dark on-accent text; danger and success step up to text-grade primitives. Contrast is audited in both modes.</li>
+      <li>Three icons are CSS background images and cannot inherit <code>currentColor</code>: the select chevron, the checkbox check, the search icon. Their colors are pinned in utf8 SVG data URIs, with dark overrides for the chevron and the search icon. This is the only place a color bypasses the token cascade.</li>
+      <li>The wp-admin chrome (<code>.shell</code>, <code>.admin-menu</code>, <code>.admin-bar</code>) is fixed dark in both modes, as in WordPress.</li>
+      <li>A live switch: the <code>.plugin__theme-toggle</code> icon button, wired by <code>[data-theme-toggle]</code> in <code>bios.js</code>.</li>
+    </ul>
+  </article>
+
+  <article class="doc-article" id="icons">
+    <h1>Icons</h1>
+    <p class="doc-purpose">Tabler only (R4), delivered as an inline SVG sprite per page. Zero external requests, native <code>currentColor</code>.</p>
+    <pre><code>&lt;svg class="icon" aria-hidden="true"&gt;&lt;use href="#i-settings"/&gt;&lt;/svg&gt;</code></pre>
+    <ul>
+      <li>Each page carries a <code>&lt;svg data-bios-sprite&gt;</code> block with one <code>&lt;symbol id="i-{name}"&gt;</code> per icon it uses. The name in code is the Tabler name.</li>
+      <li>Sizes: <code>.icon</code> 18px, <code>.icon--sm</code> 14px, <code>.icon--lg</code> 22px. The spinner mirrors the same three sizes.</li>
+      <li>Icons are always <code>aria-hidden="true"</code>; the adjacent label carries the meaning. Icon-only controls get an <code>aria-label</code>.</li>
+      <li>To add an icon: take the file from <code>icons/</code> (or the <code>@tabler/icons</code> npm package, verbatim) and add its paths as a <code>&lt;symbol&gt;</code> to the page sprite, or inline the SVG with <code>class="icon"</code>. Never hand-author icon artwork; other sets tend to carry hardcoded fills that ignore state colors.</li>
+      <li>The three CSS background-image icons (select chevron, checkbox check, search) are the only icons outside the sprite.</li>
+      <li>The wp-admin chrome uses WP's own dashicons (<code>icons/wp-*.svg</code>, GPL); never in kit components. Licenses: <code>THIRD-PARTY-LICENSES.md</code>.</li>
+    </ul>
+  </article>
+
+  <article class="doc-article" id="components">
+    <h1>Component reference</h1>
+    <p class="doc-purpose">The styleguide pages are the component documentation: a live demo and a spec block per component, on six group pages. <code>components.json</code> carries the same content as data.</p>
+    <table>
+      <tr><th>Group</th><th>Components</th></tr>
+      <tr><td><a href="../examples/styleguide-navigation.html">Navigation</a></td><td>tabs · subnav · section-index · page-header · views · pagination · stepper</td></tr>
+      <tr><td><a href="../examples/styleguide-forms.html">Forms &amp; actions</a></td><td>button · field · setting row · selection controls (checkbox, radio, toggle) · copy-field · upload · tag-input · repeater · conditions · filter · action menu · save-bar</td></tr>
+      <tr><td><a href="../examples/styleguide-containers.html">Containers &amp; chrome</a></td><td>card · collapsible containers (card, panel) · stack · layout variations (full, columns, onboarding) · plugin header · admin-bar · admin-menu</td></tr>
+      <tr><td><a href="../examples/styleguide-data.html">Data</a></td><td>table · list-table · badge · stats · checklist · disclosure · code-block</td></tr>
+      <tr><td><a href="../examples/styleguide-feedback.html">Feedback</a></td><td>notice · empty-state · modal · toast · drawer · popup · tooltip · loading states (spinner, skeleton) · progress bar</td></tr>
+      <tr><td><a href="../examples/styleguide-addons-ai.html">Add-ons &amp; AI</a></td><td>add-ons · pricing · upsell · license · link-list · chat · ai-suggestion</td></tr>
+    </table>
+    <h2>Reading a spec block</h2>
+    <p>Every block has the same fields: the class names it covers, a purpose line, the anatomy (elements and their roles), modifiers, rules, accessibility, and the live demo with its markup. Copy the markup exactly; reconstructing a component's class structure from memory is where invented classes come from, and <code>validate.py</code> will flag them.</p>
+    <h2><code>components.json</code></h2>
+    <p>One entry per spec block: id, category, classes, the BEM blocks covered, purpose, the spec's API rows, variants, the design-tool mapping, and a canonical snippet. A <code>tokens</code> block lists the primitives by name (to recognize, not to use), the accent knob, and every semantic role with its light and dark value. Generated from the styleguide, so it never disagrees with it.</p>
+    <p>Full prose inventory by group, with the rules that belong to each block: <code>docs/contract.md</code> §5.</p>
+  </article>
+
+  <article class="doc-article" id="screens">
+    <h1>Reference screens</h1>
+    <p class="doc-purpose">Six reference patterns in five pages, plus two guides. Start every new screen from a copy of one of them, never from a blank file.</p>
+    <ul>
+      <li><code>example.html</code> — the working reference. Dashboard (status card, getting-started checklist, stats), settings (single flush card with section titles, settings rows, save-bar) and list (views row, list-table with bulk actions, filters, pagination) on one screen.</li>
+      <li><code>shell-fullwidth.html</code> — <code>.plugin__body--full</code>: no max-width, for wide tables.</li>
+      <li><code>shell-sidebar.html</code> — sidebar-driven navigation, <code>.columns</code> main + aside of widget cards, a drill-in card with breadcrumb and <code>.tabs--card</code>.</li>
+      <li><code>shell-onboarding.html</code> — no plugin chrome, a centered 560px panel with a stepper. Wizards carry no other navigation.</li>
+      <li><code>ai-components.html</code> — the AI set in context: chat panel, inline suggestion beside a field, generate triggers, usage and consent.</li>
+      <li><code>navigation-patterns.html</code> — the depth ladder and worked navigation patterns (guide page).</li>
+      <li><code>styleguide.html</code> and the six group pages — foundations, customizer, and every component spec (guide pages).</li>
+    </ul>
+    <p>The wp-admin chrome on these pages (admin bar, admin menu) is context, not design surface. Keep it complete; rename only the plugin's own menu item and submenu.</p>
+  </article>
+
+  <article class="doc-article" id="nav-ladder">
+    <h1>Navigation ladder</h1>
+    <p class="doc-purpose">One primary navigation per screen, at most one titled secondary level, and depth by composing screens rather than stacking bars. The rules were validated against IA literature and four mature design systems; the reasoning is in <code>docs/agent-heuristics.md</code> §2b.</p>
+    <table>
+      <tr><th>Level</th><th>Form</th><th>Note</th></tr>
+      <tr><td>1 · Primary</td><td>The sidebar submenu, or, for a single-menu-item plugin, a chrome <code>.tabs</code> strip under the topbar</td><td>One or the other is the plugin's main switch between screens. Never both.</td></tr>
+      <tr><td>2 · Secondary (optional, max one)</td><td><code>.subnav--links</code> · <code>.tabs--boxed</code> bare on the canvas · chrome <code>.tabs</code> under the page header · a titled <code>.card--flush</code> + <code>.tabs--card</code></td><td>Section navigation within the current page. Always directly under a titled parent. Pick one by visual weight.</td></tr>
+      <tr><td>Filtering</td><td><code>.views</code> (pipes + counts) above a list-table</td><td>Same collection, filtered subsets. Not a level; coexists with either.</td></tr>
+    </table>
+    <ul>
+      <li><strong>The labeled-parent test.</strong> Is there a title element directly between this strip and the level above it? Yes: legal nesting. No: the strip is misplaced; push a level to the sidebar submenu, move it into a drill-in card, or split the screen. A third row is never legal.</li>
+      <li><strong>One row.</strong> A tab strip fits one row without wrapping. When items would wrap, restructure; never add a "More" tab as the default fix.</li>
+      <li><strong>Breadcrumbs mark journey, not structure.</strong> A screen reached by drill-in (a list row, a link) carries a breadcrumb and a back link that preserves the list's filter and page. A screen selected from a visible parent strip does not.</li>
+      <li><strong>Register.</strong> Single-purpose configuration registers under Settings (or Tools); a new top-level admin-menu item is justified only for a genuinely multi-screen product.</li>
+    </ul>
+    <p>Worked frames for each pattern: <code>examples/navigation-patterns.html</code>.</p>
+  </article>
+
+  <article class="doc-article" id="domain-map">
+    <h1>Domain → component map</h1>
+    <p class="doc-purpose">Translate a plugin's features into UI directly; do not invent intermediate abstractions.</p>
+    <table>
+      <tr><th>The plugin has…</th><th>Build</th></tr>
+      <tr><td>A collection of things (logs, subscribers, orders)</td><td><code>.list-table</code> in a flush card; <code>.views</code> above it for subsets</td></tr>
+      <tr><td>A configuration group</td><td><code>.settings</code> rows; one screen or section per group</td></tr>
+      <tr><td>A thing with a status</td><td><code>.badge</code>, or list-table row variants</td></tr>
+      <tr><td>A long-running job (import, scan, sync)</td><td><code>.progress</code> while running, <code>.toast</code> on completion</td></tr>
+      <tr><td>A first-run flow</td><td>the onboarding shell + <code>.stepper</code></td></tr>
+      <tr><td>Numbers to monitor</td><td><code>.stats</code> grid in a dashboard card</td></tr>
+      <tr><td>A key or connection to an external service</td><td><code>.license</code> or <code>.copy-field</code>; consent through a <code>.notice</code></td></tr>
+      <tr><td>An AI feature</td><td><code>.ai-suggestion</code> beside its field; <code>.chat</code> only when conversation is the feature</td></tr>
+      <tr><td>A premium or locked feature</td><td><code>.badge--pro</code> on the label, the control <code>disabled</code>, one <code>.upsell</code> beside the group</td></tr>
+      <tr><td>A media, date, or color picker; a rich-text editor</td><td>WordPress core UI, called through its APIs; BIOS supplies only the trigger and the frame</td></tr>
+    </table>
+    <p>Every collection ships its empty state; every job ships its loading state. The full decision rules, including container, feedback, form and table choices: <code>docs/agent-heuristics.md</code>.</p>
+  </article>
+
+  <article class="doc-article" id="states">
+    <h1>Empty, loading, error</h1>
+    <p class="doc-purpose">States are part of the screen, not additions. Build them with the screen.</p>
+    <table>
+      <tr><th>Situation</th><th>Component</th></tr>
+      <tr><td>No data yet</td><td><code>.empty-state</code>, always offering the next action</td></tr>
+      <tr><td>An action being processed</td><td><code>.spinner</code> in the button; the trigger disabled</td></tr>
+      <tr><td>A region waiting for data</td><td><code>.skeleton</code> sketching its layout</td></tr>
+      <tr><td>A long operation with known progress</td><td><code>.progress</code>; unknown duration is a spinner, never an animated fake percentage</td></tr>
+      <tr><td>A field fails validation</td><td><code>.field--error</code> + <code>__message</code> (icon + text, replaces the hint); <code>aria-invalid</code> and <code>aria-describedby</code></td></tr>
+      <tr><td>A form-level result</td><td>a <code>.notice</code> above the cards; never repeating a per-field message</td></tr>
+      <tr><td>A persistent condition the user must know</td><td><code>.notice</code></td></tr>
+      <tr><td>The transient result of an action</td><td><code>.toast</code> (<code>role="status"</code>); the text mirrors the verb: "Save changes" → "Changes saved"</td></tr>
+      <tr><td>A destructive or irreversible action</td><td><code>.modal</code> confirmation (R8)</td></tr>
+    </table>
+  </article>
+
+  <article class="doc-article" id="agent-flow">
+    <h1>Plan → confirm → build</h1>
+    <p class="doc-purpose">Agent support starts after the human has a plugin goal, not after they read the whole manual.</p>
+    <p>Open the package folder in an agentic editor and describe the plugin. The folder carries the agent context (<code>CLAUDE.md</code> / <code>AGENTS.md</code>) and the <code>bios-setup</code> skill at <code>.claude/skills/bios-setup/SKILL.md</code>, which sequences the conversation in three beats. Claude Code loads the skill automatically; other agents can follow it as a procedure.</p>
+    <ol>
+      <li><strong>Plan out loud.</strong> The agent proposes a screen list, each screen mapped to a reference pattern, the navigation model, and the component list per screen, and states its assumptions for the setup answers instead of interrogating.</li>
+      <li><strong>Confirm.</strong> You approve the screen list and navigation, and any gap the kit does not cover (compose, extend, or out of scope). A sitemap is cheap to change; five built screens are not.</li>
+      <li><strong>Build screen by screen.</strong> One HTML file per screen, copied from its reference page. Labels come from your plugin's domain; data stays placeholder. Each screen is validated and checked in light and dark before the next.</li>
+    </ol>
+    <h2>The setup answers</h2>
+    <table>
+      <tr><th>Question</th><th>Default</th></tr>
+      <tr><td>Plugin name (topbar brand)</td><td>—</td></tr>
+      <tr><td>Accent</td><td>follow the wp-admin scheme; a brand hex only when you supply one</td></tr>
+      <tr><td>Screens</td><td>dashboard + settings</td></tr>
+      <tr><td>Navigation model and labels</td><td>per the ladder</td></tr>
+      <tr><td>Content width</td><td>1100px; full for list-heavy screens</td></tr>
+      <tr><td>Density and radius</td><td>4px unit, 4px radius</td></tr>
+      <tr><td>Card icons</td><td>on; all cards or none</td></tr>
+      <tr><td>Dark-mode toggle</td><td>yes</td></tr>
+      <tr><td>Modules: license · upsell/pro · AI</td><td>none</td></tr>
+    </table>
+    <p>Use <code>docs/agent-heuristics.md</code> when a component choice is unclear. The agent docs are decision support, not homework: a human can begin with the examples and open the heuristics only when a layout choice is unclear.</p>
+  </article>
+
+  <article class="doc-article" id="extension">
+    <h1>Extension protocol</h1>
+    <p class="doc-purpose">Custom UI is expected. BIOS is a baseline, not a ceiling; the custom piece should be indistinguishable from a kit component in code review.</p>
+    <ol>
+      <li>Compose first. Most "custom" needs are existing components in a new arrangement; cards, stacks and panels cover a lot.</li>
+      <li>Extend properly. Build the new piece as a real component in <code>tokens.css</code>: a BEM block in its own section, semantic tokens and knobs only, gap-based stacking, a focus-visible state. Dark mode then comes for free.</li>
+      <li>Never the shortcuts: inline styles, one-off CSS with raw values, primitives in markup, margins. That is the rot vector, not customization itself. R1–R3 apply to the new component as to the kit's own; <code>validate.py</code> enforces them.</li>
+      <li>If a custom piece will be reused across screens, treat it as part of your product's component layer; it may also belong upstream in BIOS.</li>
+    </ol>
+  </article>
+
+</main>
+</div>
+
+<script>
+  /* theme: manual toggle overrides the prefers-color-scheme default */
+  (function () {
+    var r = document.documentElement, k = 'bios-docs-theme';
+    var saved = localStorage.getItem(k);
+    if (saved) r.dataset.theme = saved;
+    document.querySelector('[data-theme-toggle]').addEventListener('click', function () {
+      var dark = (r.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')) === 'dark';
+      r.dataset.theme = dark ? 'light' : 'dark';
+      localStorage.setItem(k, r.dataset.theme);
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide — Feedback</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-alert-circle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-4v4m0 4h.01"/></symbol>
+<symbol id="i-alert-triangle" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m-1.637-9.409L2.257 17.125a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636-2.87L13.637 3.59a1.914 1.914 0 0 0-3.274 0M12 16h.01"/></symbol>
+<symbol id="i-circle-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0-18 0"/><path d="m9 12l2 2l4-4"/></g></symbol>
+<symbol id="i-help-circle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9 4v.01"/><path d="M12 13a2 2 0 0 0 .914-3.782a1.98 1.98 0 0 0-2.414.483"/></g></symbol>
+<symbol id="i-inbox" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M4 13h3l3 3h4l3-3h3"/></g></symbol>
+<symbol id="i-info-circle" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0m9-3h.01"/><path d="M11 12h1v4h1"/></g></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/></symbol>
+</svg>
+
+<div class="guide">
+
+  <h1 class="guide__title">Feedback</h1>
+  <p class="guide__intro">Messages and states: notices, dialogs, toasts, drawers, popups, tooltips, and loading. Tokens, knobs, and the component index live in the <a href="styleguide.html">style guide</a>.</p>
+
+  <section class="guide__section">
+    <h2 class="guide__section-title">Component specs</h2>
+
+    <!-- notice -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Notice</h3><div class="spec__badges"><code class="spec__name">.notice</code></div></div><p class="spec__purpose">Persistent inline message above the cards.</p></div>
+      <div class="spec__demo">
+        <div class="notice">Info notice text goes here.</div>
+        <div class="notice notice--warning">Warning notice text goes here.</div>
+        <div class="notice notice--danger">Danger notice text goes here.</div>
+        <div class="notice notice--success">Success notice text goes here.</div>
+      </div>
+      <dl class="spec__api">
+        <dt>Modifiers</dt><dd><code>--warning</code> · <code>--danger</code> · <code>--success</code></dd>
+      </dl>
+    </div>
+
+    <!-- empty state -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Empty state</h3><div class="spec__badges"><code class="spec__name">.empty-state</code></div></div><p class="spec__purpose">What a card shows when it has no data. Always offers the next action.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="empty-state">
+          <div class="empty-state__icon" aria-hidden="true"><svg class="icon icon--lg" aria-hidden="true"><use href="#i-inbox"/></svg></div>
+          <h3 class="empty-state__title">Empty state title</h3>
+          <p class="empty-state__description">Empty state description text goes here. Explain what belongs here and how to add the first item.</p>
+          <div class="empty-state__actions"><button class="button button--primary">Primary action</button></div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__icon</code> · <code>__title</code> · <code>__description</code> · <code>__actions</code></dd>
+      </dl>
+    </div>
+
+    <!-- modal -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Modal</h3><div class="spec__badges"><code class="spec__name">.modal</code></div></div><p class="spec__purpose">Confirmation dialog for destructive or irreversible actions. Static structure; show/hide is the host page's concern.</p></div>
+      <div class="spec__demo spec__demo--relative">
+        <div class="modal-overlay">
+          <div class="modal" role="dialog" aria-modal="true" aria-labelledby="sg-modal-title">
+            <div class="modal__header">
+              <h3 class="modal__title" id="sg-modal-title">Modal title</h3>
+              <button class="modal__close" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+            </div>
+            <div class="modal__body">Modal body text goes here. State the consequence plainly.</div>
+            <div class="modal__footer">
+              <button class="button">Secondary action</button>
+              <button class="button button--danger">Danger action</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.modal-overlay &gt; .modal &gt; __header (__title + __close) + __body + __footer</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Required before any <code>.button--danger</code> completes (delete, revoke, restore-overwrite).</li>
+            <li><code>role="dialog"</code>, <code>aria-modal="true"</code>, labelled by <code>__title</code>.</li>
+            <li>Max width 440px; the destructive button sits last.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- toast -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Toast</h3><div class="spec__badges"><code class="spec__name">.toast</code></div></div><p class="spec__purpose">Transient result feedback after an action. Stacks bottom-right via .toast-stack.</p></div>
+      <div class="spec__demo">
+        <div class="toast-stack">
+          <div class="toast toast--success" role="status">
+            <span class="toast__message">Success toast message goes here.</span>
+            <button class="toast__dismiss" aria-label="Dismiss"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="toast toast--danger" role="status">
+            <span class="toast__message">Danger toast message goes here.</span>
+            <button class="toast__dismiss" aria-label="Dismiss"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="toast" role="status">
+            <span class="toast__message">Info toast message goes here.</span>
+            <button class="toast__dismiss" aria-label="Dismiss"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Modifiers</dt><dd><code>--success</code> · <code>--warning</code> · <code>--danger</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Toast text mirrors the action verb: "Save changes" → "Changes saved".</li>
+            <li><code>role="status"</code> so screen readers announce it without interrupting.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- drawer -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Drawer</h3><div class="spec__badges"><code class="spec__name">.drawer</code></div></div><p class="spec__purpose">Side panel overlay for secondary detail or editing. Slides in from the right. Static structure; show/hide is the host page's concern.</p></div>
+      <div class="spec__demo spec__demo--relative spec__demo--h-xl">
+        <div class="drawer-overlay">
+          <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="sg-drawer-title">
+            <div class="drawer__header">
+              <h3 class="drawer__title" id="sg-drawer-title">Drawer title</h3>
+              <button class="drawer__close" aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+            </div>
+            <div class="drawer__body">
+              <div class="drawer__section">
+                <h4 class="drawer__section-title">Section label</h4>
+                <div class="field">
+                  <label class="field__label" for="sg-drawer-input">Field label</label>
+                  <input class="field__input" id="sg-drawer-input" type="text" value="Input value">
+                  <span class="field__hint">Field hint text goes here.</span>
+                </div>
+              </div>
+              <div class="drawer__section">
+                <h4 class="drawer__section-title">Section label</h4>
+                <p class="drawer__text">Drawer body text goes here. One or two sentences of supporting context.</p>
+              </div>
+            </div>
+            <div class="drawer__footer">
+              <button class="button">Secondary action</button>
+              <button class="button button--primary">Primary action</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.drawer-overlay &gt; .drawer &gt; __header (__title + __close) + __body (__section &gt; __section-title) + __footer</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Max width 420px, full height, anchored right; body scrolls, header and footer stay fixed.</li>
+            <li><code>role="dialog"</code>, <code>aria-modal="true"</code>, labelled by <code>__title</code> — same a11y contract as <code>.modal</code>.</li>
+            <li>Use for secondary detail/editing; confirmations of destructive actions stay in <code>.modal</code>.</li>
+            <li>One <code>--primary</code> button in the footer, maximum.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- popup -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Popup</h3><div class="spec__badges"><code class="spec__name">.popup</code></div></div><p class="spec__purpose">Small anchored dialog for notifications and inline confirmations. Lighter than .modal: no overlay; the host page positions it next to its trigger.</p></div>
+      <div class="spec__demo">
+        <div class="row" style="align-items: flex-start;">
+          <div class="popup" role="status">
+            <svg class="popup__icon icon" aria-hidden="true"><use href="#i-info-circle"/></svg>
+            <div class="popup__content">
+              <h4 class="popup__title">Popup title</h4>
+              <p class="popup__message">Popup message text goes here. One or two sentences.</p>
+            </div>
+            <button class="popup__dismiss" aria-label="Dismiss"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="popup popup--success" role="status">
+            <svg class="popup__icon icon" aria-hidden="true"><use href="#i-circle-check"/></svg>
+            <div class="popup__content">
+              <h4 class="popup__title">Popup title</h4>
+              <p class="popup__message">Success popup message text goes here.</p>
+            </div>
+            <button class="popup__dismiss" aria-label="Dismiss"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="popup popup--warning" role="status">
+            <svg class="popup__icon icon" aria-hidden="true"><use href="#i-alert-triangle"/></svg>
+            <div class="popup__content">
+              <h4 class="popup__title">Popup title</h4>
+              <p class="popup__message">Warning popup message text goes here.</p>
+            </div>
+            <button class="popup__dismiss" aria-label="Dismiss"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-x"/></svg></button>
+          </div>
+          <div class="popup popup--danger" role="alertdialog" aria-labelledby="sg-popup-confirm-title">
+            <svg class="popup__icon icon" aria-hidden="true"><use href="#i-alert-circle"/></svg>
+            <div class="popup__content">
+              <h4 class="popup__title" id="sg-popup-confirm-title">Popup title</h4>
+              <p class="popup__message">Confirmation popup message text goes here.</p>
+              <div class="popup__actions">
+                <button class="button button--small">Secondary action</button>
+                <button class="button button--small button--danger">Danger action</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.popup &gt; __icon + __content (__title + __message + __actions) + __dismiss</code></dd>
+        <dt>Modifiers</dt><dd><code>--success</code> · <code>--warning</code> · <code>--danger</code> (icon color only)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Notification popups: <code>role="status"</code> + <code>__dismiss</code>. Confirmation popups: <code>role="alertdialog"</code> + <code>__actions</code>, no dismiss.</li>
+            <li>Icon matches the state: <code>info-circle</code> · <code>circle-check</code> · <code>alert-triangle</code> · <code>alert-circle</code>.</li>
+            <li>Buttons in <code>__actions</code> use <code>--small</code>; destructive confirmations that need full attention use <code>.modal</code> instead.</li>
+            <li>Max width 320px; the host page positions it (this guide shows it in-flow).</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- tooltip -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Tooltip</h3><div class="spec__badges"><code class="spec__name">.tooltip</code></div></div><p class="spec__purpose">CSS-only label on hover/focus for icon buttons, truncated values, and “?” affordances. Text lives in the data-tip attribute.</p></div>
+      <div class="spec__demo spec__demo--card-bg spec__demo--pad-top">
+        <div class="row">
+          <button class="button tooltip" data-tip="Tooltip label">Top (default)</button>
+          <button class="button tooltip tooltip--bottom" data-tip="Tooltip label">Bottom</button>
+          <button class="button tooltip tooltip--right" data-tip="Tooltip label">Right</button>
+          <button class="button tooltip tooltip--left" data-tip="Tooltip label">Left</button>
+          <span class="tooltip" data-tip="Explains what this setting does." tabindex="0" style="display:inline-flex; color: var(--color-text-secondary);"><svg class="icon" aria-hidden="true"><use href="#i-help-circle"/></svg></span>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.tooltip[data-tip="…"]</code> on the trigger — the bubble is a <code>::after</code>, no extra markup.</dd>
+        <dt>Modifiers</dt><dd>top (default) · <code>--bottom</code> · <code>--right</code> · <code>--left</code></dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Short labels only (max-width 240px). Longer explanations belong in a <code>__hint</code> or a <code>.popup</code>.</li>
+            <li>Non-interactive triggers need <code>tabindex="0"</code> so keyboard users get the tip; icon-only triggers still need an <code>aria-label</code>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- spinner / skeleton -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Loading states</h3><div class="spec__badges"><code class="spec__name">.spinner</code><code class="spec__name">.skeleton</code></div></div><p class="spec__purpose">Loading states. Spinner = indeterminate action in progress; skeleton = content-shaped placeholder while data arrives.</p></div>
+      <div class="spec__demo spec__demo--card-bg stack">
+        <div class="row">
+          <span class="spinner spinner--sm" role="status" aria-label="Loading"></span>
+          <span class="spinner" role="status" aria-label="Loading"></span>
+          <span class="spinner spinner--lg" role="status" aria-label="Loading"></span>
+          <button class="button button--primary" disabled><span class="spinner spinner--sm" aria-hidden="true"></span>Saving changes</button>
+          <button class="button" disabled><span class="spinner spinner--sm" aria-hidden="true"></span>Loading items</button>
+        </div>
+        <div class="card__divider"></div>
+        <div class="skeleton demo-w-md" aria-hidden="true">
+          <div class="skeleton__line skeleton__line--third"></div>
+          <div class="skeleton__line"></div>
+          <div class="skeleton__line skeleton__line--half"></div>
+          <div class="skeleton__block"></div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Spinner</dt><dd>sizes mirror <code>.icon</code>: <code>--sm</code> 14 · default 18 · <code>--lg</code> 22 · arc = accent, or the button’s text color inside a <code>.button</code></dd>
+        <dt>Skeleton</dt><dd><code>__line</code> (+ <code>--half</code> / <code>--third</code>) · <code>__block</code> — stack them to sketch the loading layout</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Spinner for actions (a click is being processed, disable the trigger); skeleton for regions (a card/table body is loading).</li>
+            <li>Standalone spinners need <code>role="status"</code> + <code>aria-label</code>; skeletons are <code>aria-hidden</code>.</li>
+            <li>Both stop animating under <code>prefers-reduced-motion</code> (global rule).</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- progress -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Progress bar</h3><div class="spec__badges"><code class="spec__name">.progress</code></div></div><p class="spec__purpose">Determinate progress for imports, scans, and bulk operations. Distinct from .stepper --bar, which shows wizard position.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack demo-w-md">
+          <div class="progress">
+            <div class="progress__head"><span class="progress__label">Progress label</span><span class="progress__value">60%</span></div>
+            <div class="progress__track" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" aria-label="Progress label"><div class="progress__bar" style="--fill: 60%"></div></div>
+          </div>
+          <div class="progress progress--success">
+            <div class="progress__head"><span class="progress__label">Progress label</span><span class="progress__value">100%</span></div>
+            <div class="progress__track" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Progress label"><div class="progress__bar" style="--fill: 100%"></div></div>
+          </div>
+          <div class="progress progress--danger">
+            <div class="progress__head"><span class="progress__label">Progress label</span><span class="progress__value">45%</span></div>
+            <div class="progress__track" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" aria-label="Progress label"><div class="progress__bar" style="--fill: 45%"></div></div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>__head</code> (<code>__label</code> + <code>__value</code>) · <code>__track</code> · <code>__bar</code> (width = inline style)</dd>
+        <dt>Modifiers</dt><dd>accent (default) · <code>--success</code> (complete) · <code>--danger</code> (failed / aborted)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Bar width is state, not design — the host page sets it as a custom property (<code>style="--fill: 60%"</code>), never a raw inline <code>width</code> — and mirrors it in <code>aria-valuenow</code>.</li>
+            <li>Unknown duration → use a <code>.spinner</code> instead; never animate a fake percentage.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="guide.js"></script>
+</body>
+</html>

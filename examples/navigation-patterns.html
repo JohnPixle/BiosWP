@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation patterns</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="guide.css">
+<script src="guide.js" defer></script>
+<style>
+/* ---- Guide-only scaffolding (not part of the plugin UI) ---- */
+/* Page scaffolding beyond guide.css (bg/dot-grid/topnav come from there). */
+.navguide { max-width: 1000px; margin: 0 auto; padding: var(--space-xl) var(--space-lg); padding-top: calc(var(--jumpnav-h) + var(--space-xl)); }
+.navguide__title { font-size: 36px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; color: var(--color-text-heading); margin: 0 0 var(--space-sm); }
+.navguide__intro { color: var(--color-text-secondary); font-size: var(--text-lg); line-height: var(--leading-body); margin: 0 0 var(--space-lg); max-width: 80ch; }
+.navguide ol, .navguide ul { max-width: 80ch; }
+.navguide li + li { margin-top: var(--space-xs); }
+
+.ladder { background: var(--color-bg-surface); border: 1px solid var(--color-border-default); border-radius: var(--guide-card-radius); padding: var(--space-lg); margin: 0 0 calc(var(--space-xl) * 1.5); }
+.ladder h2 { font-size: var(--heading-md); font-weight: 700; color: var(--color-text-heading); margin: 0 0 var(--space-sm); }
+.ladder code { font-family: var(--font-mono); font-size: var(--text-sm); background: var(--color-bg-subtle); border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: 1px 5px; }
+
+.pattern { margin: 0 0 calc(var(--space-xl) * 1.5); }
+.pattern__head { display: flex; align-items: baseline; gap: var(--space-sm); flex-wrap: wrap; margin: 0 0 var(--space-xs); }
+.pattern__label { font-size: var(--heading-lg); font-weight: 700; color: var(--color-text-heading); margin: 0; }
+.pattern__tag { font-size: var(--text-sm); font-weight: 600; font-family: var(--font-mono); color: var(--color-text-secondary); background: var(--color-bg-subtle); border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: 2px 8px; }
+.pattern__note { color: var(--color-text-secondary); font-size: var(--text-md); line-height: var(--leading-body); margin: 0 0 var(--space-md); max-width: 80ch; }
+.pattern__note code { font-family: var(--font-mono); font-size: 0.92em; }
+
+.pattern__frame { border: 1px solid var(--color-border-default); border-radius: var(--guide-card-radius); overflow: hidden; background: var(--color-bg-canvas); }
+.pattern__split { display: flex; align-items: stretch; }
+.pattern__frame .admin-menu { width: 200px; flex-shrink: 0; }
+.pattern__content { flex: 1; min-width: 0; }
+.pattern__pad { padding: var(--space-lg); }
+.pattern__pad--tight { padding: var(--space-md) var(--space-lg); }
+.pattern__pad--header { padding: var(--space-lg) var(--space-lg) var(--space-md); }
+.pattern__stub-block { margin: 0 0 var(--space-lg); }
+.pattern__stub-heading { font-size: var(--heading-md); font-weight: 600; color: var(--color-text-heading); margin: 0 0 var(--space-sm); }
+
+/* Inset note showing a literal value (a URL, a href) inside a pattern demo. */
+.well { display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--space-xs) var(--space-sm); background: var(--color-bg-subtle); border: 1px solid var(--color-border-default); border-radius: var(--radius-sm); padding: var(--space-sm) var(--space-md); }
+.well__label { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-secondary); }
+.well code { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-primary); word-break: break-all; }
+</style>
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-chevron-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l-6 6l6 6"/></symbol>
+<symbol id="i-layout-dashboard" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1m0 12h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1m10-4h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1m0-8h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1"/></symbol>
+<symbol id="i-list-details" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5h8m-8 4h5m-5 6h8m-8 4h5M3 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1zm0 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0-2 0m-3-5V7a4 4 0 1 1 8 0v4"/></g></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37c1 .608 2.296.07 2.572-1.065"/><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0-6 0"/></g></symbol>
+<symbol id="i-wp-admin-generic" viewBox="0 0 20 20"><path fill="none" d="M0 0h20v20H0z"/><path d="M18 12h-2.18c-.17.7-.44 1.35-.81 1.93l1.54 1.54-2.1 2.1-1.54-1.54c-.58.36-1.23.63-1.91.79V19H8v-2.18c-.68-.16-1.33-.43-1.91-.79l-1.54 1.54-2.12-2.12 1.54-1.54c-.36-.58-.63-1.23-.79-1.91H1V9.03h2.17c.16-.7.44-1.35.8-1.94L2.43 5.55l2.1-2.1 1.54 1.54c.58-.37 1.24-.64 1.93-.81V2h3v2.18c.68.16 1.33.43 1.91.79l1.54-1.54 2.12 2.12-1.54 1.54c.36.59.64 1.24.8 1.94H18V12zm-8.5 1.5c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/></symbol>
+</svg>
+
+<div class="navguide">
+
+  <h1 class="navguide__title">Navigation patterns</h1>
+  <p class="navguide__intro">Depth comes from composing across screens (submenu → page tabs → drill-in), not stacking bars: each screen keeps <strong>one chrome <code>.tabs</code> strip, one secondary nav</strong>. Rules: <code>docs/agent-heuristics.md</code> §2b. Component specs: <a href="styleguide-navigation.html">Navigation</a>.</p>
+
+  <div class="ladder">
+    <h2>The depth ladder</h2>
+    <ol>
+      <li><strong>wp-admin menu item</strong> — the plugin itself.</li>
+      <li><strong>Sidebar submenu</strong> — its screens (Dashboard / Redirects / Settings).</li>
+      <li><strong>Chrome <code>.tabs</code></strong> — sections of a screen (Settings → General / Advanced).</li>
+      <li><strong>Drill-in</strong> — a breadcrumb into a subpage with its own <code>.tabs--card</code>.</li>
+    </ol>
+    <p class="pattern__note" style="margin: var(--space-sm) 0 0;"><code>.views</code> (list filtering) is orthogonal, not a level — coexists with any above. Push a level down when settings outgrow one tab row.</p>
+  </div>
+
+  <!-- Pattern 1 -->
+  <section class="pattern">
+    <div class="pattern__head"><h2 class="pattern__label">Tabs as primary</h2><span class="pattern__tag">single menu-item plugin</span></div>
+    <p class="pattern__note">No submenu — the topbar <code>.tabs</code> strip <em>is</em> the primary nav. For a single admin-menu item with few screens.</p>
+    <div class="pattern__frame">
+      <header class="plugin__topbar">
+        <h1 class="plugin__brand">Acme SEO</h1>
+        <div class="plugin__topbar-actions"><a href="#">Documentation</a></div>
+      </header>
+      <nav class="tabs" aria-label="Plugin sections">
+        <a class="tabs__tab tabs__tab--current" href="#" aria-current="page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layout-dashboard"/></svg>Dashboard</a>
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-settings"/></svg>Settings</a>
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-list-details"/></svg>Sitemaps</a>
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-lock"/></svg>License</a>
+      </nav>
+      <div class="pattern__pad">
+        <div class="pattern__stub" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern 1b -->
+  <section class="pattern">
+    <div class="pattern__head"><h2 class="pattern__label">Titled second level under a tab</h2><span class="pattern__tag">the labeled-parent rule</span></div>
+    <p class="pattern__note">A level <em>below</em> the primary <code>.tabs</code>: the tab picks the section, a strip beneath picks the page. The strip needs a title directly above it (the <code>.page-header</code> or a card header) — the title anchors the level; two strips never stack bare. Three arrangements, same rung — pick by weight and scope.</p>
+
+    <p class="pattern__note" style="margin: var(--space-md) 0;"><strong>Lightest:</strong> <code>.page-header</code> → <code>.subnav--links</code>, all on the canvas. For a few light pages.</p>
+    <div class="pattern__frame">
+      <header class="plugin__topbar">
+        <h1 class="plugin__brand">Acme SEO</h1>
+        <div class="plugin__topbar-actions"><a href="#">Documentation</a></div>
+      </header>
+      <nav class="tabs" aria-label="Plugin sections">
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layout-dashboard"/></svg>Dashboard</a>
+        <a class="tabs__tab tabs__tab--current" href="#" aria-current="page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-settings"/></svg>Settings</a>
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-list-details"/></svg>Sitemaps</a>
+      </nav>
+      <div class="pattern__pad--header">
+        <header class="page-header">
+          <h2 class="page-header__title">Settings</h2>
+          <p class="page-header__lead">Defaults and permissions for this site.</p>
+        </header>
+      </div>
+      <nav class="subnav subnav--links" aria-label="Settings pages">
+        <a class="subnav__link subnav__link--current" href="#" aria-current="page">General</a>
+        <a class="subnav__link" href="#">Templates</a>
+        <a class="subnav__link" href="#">Import / Export</a>
+      </nav>
+      <div class="pattern__pad">
+        <div class="pattern__stub" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <p class="pattern__note" style="margin: var(--space-md) 0;"><strong>Standard settings screen:</strong> <code>.page-header</code> → <code>.tabs--boxed</code> on the canvas — folder tabs whose current item takes the body bg and fuses into the page. The most wp-native arrangement (core settings screens live bare on the body, not in cards).</p>
+    <div class="pattern__frame">
+      <header class="plugin__topbar">
+        <h1 class="plugin__brand">Acme SEO</h1>
+        <div class="plugin__topbar-actions"><a href="#">Documentation</a></div>
+      </header>
+      <nav class="tabs" aria-label="Plugin sections">
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layout-dashboard"/></svg>Dashboard</a>
+        <a class="tabs__tab tabs__tab--current" href="#" aria-current="page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-settings"/></svg>Settings</a>
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-list-details"/></svg>Sitemaps</a>
+      </nav>
+      <div class="pattern__pad--header">
+        <header class="page-header">
+          <h2 class="page-header__title">Settings</h2>
+          <p class="page-header__lead">Defaults and permissions for this site.</p>
+        </header>
+      </div>
+      <nav class="tabs tabs--boxed" aria-label="Settings pages">
+        <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">General</a>
+        <a class="tabs__tab" href="#">Templates</a>
+        <a class="tabs__tab" href="#">Import / Export</a>
+      </nav>
+      <div class="pattern__pad">
+        <div class="pattern__stub" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <p class="pattern__note" style="margin: var(--space-md) 0;"><strong>Contained object:</strong> a flush card owns the level — title in the card header, <code>.tabs--card</code> beneath, body as the panel. Not the default for a whole settings page; use it when the tabbed thing is one object among others on the screen. No breadcrumb needed — the parent strip is still on screen.</p>
+    <div class="pattern__frame">
+      <header class="plugin__topbar">
+        <h1 class="plugin__brand">Acme SEO</h1>
+        <div class="plugin__topbar-actions"><a href="#">Documentation</a></div>
+      </header>
+      <nav class="tabs" aria-label="Plugin sections">
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layout-dashboard"/></svg>Dashboard</a>
+        <a class="tabs__tab tabs__tab--current" href="#" aria-current="page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-settings"/></svg>Settings</a>
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-list-details"/></svg>Sitemaps</a>
+      </nav>
+      <div class="pattern__pad">
+        <section class="card card--flush">
+          <div class="card__header">
+            <div class="card__heading">
+              <header class="page-header">
+                <h2 class="page-header__title">Settings</h2>
+                <p class="page-header__lead">Defaults and permissions for this site.</p>
+              </header>
+            </div>
+          </div>
+          <nav class="tabs tabs--card" aria-label="Settings sections">
+            <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">General</a>
+            <a class="tabs__tab" href="#">Advanced</a>
+            <a class="tabs__tab" href="#">Permissions</a>
+          </nav>
+          <div class="card__body">
+            <div class="pattern__stub" aria-hidden="true"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <p class="pattern__note" style="margin: var(--space-md) 0;"><strong>Opt-in only — the direct stack, with a compound title:</strong> <code>.subnav--tabs</code> immediately under the primary strip, no title between. The connected blocks fuse with the strip above; the anchoring cost (one title can only name one level) is repaid <em>below</em> the stack — a compound <code>.page-header</code> title naming the full path ("Settings: General") anchors both levels at once. Agents never build this unprompted; on explicit request, give a heads-up, then build it — always with the compound title below.</p>
+    <div class="pattern__frame">
+      <header class="plugin__topbar">
+        <h1 class="plugin__brand">Acme SEO</h1>
+        <div class="plugin__topbar-actions"><a href="#">Documentation</a></div>
+      </header>
+      <nav class="tabs" aria-label="Plugin sections">
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-layout-dashboard"/></svg>Dashboard</a>
+        <a class="tabs__tab tabs__tab--current" href="#" aria-current="page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-settings"/></svg>Settings</a>
+        <a class="tabs__tab" href="#"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-list-details"/></svg>Sitemaps</a>
+      </nav>
+      <nav class="subnav subnav--tabs" aria-label="Settings pages">
+        <a class="subnav__link subnav__link--current" href="#" aria-current="page">General</a>
+        <a class="subnav__link" href="#">Templates</a>
+        <a class="subnav__link" href="#">Import / Export</a>
+      </nav>
+      <div class="pattern__pad--header">
+        <header class="page-header">
+          <h2 class="page-header__title">Settings: General</h2>
+          <p class="page-header__lead">Defaults and permissions for this site.</p>
+        </header>
+      </div>
+      <div class="pattern__pad">
+        <div class="pattern__stub" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern 2 -->
+  <section class="pattern">
+    <div class="pattern__head"><h2 class="pattern__label">Sidebar submenu + page tabs</h2><span class="pattern__tag">WP settings pattern</span></div>
+    <p class="pattern__note">Submenu picks the screen; a flush card owns the section nav — title and <code>.tabs--card</code> inside one container (like the drill-in, without the breadcrumb). The canonical WordPress settings layout. Secondary here, not a second primary.</p>
+    <div class="pattern__frame pattern__split">
+      <nav class="admin-menu" aria-label="Plugin menu">
+        <a class="admin-menu__item admin-menu__item--current" href="#" aria-current="page"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-generic"/></svg>Acme SEO</a>
+        <a class="admin-menu__submenu-item" href="#">Dashboard</a>
+        <a class="admin-menu__submenu-item admin-menu__submenu-item--current" href="#" aria-current="page">Settings</a>
+        <a class="admin-menu__submenu-item" href="#">Sitemaps</a>
+        <a class="admin-menu__submenu-item" href="#">Tools</a>
+      </nav>
+      <div class="pattern__content">
+        <div class="pattern__pad">
+          <section class="card card--flush">
+            <div class="card__header">
+              <div class="card__heading">
+                <header class="page-header"><h2 class="page-header__title">Settings</h2><p class="page-header__lead">Defaults and permissions for this site.</p></header>
+              </div>
+            </div>
+            <nav class="tabs tabs--card" aria-label="Settings sections">
+              <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">General</a>
+              <a class="tabs__tab" href="#">Advanced</a>
+              <a class="tabs__tab" href="#">Permissions</a>
+            </nav>
+            <div class="card__body">
+              <div class="pattern__stub" aria-hidden="true"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern 3 -->
+  <section class="pattern">
+    <div class="pattern__head"><h2 class="pattern__label">Depth via drill-in</h2><span class="pattern__tag">breadcrumb → <code>.tabs--card</code></span></div>
+    <p class="pattern__note">Drilled into from a list (breadcrumb + back). The subpage carries its <em>own</em> <code>.tabs--card</code> inside a flush card — another level on a new screen, not a second bar on the parent. How depth accumulates.</p>
+    <div class="pattern__frame pattern__split">
+      <nav class="admin-menu" aria-label="Plugin menu">
+        <a class="admin-menu__item admin-menu__item--current" href="#" aria-current="page"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-generic"/></svg>Acme SEO</a>
+        <a class="admin-menu__submenu-item" href="#">Dashboard</a>
+        <a class="admin-menu__submenu-item admin-menu__submenu-item--current" href="#" aria-current="page">Redirects</a>
+        <a class="admin-menu__submenu-item" href="#">Sitemaps</a>
+        <a class="admin-menu__submenu-item" href="#">Settings</a>
+      </nav>
+      <div class="pattern__content">
+        <div class="pattern__pad">
+          <section class="card card--flush">
+            <div class="card__header">
+              <div class="card__heading">
+                <header class="page-header">
+                  <div class="page-header__breadcrumb">
+                    <button class="page-header__back" type="button" aria-label="Back to all redirects"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+                    <a href="#">Redirects</a>
+                    <span class="page-header__crumb-sep" aria-hidden="true">\</span>
+                    <span>Edit redirect</span>
+                  </div>
+                  <h2 class="page-header__title">Edit redirect</h2>
+                </header>
+              </div>
+            </div>
+            <nav class="tabs tabs--card" aria-label="Redirect sections">
+              <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">General</a>
+              <a class="tabs__tab" href="#">Conditions</a>
+              <a class="tabs__tab" href="#">Advanced</a>
+            </nav>
+            <div class="card__body">
+              <div class="pattern__stub" aria-hidden="true"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern 3b -->
+  <section class="pattern">
+    <div class="pattern__head"><h2 class="pattern__label">Multi-level breadcrumb</h2><span class="pattern__tag">≥2 ancestors on drill-ins</span></div>
+    <p class="pattern__note">Real consoles go list → item → sub-item. The <code>.page-header__breadcrumb</code> simply carries two (or more) ancestor links; every ancestor is a link, the current level is plain text. The back button targets the <em>nearest</em> ancestor, not the list.</p>
+    <div class="pattern__frame pattern__split">
+      <nav class="admin-menu" aria-label="Plugin menu">
+        <a class="admin-menu__item admin-menu__item--current" href="#" aria-current="page"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-generic"/></svg>Acme SEO</a>
+        <a class="admin-menu__submenu-item" href="#">Dashboard</a>
+        <a class="admin-menu__submenu-item admin-menu__submenu-item--current" href="#" aria-current="page">Redirects</a>
+        <a class="admin-menu__submenu-item" href="#">Settings</a>
+      </nav>
+      <div class="pattern__content">
+        <div class="pattern__pad">
+          <section class="card card--flush">
+            <div class="card__header">
+              <div class="card__heading">
+                <header class="page-header">
+                  <div class="page-header__breadcrumb">
+                    <button class="page-header__back" type="button" aria-label="Back to redirect example.com/old-path"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+                    <a href="#">Redirects</a>
+                    <span class="page-header__crumb-sep" aria-hidden="true">\</span>
+                    <a href="#">example.com/old-path</a>
+                    <span class="page-header__crumb-sep" aria-hidden="true">\</span>
+                    <span>Edit condition</span>
+                  </div>
+                  <h2 class="page-header__title">Edit condition</h2>
+                </header>
+              </div>
+            </div>
+            <div class="card__body">
+              <div class="pattern__stub" aria-hidden="true"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern 3c -->
+  <section class="pattern">
+    <div class="pattern__head"><h2 class="pattern__label">Back to list, state preserved</h2><span class="pattern__tag">row-reached detail screens</span></div>
+    <p class="pattern__note">Mandatory on any screen reached from a list-table row: the breadcrumb ancestor / back button returns to the <em>originating list state</em> — the URL keeps the list's <code>.views</code> filter and pagination. The user left page 3 of "Active"; back must land on page 3 of "Active", not page 1 of "All". The well shows the actual back href.</p>
+    <div class="pattern__frame pattern__split">
+      <nav class="admin-menu" aria-label="Plugin menu">
+        <a class="admin-menu__item admin-menu__item--current" href="#" aria-current="page"><svg class="admin-menu__icon" aria-hidden="true"><use href="#i-wp-admin-generic"/></svg>Acme SEO</a>
+        <a class="admin-menu__submenu-item" href="#">Dashboard</a>
+        <a class="admin-menu__submenu-item admin-menu__submenu-item--current" href="#" aria-current="page">Redirects</a>
+        <a class="admin-menu__submenu-item" href="#">Settings</a>
+      </nav>
+      <div class="pattern__content">
+        <div class="pattern__pad">
+          <section class="card card--flush">
+            <div class="card__header">
+              <div class="card__heading">
+                <header class="page-header">
+                  <div class="page-header__breadcrumb">
+                    <button class="page-header__back" type="button" aria-label="Back to redirects, active filter, page 3"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+                    <a href="#">Redirects</a>
+                    <span class="page-header__crumb-sep" aria-hidden="true">\</span>
+                    <span>Edit redirect</span>
+                  </div>
+                  <h2 class="page-header__title">Edit redirect</h2>
+                </header>
+              </div>
+            </div>
+            <div class="card__body">
+              <div class="well">
+                <span class="well__label">Back href:</span>
+                <code>admin.php?page=acme-redirects&amp;status=active&amp;paged=3</code>
+              </div>
+              <div class="pattern__stub" aria-hidden="true"></div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern 3d -->
+  <section class="pattern">
+    <div class="pattern__head"><h2 class="pattern__label">Section index</h2><span class="pattern__tag"><code>.section-index</code> — long settings pages</span></div>
+    <p class="pattern__note">For settings pages past ~2 viewport heights: an anchor-link table of contents. Static by default; <code>--sticky</code> (shown here, in a <code>.columns</code> aside rail) only with root <code>scroll-padding-top</code> — which the component ships — and the kit's visible keyboard focus. Not a nav level: like <code>.views</code>, it's orthogonal to the ladder. Pure anchors + CSS, no JS.</p>
+    <div class="pattern__frame">
+      <div class="pattern__pad">
+        <header class="page-header" style="margin-bottom: var(--space-lg);">
+          <h2 class="page-header__title">Settings</h2>
+          <p class="page-header__lead">Defaults and permissions for this site.</p>
+        </header>
+        <div class="columns">
+          <div class="columns__main">
+            <section class="card">
+              <div class="pattern__stub-block">
+                <h3 class="pattern__stub-heading" id="np-general">General</h3>
+                <div class="pattern__stub" aria-hidden="true"></div>
+              </div>
+              <div class="pattern__stub-block">
+                <h3 class="pattern__stub-heading" id="np-crawling">Crawling</h3>
+                <div class="pattern__stub" aria-hidden="true"></div>
+              </div>
+              <div class="pattern__stub-block">
+                <h3 class="pattern__stub-heading" id="np-sitemaps">Sitemaps</h3>
+                <div class="pattern__stub" aria-hidden="true"></div>
+              </div>
+              <div class="pattern__stub-block" style="margin-bottom: 0;">
+                <h3 class="pattern__stub-heading" id="np-advanced">Advanced</h3>
+                <div class="pattern__stub" aria-hidden="true"></div>
+              </div>
+            </section>
+          </div>
+          <div class="columns__aside">
+            <nav class="section-index section-index--sticky" aria-label="On this page">
+              <p class="section-index__title">On this page</p>
+              <ul class="section-index__list">
+                <li><a class="section-index__link section-index__link--current" href="#np-general" aria-current="true">General</a></li>
+                <li><a class="section-index__link" href="#np-crawling">Crawling</a></li>
+                <li><a class="section-index__link" href="#np-sitemaps">Sitemaps</a></li>
+                <li><a class="section-index__link" href="#np-advanced">Advanced</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pattern 4 -->
+  <section class="pattern">
+    <div class="pattern__head"><h2 class="pattern__label">Views — an orthogonal axis</h2><span class="pattern__tag">filtering, not a nav level</span></div>
+    <p class="pattern__note"><code>.views</code> filters one collection into subsets — pipe-separated links with counts, above the list-table. Not a level. Distinct from <code>.subnav</code>'s spaced, count-less links.</p>
+    <div class="pattern__frame">
+      <div class="pattern__pad">
+        <section class="card card--flush">
+          <div class="card__header">
+            <div class="card__heading">
+              <header class="page-header"><h2 class="page-header__title">Redirects</h2></header>
+            </div>
+          </div>
+          <ul class="views" aria-label="Filter views">
+            <li class="views__item"><a class="views__view views__view--current" href="#" aria-current="true">All <span class="views__count">(15)</span></a></li>
+            <li class="views__item"><a class="views__view" href="#">Active <span class="views__count">(12)</span></a></li>
+            <li class="views__item"><a class="views__view" href="#">Inactive <span class="views__count">(3)</span></a></li>
+          </ul>
+          <div class="card__body">
+            <div class="pattern__stub" aria-hidden="true"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide — Navigation</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+<svg data-bios-sprite xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l5 5L20 7"/></symbol>
+<symbol id="i-chevron-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 6l-6 6l6 6"/></symbol>
+<symbol id="i-chevron-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 6l6 6l-6 6"/></symbol>
+</svg>
+
+<div class="guide">
+
+  <h1 class="guide__title">Navigation</h1>
+  <p class="guide__intro">Section navigation and wayfinding: tabs and their variants, subnav, views, page headers, pagination, and wizard progress. These specs show each part in isolation — for how they <strong>compose across screens</strong> (the depth ladder and worked layouts), see <a href="navigation-patterns.html">navigation patterns</a>. Tokens, knobs, and the component index live in the <a href="styleguide.html">style guide</a>.</p>
+
+  <section class="guide__section">
+    <h2 class="guide__section-title">Component specs</h2>
+
+    <!-- tabs -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Tabs</h3><div class="spec__badges"><code class="spec__name">.tabs</code></div></div><p class="spec__purpose">Horizontal section navigation. Chrome placement (below the plugin topbar) or card placement (sub-navigation inside a flush card).</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack" style="gap: var(--space-xl);">
+          <div class="stack" style="gap: var(--space-md);">
+            <p class="card__description">Chrome (below the plugin topbar)</p>
+            <nav class="tabs" aria-label="Demo tabs">
+              <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">Tab label</a>
+              <a class="tabs__tab" href="#">Tab label</a>
+              <a class="tabs__tab" href="#">Tab label</a>
+            </nav>
+          </div>
+          <div class="card__divider"></div>
+          <div class="stack" style="gap: var(--space-md);">
+            <p class="card__description"><code>--card</code> — sub-navigation inside a flush card</p>
+            <nav class="tabs tabs--card" aria-label="Demo card tabs">
+              <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">Tab label</a>
+              <a class="tabs__tab" href="#">Tab label</a>
+              <a class="tabs__tab" href="#">Tab label</a>
+            </nav>
+          </div>
+          <div class="card__divider"></div>
+          <div class="stack" style="gap: var(--space-md);">
+            <p class="card__description"><code>--boxed</code> — folder tabs with core's <code>.nav-tab</code> anatomy: bordered inactive tabs on a muted fill, white on hover, the current tab takes the panel's bg and fuses into it (nothing encloses the strip)</p>
+            <div>
+              <nav class="tabs tabs--boxed" aria-label="Demo boxed tabs">
+                <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">Tab label</a>
+                <a class="tabs__tab" href="#">Tab label</a>
+                <a class="tabs__tab" href="#">Tab label</a>
+              </nav>
+              <div class="spec__fuse-panel"></div>
+            </div>
+          </div>
+          <div class="card__divider"></div>
+          <div class="stack" style="gap: var(--space-md);">
+            <p class="card__description"><code>--vertical</code> — rail for a two-column layout</p>
+            <nav class="tabs tabs--vertical demo-w-tabs" aria-label="Demo vertical tabs">
+              <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">Tab label</a>
+              <a class="tabs__tab" href="#">Tab label</a>
+              <a class="tabs__tab" href="#">Tab label</a>
+            </nav>
+          </div>
+          <div class="card__divider"></div>
+          <div class="stack" style="gap: var(--space-md);">
+            <p class="card__description"><code>--segmented</code> — inline toggle, not a section list</p>
+            <nav class="tabs tabs--segmented" aria-label="Demo segmented tabs">
+              <a class="tabs__tab tabs__tab--current" href="#" aria-current="page">Tab label</a>
+              <a class="tabs__tab" href="#">Tab label</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>.tabs__tab</code></dd>
+        <dt>Modifiers</dt><dd><code>.tabs__tab--current</code> (pair with <code>aria-current="page"</code>) · <code>.tabs--card</code> (sub-navigation inside a <code>.card--flush</code>, below the card header; smaller type, underline hugs the label) · <code>.tabs--boxed</code> (same sub-navigation rung as <code>--card</code>, folder tabs that fuse into the panel below — stronger current-page anchor for dense screens) · <code>.tabs--vertical</code> (same rung, rail layout for a <code>.columns</code> two-column screen; current state is an accent-fill, not an underline) · <code>.tabs--segmented</code> (inline button-group control for a small 2-4 equally-weighted toggle, not a section list — the one variant that doesn't require a breadcrumb; square radius matches <code>.button</code>, not a pill shape)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>At most one chrome <code>.tabs</code> strip per screen: it's the primary nav for a single menu-item plugin, or a page's section nav under the header when the sidebar submenu is primary (the WP settings-tabs pattern). Never two competing strips.</li>
+            <li><code>--card</code>/<code>--boxed</code>/<code>--vertical</code> are page-level sub-navigation only; never use them in parallel with a chrome <code>.tabs</code> strip on the same screen, and never use two of them together.</li>
+            <li>In card placement the tab panel content goes in <code>.card__body</code>, directly after the tabs row.</li>
+            <li><code>--segmented</code> is for interchangeable views of the same thing (Visual/Code, Day/Week/Month) — if the options are a section list instead, use <code>--card</code>/<code>--boxed</code>/<code>--vertical</code> or <code>.subnav</code>.</li>
+            <li>Composition: see the strip working as primary nav, and stacked with subnav and drill-in, in <a href="navigation-patterns.html">navigation patterns</a>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- subnav -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Subnav</h3><div class="spec__badges"><code class="spec__name">.subnav</code><code class="spec__name">.subnav--links</code><code class="spec__name">.subnav--tabs</code></div></div><p class="spec__purpose">Secondary navigation strip directly under whichever primary nav is in use — chrome tabs, or directly under .page-header when the sidebar submenu is primary: pages of a section (navigation level 2). Two variants — pick one.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack" style="gap: var(--space-xl);">
+          <div class="stack" style="gap: var(--space-md);">
+            <p class="card__description"><code>--links</code> — spaced text links, the lightest way to add a level</p>
+            <nav class="subnav subnav--links" aria-label="Demo section pages, links variant">
+              <a class="subnav__link subnav__link--current" href="#" aria-current="page">Subnav label</a>
+              <a class="subnav__link" href="#">Subnav label</a>
+              <a class="subnav__link" href="#">Subnav label</a>
+            </nav>
+          </div>
+          <div class="card__divider"></div>
+          <div class="stack" style="gap: var(--space-md);">
+            <p class="card__description"><code>--tabs</code> — connected block tabs; the current page takes the body background and blends into the content below</p>
+            <div>
+              <nav class="subnav subnav--tabs" aria-label="Demo section pages, tabs variant">
+                <a class="subnav__link subnav__link--current" href="#" aria-current="page">Subnav label</a>
+                <a class="subnav__link" href="#">Subnav label</a>
+                <a class="subnav__link" href="#">Subnav label</a>
+              </nav>
+              <div class="spec__fuse-panel"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>nav.subnav.subnav--links|--tabs &gt; __link</code> — no pipes, no counts (those are the <code>.views</code> signature)</dd>
+        <dt>Modifiers</dt><dd><code>.subnav--links</code> (spaced text links; <code>--current</code> is bold, text-primary) · <code>.subnav--tabs</code> (block tabs filling the row; <code>--current</code> takes the canvas/body bg and drops the bar border to blend into the content below) · <code>.subnav__link--current</code> (pair with <code>aria-current="page"</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Navigation ladder: primary = sidebar submenu OR (single menu-item) a top-level chrome <code>.tabs</code> strip · secondary (max one) = chrome <code>.tabs</code> under the header (WP settings-tabs) OR <code>.subnav</code> OR the <code>.tabs--card</code>/<code>--boxed</code>/<code>--vertical</code> drill-in patterns · <code>.views</code> = filtering, not a nav level.</li>
+            <li>Default home: directly under the titled <code>.page-header</code> (full-bleed, outside any card) — never directly under another nav strip. A strip needs a title above it (the labeled-parent rule, heuristics §2b).</li>
+            <li><code>--links</code> is the quiet default under a header. <code>--tabs</code> exists for one composition only — the bare direct stack fused under the chrome <code>.tabs</code> strip, which agents build on explicit user request only (heads-up about the anchoring cost, then comply). On the canvas under a header, the stronger-anchor option is <code>.tabs--boxed</code>, not <code>--tabs</code>.</li>
+            <li>Composition: the "tabs + subnav" and "submenu + page tabs" layouts are worked out in <a href="navigation-patterns.html">navigation patterns</a>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- section-index -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Section index</h3><div class="spec__badges"><code class="spec__name">.section-index</code></div></div><p class="spec__purpose">In-page table of contents for long settings pages (~2+ viewport heights): anchor links to the page's sections. Pure anchors + CSS — no JS. Not a nav level; it points inside the current page.</p></div>
+      <div class="spec__demo">
+        <nav class="section-index demo-w-xs" aria-label="On this page">
+          <p class="section-index__title">On this page</p>
+          <ul class="section-index__list">
+            <li><a class="section-index__link section-index__link--current" href="#" aria-current="true">Section label</a></li>
+            <li><a class="section-index__link" href="#">Section label</a></li>
+            <li><a class="section-index__link" href="#">Section label</a></li>
+            <li><a class="section-index__link" href="#">Section label</a></li>
+          </ul>
+        </nav>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>nav.section-index &gt; __title + __list &gt; li &gt; __link</code> — always an <code>aria-label</code>ed <code>nav</code></dd>
+        <dt>Modifiers</dt><dd><code>.section-index__link--current</code> (pair with <code>aria-current="true"</code>; dark bold — "colored = clickable, dark = you are here") · <code>.section-index--sticky</code> (pins inside a <code>.columns__aside</code> rail)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Optional, for pages exceeding ~2 viewport heights — shorter pages don't need one.</li>
+            <li>Static by default. <code>--sticky</code> only inside a <code>.columns</code> aside rail; the kit sets root <code>scroll-padding-top</code> so anchor jumps don't hide section titles, and links keep the visible keyboard focus.</li>
+            <li>Not a nav level: it coexists with any primary/secondary nav (like <code>.views</code>, it's orthogonal to the ladder).</li>
+            <li>Composition frame: <a href="navigation-patterns.html">navigation patterns</a>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- page-header -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Page header</h3><div class="spec__badges"><code class="spec__name">.page-header</code></div></div><p class="spec__purpose">Title + lead at the top of every plugin screen. Exactly one per page.</p></div>
+      <div class="spec__demo">
+        <header class="page-header">
+          <div class="page-header__breadcrumb">
+            <button class="page-header__back" type="button" aria-label="Back"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+            <a href="#">Parent page title</a>
+            <span class="page-header__crumb-sep" aria-hidden="true">\</span>
+            <span>Page title</span>
+          </div>
+          <h2 class="page-header__title">Page title</h2>
+          <p class="page-header__lead">Page lead paragraph. One or two sentences describing what this screen does. <a href="#">Learn more</a></p>
+        </header>
+      </div>
+      <dl class="spec__api">
+        <dt>Elements</dt><dd><code>.page-header__title</code> · <code>.page-header__lead</code> · drill-in: <code>__breadcrumb</code> (<code>__back</code> icon button + crumb links + <code>__crumb-sep</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Breadcrumb row is for drill-in subpages only; the current page is plain text, parents are links.</li>
+            <li>Still exactly one <code>.page-header</code> per screen — on tabbed subpages it lives inside the <code>.card--flush</code> header.</li>
+            <li>Composition: the breadcrumb's role in the "depth via drill-in" flow is shown in <a href="navigation-patterns.html">navigation patterns</a>.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- views -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Views</h3><div class="spec__badges"><code class="spec__name">.views</code></div></div><p class="spec__purpose">Text-link filter row over a collection (wp-admin "subsubsub"): switches subsets of the same list, with counts.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <ul class="views" aria-label="Filter views">
+          <li class="views__item"><a class="views__view views__view--current" href="#" aria-current="true">View label <span class="views__count">(12)</span></a></li>
+          <li class="views__item"><a class="views__view" href="#">View label <span class="views__count">(8)</span></a></li>
+          <li class="views__item"><a class="views__view" href="#">View label <span class="views__count">(3)</span></a></li>
+          <li class="views__item"><a class="views__view" href="#">View label <span class="views__count">(1)</span></a></li>
+        </ul>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>ul.views &gt; __item &gt; __view (+ __count)</code> — pipe separators are CSS-generated between items</dd>
+        <dt>Modifiers</dt><dd><code>.views__view--current</code> (bold, text-primary; pair with <code>aria-current="true"</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Filtering, not navigation: views switch subsets of the same collection. Different content → <code>.tabs</code>.</li>
+            <li>Place directly above the list-table, inside the <code>.card--flush</code> after the card header.</li>
+            <li>Counts are optional but recommended; they stay regular weight inside the bold current view.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- pagination -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Pagination</h3><div class="spec__badges"><code class="spec__name">.pagination</code></div></div><p class="spec__purpose">Standalone pager for card grids and log views. Inside .list-table the same anatomy stays embedded in the toolbar.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <nav class="pagination" aria-label="Pagination">
+          <button class="button button--small" disabled aria-label="Previous page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+          <span class="pagination__label">1 of 5</span>
+          <button class="button button--small" aria-label="Next page"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+        </nav>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd>prev/next <code>.button --small</code> icon buttons · <code>__label</code> (“1 of 5”)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Disable, don’t hide, the edge buttons on first/last page.</li>
+            <li>No page-number lists — prev/next + position is the wp-admin grammar.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+    <!-- stepper -->
+    <div class="spec">
+      <div class="spec__head"><div class="spec__head-row"><h3 class="spec__title">Stepper</h3><div class="spec__badges"><code class="spec__name">.stepper</code></div></div><p class="spec__purpose">Onboarding / wizard progress. Default: numbered steps with connectors. --bar: compact progress bar with step count.</p></div>
+      <div class="spec__demo spec__demo--card-bg">
+        <div class="stack">
+          <div class="stepper">
+            <div class="stepper__step stepper__step--complete">
+              <span class="stepper__marker"><svg class="icon icon--sm" aria-hidden="true"><use href="#i-check"/></svg></span>
+              Step label
+            </div>
+            <div class="stepper__step stepper__step--current" aria-current="step">
+              <span class="stepper__marker">2</span>
+              Step label
+            </div>
+            <div class="stepper__step">
+              <span class="stepper__marker">3</span>
+              Step label
+            </div>
+            <div class="stepper__step">
+              <span class="stepper__marker">4</span>
+              Step label
+            </div>
+          </div>
+          <div class="card__divider"></div>
+          <div class="stepper stepper--bar">
+            <div class="stepper__meta">
+              <span class="stepper__meta-label">Step label</span>
+              <span>Step 2 of 4</span>
+            </div>
+            <div class="stepper__bar"><div class="stepper__bar-fill" style="--fill: 50%"></div></div>
+          </div>
+        </div>
+      </div>
+      <dl class="spec__api">
+        <dt>Anatomy</dt><dd><code>.stepper &gt; __step (__marker + label text)</code> · bar variant: <code>.stepper--bar &gt; __meta (__meta-label) + __bar &gt; __bar-fill</code></dd>
+        <dt>Step variants</dt><dd>default (upcoming) · <code>--current</code> (pair with <code>aria-current="step"</code>) · <code>--complete</code> (marker shows Tabler <code>check</code>)</dd>
+        <dt>Rules</dt>
+        <dd>
+          <ul class="spec__rules">
+            <li>Use the numbered variant for 3–5 step wizards; the bar variant when space is tight or steps are many.</li>
+            <li>Bar fill width is set by the host page as a custom property (<code>style="--fill: 50%"</code>), never a raw inline <code>width</code>.</li>
+            <li>Completed markers use the accent fill; only one <code>--current</code> step at a time.</li>
+          </ul>
+        </dd>
+      </dl>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="guide.js"></script>
+</body>
+</html>
